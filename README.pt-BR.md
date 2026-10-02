@@ -26,7 +26,7 @@ Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os o
 
 ## Baixar
 
-Baixe o **`Tern-x.y.z.dmg`** na [última release](https://github.com/gitlherme/vez/releases/latest), abra e arraste o Tern para **Aplicativos**.
+Baixe o **`Tern-x.y.z.dmg`** na [última release](https://github.com/gitlherme/tern/releases/latest), abra e arraste o Tern para **Aplicativos**.
 
 O app ainda não é notarizado pela Apple, então o macOS bloqueia a primeira abertura. Abra o Tern uma vez, feche o aviso e vá em **Ajustes do Sistema › Privacidade e segurança › Abrir Mesmo Assim**. Ou rode:
 
@@ -57,8 +57,8 @@ No seletor: **⌫** oculta o app da janela destacada; **⌥⌫** oculta só aque
 ## Compilar e rodar
 
 ```bash
-git clone https://github.com/gitlherme/vez.git
-cd vez
+git clone https://github.com/gitlherme/tern.git
+cd tern
 open Tern.xcodeproj
 ```
 
