@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="brand/tern-icon.svg" width="128" height="128" alt="Ícone do Tern">
+  <img src="brand/tern-icon.svg" width="128" height="128" alt="Tern icon">
 </p>
 
 <p align="center">
@@ -10,35 +10,51 @@
 </p>
 
 <p align="center">
-  <strong>Seletor de janelas para Mac, com o poder de esconder o que atrapalha.</strong><br>
-  <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela · <kbd>⌫</kbd> para ocultar um app
+  <strong>A window switcher for Mac that lets you hide what gets in the way.</strong><br>
+  <kbd>⌥</kbd> <kbd>⇥</kbd> to switch windows · <kbd>⌫</kbd> to hide an app
+</p>
+
+<p align="center">
+  <strong>English</strong> · <a href="README.pt-BR.md">Português</a>
 </p>
 
 ---
 
-Tern é um seletor de janelas nativo para macOS que vive só na barra de menus, sem ícone no Dock. O atalho global abre um HUD para ciclar e focar janelas abertas — no espírito do [alt-tab.app](https://alt-tab.app), com um diferencial: você **oculta um app (ou uma janela)** e ele deixa de aparecer no seletor até você tirá-lo da lista.
+Tern is a native macOS window switcher that lives in the menu bar, with no Dock icon. A global shortcut opens a HUD to cycle through and focus open windows — in the spirit of [alt-tab.app](https://alt-tab.app), with one twist: you can **hide an app (or a single window)** and it stays out of the switcher until you take it off the list.
 
-Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os outros quatro.
+Example: five apps open, one on the exclusion list, and the shortcut shows only the other four.
 
-## Recursos
+## Download
 
-- App de barra de menus (`LSUIElement`), Swift + SwiftUI/AppKit.
-- Atalho global configurável (padrão **⌥⇥**). O HUD sobrepõe o app da frente e o atalho **não** dispara também no browser. Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
-- Exclusão por **bundle id** (caminho principal) e exclusão por janela (bundle id + título).
-- Prévia de cada janela nos cards (com permissão de Gravação da tela).
-- Interface em **português e inglês** (segue o idioma do macOS; outros idiomas caem no inglês).
-- Persistência das exclusões e do atalho em `UserDefaults`.
-- Ajustes para gravar o atalho, conceder Acessibilidade e adicionar/remover exclusões.
+Get **`Tern-x.y.z.dmg`** from the [latest release](https://github.com/gitlherme/vez/releases/latest), open it, and drag Tern into **Applications**.
 
-No seletor: **⌫** oculta o app da janela destacada; **⌥⌫** oculta só aquela janela.
+The app isn't notarized by Apple yet, so macOS blocks the first launch. Open Tern once, dismiss the warning, then go to **System Settings › Privacy & Security › Open Anyway**. Or run:
 
-## Requisitos
+```bash
+xattr -dr com.apple.quarantine /Applications/Tern.app
+```
 
-- macOS 13 Ventura ou posterior
-- Xcode 15 ou posterior
-- Um Apple ID (grátis) para assinar o app localmente
+Then grant Accessibility when Tern asks and press **⌥⇥**.
 
-## Compilar e rodar
+## Features
+
+- Menu bar app (`LSUIElement`), Swift + SwiftUI/AppKit.
+- Configurable global shortcut (default **⌥⇥**). The HUD floats over the frontmost app, and the shortcut **doesn't** also fire in your browser. Hold the modifier and tap the key again to move forward; release the modifier to focus the window. **⇧⇥** moves back. Click, **⏎**, and **esc** work too.
+- Exclusion by **bundle id** (the main path) and by window (bundle id + title).
+- Live preview of each window on its card (with Screen Recording permission).
+- UI in **English and Portuguese** (follows the macOS language; other languages fall back to English).
+- Exclusions and shortcut persisted in `UserDefaults`.
+- Settings to record the shortcut, grant Accessibility, and add or remove exclusions.
+
+In the switcher: **⌫** hides the highlighted window's app; **⌥⌫** hides just that window.
+
+## Requirements
+
+- macOS 13 Ventura or later
+- Xcode 15 or later (to build from source)
+- A free Apple ID to sign the app locally
+
+## Build and run
 
 ```bash
 git clone https://github.com/gitlherme/vez.git
@@ -46,97 +62,97 @@ cd vez
 open Tern.xcodeproj
 ```
 
-No Xcode:
+In Xcode:
 
-1. Escolha o scheme **Tern**.
-2. Em **TARGETS › Tern › Signing & Capabilities**, marque *Automatically manage signing* e escolha seu **Personal Team**. Com uma assinatura estável, as permissões de Acessibilidade e Gravação da tela continuam valendo entre builds.
-3. Rode (**⌘R**). O Tern aparece na barra de menus, não no Dock.
+1. Pick the **Tern** scheme.
+2. Under **TARGETS › Tern › Signing & Capabilities**, check *Automatically manage signing* and choose your **Personal Team**. With a stable signature, Accessibility and Screen Recording permissions survive rebuilds.
+3. Run (**⌘R**). Tern shows up in the menu bar, not the Dock.
 
-Pela linha de comando:
+From the command line:
 
 ```bash
 xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Debug -destination 'platform=macOS' build
 ```
 
-### Instalar para uso diário
+### Install for daily use
 
-**Product › Archive › Distribute App › Custom › Copy App** e mova o `Tern.app` para `/Applications`. Depois adicione-o em Ajustes do Sistema › Geral › Itens de início.
+**Product › Archive › Distribute App › Custom › Copy App**, then move `Tern.app` into `/Applications`. Add it under System Settings › General › Login Items.
 
-## Permissões
+## Permissions
 
-### Acessibilidade (obrigatória)
+### Accessibility (required)
 
-O macOS só deixa o Tern **listar títulos de janela** e **trazer a janela escolhida para a frente** com Acessibilidade ligada.
+macOS only lets Tern **read window titles** and **bring the chosen window to the front** with Accessibility on.
 
-1. Rode o Tern pelo Xcode.
-2. Pressione **⌥⇥** (ou o atalho que você gravou). Se a permissão estiver off, o HUD pede Acessibilidade.
-3. Clique **Abrir Ajustes do Sistema** (ou **Pedir permissão** para o diálogo nativo).
-4. Ajustes do Sistema → Privacidade e segurança → **Acessibilidade**.
-5. Ative **Tern**. Se o Tern não aparecer, use o **+** e escolha `Tern.app` no DerivedData ou em Produtos do Xcode.
-6. Volte ao Tern e use o atalho de novo.
+1. Run Tern.
+2. Press **⌥⇥** (or your recorded shortcut). If the permission is off, the HUD asks for Accessibility.
+3. Click **Open System Settings** (or **Request permission** for the native prompt).
+4. System Settings → Privacy & Security → **Accessibility**.
+5. Turn on **Tern**. If it isn't listed, click **+** and choose `Tern.app` from DerivedData or Xcode's Products folder.
+6. Go back to Tern and use the shortcut again.
 
-Se você recompilar com outro caminho ou outra assinatura, o macOS trata como um app novo: desligue e ligue de novo o Tern na lista, ou remova e adicione outra vez.
+If you rebuild with a different path or signature, macOS treats it as a new app: toggle Tern off and on in the list, or remove it and add it again.
 
-Atalho direto (Ventura/Sonoma/Sequoia):
+Direct links (Ventura/Sonoma/Sequoia):
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_Accessibility`
 
-### Monitoramento de entrada (só se o atalho vazar)
+### Input Monitoring (only if the shortcut leaks)
 
-Com Acessibilidade ligada o Tern instala um event tap e **engole** o atalho, para o ⌥⇥ não rodar também no browser. Na maioria dos macOS isso basta.
+With Accessibility on, Tern installs an event tap and **swallows** the shortcut so ⌥⇥ doesn't also run in your browser. On most macOS versions that's enough.
 
-Se mesmo assim o app da frente reagir ao atalho, ligue **Monitoramento de entrada** para o Tern:
+If the frontmost app still reacts to the shortcut, turn on **Input Monitoring** for Tern:
 
-Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**.
+System Settings → Privacy & Security → **Input Monitoring**.
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent`
 
-### Gravação da tela (prévias)
+### Screen Recording (previews)
 
-Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso. Sem a permissão o seletor **continua trocando de janela**; só a prévia some.
+Cards show a **thumbnail of each window**, which macOS gates behind Screen Recording. Without it the switcher **still switches windows**; only the preview goes away.
 
-1. Em Ajustes do Tern, clique **Pedir permissão** (ou **Mostrar Tern.app no Finder**). Isso copia o app para `~/Applications/Tern.app` e seleciona no Finder.
-2. Ajustes do Sistema → Privacidade e segurança → **Screen & System Audio Recording**.
-3. O Tern **não entra sozinho** nessa lista. Clique no **+**, escolha `Tern.app` (em Aplicativos da sua pasta de usuário) ou arraste-o do Finder para a lista, e ligue o interruptor.
-4. Barra de menus → **Sair**, depois rode de novo no Xcode (**⌘R**). A permissão nova só vale no próximo processo.
+1. In Tern Settings, click **Request permission** (or **Show Tern.app in Finder**). This copies the app to `~/Applications/Tern.app` and selects it in Finder.
+2. System Settings → Privacy & Security → **Screen & System Audio Recording**.
+3. Tern **doesn't add itself** to this list. Click **+**, choose `Tern.app` (in your user Applications folder) or drag it in from Finder, and turn the switch on.
+4. Menu bar → **Quit**, then run Tern again. The new permission only applies to the next process.
 
-Com "Sign to Run Locally" (assinatura `adhoc`) cada rebuild muda o `cdhash` e o interruptor pode precisar ser religado. Assinar com o Personal Team evita isso.
+With "Sign to Run Locally" (`adhoc` signature), every rebuild changes the `cdhash` and the switch may need to be turned on again. Signing with your Personal Team avoids that.
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_ScreenCapture`
 
-## Uso
+## Usage
 
-1. Conceda Acessibilidade. Para ver a prévia, conceda também Gravação da tela.
-2. **⌥⇥** abre o seletor com a janela atual no índice 0 e a anterior no 1. Solte ⌥ para ir à anterior; ⇥ avança na recência. Minimizadas ficam no fim e restauram ao focar.
-3. Continue com ⇥ / setas, solte ⌥ para focar, ou clique no card.
-4. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor.
-5. Para ocultar só uma janela: **Adicionar janela aberta…** ou **⌥⌫**.
-6. Menu da barra: Abrir seletor, Ajustes, Sair.
+1. Grant Accessibility. For previews, grant Screen Recording too.
+2. **⌥⇥** opens the switcher with the current window at index 0 and the previous one at 1. Release ⌥ to jump to the previous window; ⇥ moves further back in recency. Minimized windows come last and are restored when focused.
+3. Keep going with ⇥ / arrow keys, release ⌥ to focus, or click a card.
+4. To hide an app: Settings → Exclusions → **Add running app…**, or **⌫** in the switcher.
+5. To hide a single window: **Add open window…** or **⌥⌫**.
+6. Menu bar: Open switcher, Settings, Quit.
 
-Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos.
+Don't record **⌘⇥**: macOS reserves it for the app switcher.
 
-## Limitações conhecidas desta fatia
+## Known limitations
 
-- A ordem é recência: janela atual → a anterior → demais usadas → minimizadas no fim.
-- Exclusão de janela depende do título: se o título mudar, a janela volta a aparecer.
-- Não substitui o ⌘⇥ do sistema.
-- Não há sandbox: utilitários deste tipo precisam falar com as janelas dos outros apps.
+- Order is by recency: current window → previous → other recently used → minimized last.
+- Window exclusions match by title: if the title changes, the window shows up again.
+- Doesn't replace the system's ⌘⇥.
+- No sandbox: utilities like this need to talk to other apps' windows, which also rules out the Mac App Store.
 
-## Estrutura
+## Project structure
 
 ```
-Tern.xcodeproj         projeto Xcode
+Tern.xcodeproj           Xcode project
 Tern/
-  TernApp.swift        entrada SwiftUI, sem Dock
-  Localizable.xcstrings  textos da interface (pt-BR → en)
-  AppModel.swift       estado, atalho, exclusões
-  Models/              janela, exclusão, atalho
-  Services/            AX windows, CG metadata, prévia, Carbon hotkey, persistência
-  Views/               HUD, ajustes, barra de menus
-brand/                 ícone, logotipo e variações
-site/                  página de apresentação (HTML estático)
+  TernApp.swift          SwiftUI entry point, no Dock icon
+  AppModel.swift         state, shortcut, exclusions
+  Localizable.xcstrings  UI strings (pt-BR source → en)
+  Models/                window, exclusion, shortcut
+  Services/              AX windows, CG metadata, previews, Carbon hotkey, persistence
+  Views/                 HUD, settings, menu bar
+brand/                   icon, wordmark, and variants
+site/                    landing page (static HTML, pt-BR and en/)
 ```
 
-Bundle id: `dev.guilhermevieira.Tern`. Deployment: macOS 13+.
+Bundle id: `dev.guilhermevieira.Tern`. Deployment target: macOS 13+.
