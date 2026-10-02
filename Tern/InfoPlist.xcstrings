@@ -1,0 +1,38 @@
+{
+  "sourceLanguage": "pt-BR",
+  "strings": {
+    "NSAppleEventsUsageDescription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern needs to control other apps to bring the window you pick to the front."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Tern precisa controlar outros aplicativos para trazer a janela escolhida para a frente."
+          }
+        }
+      }
+    },
+    "NSScreenCaptureUsageDescription": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern captures a thumbnail of each window to show a preview in the switcher."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Tern captura uma miniatura de cada janela para mostrar a prévia no seletor."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

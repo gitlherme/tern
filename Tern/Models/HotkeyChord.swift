@@ -77,7 +77,7 @@ struct HotkeyChord: Codable, Equatable {
     static func glyph(for keyCode: UInt32) -> String {
         switch Int(keyCode) {
         case kVK_Tab: return "⇥"
-        case kVK_Space: return "Espaço"
+        case kVK_Space: return String(localized: "Espaço")
         case kVK_Return: return "↩"
         case kVK_ANSI_KeypadEnter: return "⌅"
         case kVK_Escape: return "⎋"
@@ -123,7 +123,7 @@ struct HotkeyChord: Codable, Equatable {
                 kVK_ANSI_4: "4", kVK_ANSI_5: "5", kVK_ANSI_6: "6", kVK_ANSI_7: "7",
                 kVK_ANSI_8: "8", kVK_ANSI_9: "9"
             ]
-            return keyMap[Int(keyCode)] ?? "Tecla \(keyCode)"
+            return keyMap[Int(keyCode)] ?? String(localized: "Tecla \(Int(keyCode))")
         }
     }
 }

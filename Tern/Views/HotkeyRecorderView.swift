@@ -14,7 +14,7 @@ struct HotkeyRecorderView: View {
             Button {
                 beginRecording()
             } label: {
-                Text(isRecording ? "Aguardando tecla…" : chord.displayString)
+                Text(isRecording ? String(localized: "Aguardando tecla…") : chord.displayString)
                     .font(.system(.body, design: .rounded).monospaced())
                     .padding(.horizontal, 10)
                     .padding(.vertical, 6)
@@ -64,11 +64,11 @@ struct HotkeyRecorderView: View {
         }
         guard event.type == .keyDown else { return }
         guard let recorded = HotkeyChord.from(event: event) else {
-            message = "Inclua pelo menos um modificador (⌥, ⌃, ⇧ ou ⌘)."
+            message = String(localized: "Inclua pelo menos um modificador (⌥, ⌃, ⇧ ou ⌘).")
             return
         }
         if recorded.isReservedSystemSwitcher {
-            message = "⌘⇥ é do seletor de apps do macOS. Escolha outro atalho, como ⌥⇥."
+            message = String(localized: "⌘⇥ é do seletor de apps do macOS. Escolha outro atalho, como ⌥⇥.")
             return
         }
         message = nil

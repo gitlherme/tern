@@ -26,6 +26,7 @@ Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os o
 - Atalho global configurável (padrão **⌥⇥**). O HUD sobrepõe o app da frente e o atalho **não** dispara também no browser. Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
 - Exclusão por **bundle id** (caminho principal) e exclusão por janela (bundle id + título).
 - Prévia de cada janela nos cards (com permissão de Gravação da tela).
+- Interface em **português e inglês** (segue o idioma do macOS; outros idiomas caem no inglês).
 - Persistência das exclusões e do atalho em `UserDefaults`.
 - Ajustes para gravar o atalho, conceder Acessibilidade e adicionar/remover exclusões.
 
@@ -129,6 +130,7 @@ Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos
 Tern.xcodeproj         projeto Xcode
 Tern/
   TernApp.swift        entrada SwiftUI, sem Dock
+  Localizable.xcstrings  textos da interface (pt-BR → en)
   AppModel.swift       estado, atalho, exclusões
   Models/              janela, exclusão, atalho
   Services/            AX windows, CG metadata, prévia, Carbon hotkey, persistência

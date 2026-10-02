@@ -45,11 +45,11 @@ struct GeneralSettingsView: View {
                         .foregroundStyle(model.isTrusted ? Color.green : Color.orange)
                         .imageScale(.large)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(model.isTrusted ? "Acessibilidade concedida" : "Acessibilidade necessária")
+                        Text(model.isTrusted ? String(localized: "Acessibilidade concedida") : String(localized: "Acessibilidade necessária"))
                             .font(.headline)
                         Text(model.isTrusted
-                             ? "O Tern pode listar janelas e trazer a escolhida para a frente."
-                             : "Sem esta permissão o atalho abre só o aviso, sem trocar de janela.")
+                             ? String(localized: "O Tern pode listar janelas e trazer a escolhida para a frente.")
+                             : String(localized: "Sem esta permissão o atalho abre só o aviso, sem trocar de janela."))
                             .font(.callout)
                             .foregroundStyle(.secondary)
                     }
@@ -77,11 +77,11 @@ struct GeneralSettingsView: View {
                         .foregroundStyle(model.canCaptureScreen ? Color.green : Color.orange)
                         .imageScale(.large)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(model.canCaptureScreen ? "Gravação da tela concedida" : "Gravação da tela para prévias")
+                        Text(model.canCaptureScreen ? String(localized: "Gravação da tela concedida") : String(localized: "Gravação da tela para prévias"))
                             .font(.headline)
                         Text(model.canCaptureScreen
-                             ? "O seletor mostra uma miniatura de cada janela."
-                             : "Sem esta permissão os cards ficam só com o ícone do app. O seletor continua trocando de janela.")
+                             ? String(localized: "O seletor mostra uma miniatura de cada janela.")
+                             : String(localized: "Sem esta permissão os cards ficam só com o ícone do app. O seletor continua trocando de janela."))
                             .font(.callout)
                             .foregroundStyle(.secondary)
                     }
@@ -180,7 +180,7 @@ struct ExclusionsSettingsView: View {
                                 .frame(width: 24, height: 24)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(item.displayTitle)
-                                Text("\(item.appName) · \(item.bundleID)")
+                                Text(verbatim: "\(item.appName) · \(item.bundleID)")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -337,8 +337,8 @@ struct OpenWindowsPicker: View {
 }
 
 struct ContentUnavailableHint: View {
-    let title: String
-    let detail: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
 
     var body: some View {
         VStack(spacing: 8) {

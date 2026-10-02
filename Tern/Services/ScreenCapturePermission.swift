@@ -139,8 +139,8 @@ enum ScreenCapturePermission {
     @MainActor
     private static func showAddAppAlert() {
         let alert = NSAlert()
-        alert.messageText = "O Tern não entra sozinho nessa lista"
-        alert.informativeText = """
+        alert.messageText = String(localized: "O Tern não entra sozinho nessa lista")
+        let steps = String(localized: """
         Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Tern rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.
 
         1. Clique no + embaixo da lista.
@@ -149,10 +149,10 @@ enum ScreenCapturePermission {
         4. No Tern, barra de menus → Sair, depois ⌘R no Xcode.
 
         Caminho:
-        \(publishToUserApplications().path)
-        """
+        """)
+        alert.informativeText = steps + "\n" + publishToUserApplications().path
         alert.alertStyle = .informational
-        alert.addButton(withTitle: "Mostrar Tern.app")
+        alert.addButton(withTitle: String(localized: "Mostrar Tern.app"))
         alert.addButton(withTitle: "OK")
         NSApp.activate(ignoringOtherApps: true)
         if alert.runModal() == .alertFirstButtonReturn {
