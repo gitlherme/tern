@@ -98,11 +98,15 @@ enum ScreenCapturePermission {
     }
 
     static func registerWithLaunchServices() {
+        registerURL(appBundleURL)
+    }
+
+    private static func registerURL(_ url: URL) {
         let lsregister = URL(fileURLWithPath: "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister")
         guard FileManager.default.isExecutableFile(atPath: lsregister.path) else { return }
         let proc = Process()
         proc.executableURL = lsregister
-        proc.arguments = ["-f", appBundleURL.path]
+        proc.arguments = ["-f", url.path]
         proc.standardOutput = FileHandle.nullDevice
         proc.standardError = FileHandle.nullDevice
         do {
