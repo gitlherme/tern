@@ -25,10 +25,12 @@ final class AppModel: ObservableObject {
     let panel = SwitcherPanelController()
     let keyboardInterceptor = KeyboardInterceptor()
 
+    private var recency = WindowRecency()
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
     private var didAskScreenCapture = false
     private var consumeOpeningKey = false
+    private var workspaceObserver: NSObjectProtocol?
 
     private init() {
         exclusions = store.load()
@@ -47,6 +49,17 @@ final class AppModel: ObservableObject {
         panel.attach(model: self)
         startKeyboardInterceptor()
         syncHotkeyRegistration()
+        recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
+        workspaceObserver = NSWorkspace.shared.notificationCenter.addObserver(
+            forName: NSWorkspace.didActivateApplicationNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                guard let self, !self.isSwitcherVisible else { return }
+                self.recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
+            }
+        }
 
         pollTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             Task { @MainActor in
@@ -72,6 +85,9 @@ final class AppModel: ObservableObject {
                     }
                 }
                 ScreenCapturePermission.restoreAccessoryIfTrusted()
+                if !self.isSwitcherVisible {
+                    self.recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
+                }
             }
         }
         if let pollTimer {
@@ -105,7 +121,9 @@ final class AppModel: ObservableObject {
 
         refreshWindows()
         if reverse, windows.count > 1 {
-            selectedIndex = windows.count - 1
+            selectedIndex = windows.lastIndex(where: { !$0.isMinimized }) ?? (windows.count - 1)
+        } else if windows.count > 1 {
+            selectedIndex = 1
         } else {
             selectedIndex = 0
         }
@@ -136,10 +154,14 @@ final class AppModel: ObservableObject {
     }
 
     func refreshWindows() {
-        windows = enumerator.enumerate(
+        let raw = enumerator.enumerate(
             exclusions: exclusions,
             ignoringBundleID: Bundle.main.bundleIdentifier
         )
+        if !isSwitcherVisible {
+            recency.recordFrontmost(from: raw)
+        }
+        windows = recency.ordered(raw)
         if windows.isEmpty {
             selectedIndex = 0
         } else if selectedIndex >= windows.count {
@@ -186,6 +208,7 @@ final class AppModel: ObservableObject {
         let target = windows.indices.contains(selectedIndex) ? windows[selectedIndex] : nil
         dismissSwitcher()
         if let target {
+            recency.record(target)
             activator.activate(target)
         }
     }

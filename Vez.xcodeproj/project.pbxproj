@@ -14,6 +14,7 @@
 		D34273DD597D946C532C09FF /* Exclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EE75367D85FFEA5D73D6 /* Exclusion.swift */; };
 		C9C39135212B59FF9E310DC2 /* HotkeyChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA37023E3ED9980A04338D2 /* HotkeyChord.swift */; };
 		40AF516FE0DF367E951504EA /* ExclusionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */; };
+		F1A2B3C4D5E6F708192031BB /* WindowRecency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */; };
 		DC2D22E544723122AFFB9D9C /* WindowEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1984AB34ED70748056F77E /* WindowEnumerator.swift */; };
 		F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C994C5A681BF3837ADCE5 /* WindowActivator.swift */; };
 		052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */; };
@@ -41,6 +42,7 @@
 		7BC8EE75367D85FFEA5D73D6 /* Exclusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exclusion.swift; sourceTree = "<group>"; };
 		1DA37023E3ED9980A04338D2 /* HotkeyChord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyChord.swift; sourceTree = "<group>"; };
 		8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusionStore.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRecency.swift; sourceTree = "<group>"; };
 		FC1984AB34ED70748056F77E /* WindowEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowEnumerator.swift; sourceTree = "<group>"; };
 		004C994C5A681BF3837ADCE5 /* WindowActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActivator.swift; sourceTree = "<group>"; };
 		B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */,
+				F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */,
 				FC1984AB34ED70748056F77E /* WindowEnumerator.swift */,
 				004C994C5A681BF3837ADCE5 /* WindowActivator.swift */,
 				B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */,
@@ -213,6 +216,7 @@
 				D34273DD597D946C532C09FF /* Exclusion.swift in Sources */,
 				C9C39135212B59FF9E310DC2 /* HotkeyChord.swift in Sources */,
 				40AF516FE0DF367E951504EA /* ExclusionStore.swift in Sources */,
+				F1A2B3C4D5E6F708192031BB /* WindowRecency.swift in Sources */,
 				DC2D22E544723122AFFB9D9C /* WindowEnumerator.swift in Sources */,
 				F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */,
 				052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */,
