@@ -112,9 +112,9 @@ Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**
 
 Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso. Sem a permissão o seletor **continua trocando de janela**; só a prévia some.
 
-1. Em Ajustes do Tern, clique **Pedir permissão** (ou **Mostrar Tern.app no Finder**). Isso copia o app para `~/Applications/Tern.app` e seleciona no Finder.
+1. Em Ajustes do Tern, clique **Pedir permissão** (ou **Mostrar Tern.app no Finder**). Isso seleciona o Tern no Finder. Rodando pelo Xcode, ele antes copia o app para `~/Applications/Tern.app`, porque o + dos Ajustes não alcança o DerivedData.
 2. Ajustes do Sistema → Privacidade e segurança → **Screen & System Audio Recording**.
-3. O Tern **não entra sozinho** nessa lista. Clique no **+**, escolha `Tern.app` (em Aplicativos da sua pasta de usuário) ou arraste-o do Finder para a lista, e ligue o interruptor.
+3. O Tern **não entra sozinho** nessa lista. Clique no **+**, escolha `Tern.app` (o que está selecionado no Finder) ou arraste-o para a lista, e ligue o interruptor.
 4. Barra de menus → **Sair**, depois rode de novo no Xcode (**⌘R**). A permissão nova só vale no próximo processo.
 
 Com "Sign to Run Locally" (assinatura `adhoc`) cada rebuild muda o `cdhash` e o interruptor pode precisar ser religado. Assinar com o Personal Team evita isso.
