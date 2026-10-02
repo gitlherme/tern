@@ -71,8 +71,8 @@ final class SwitcherPanelController {
 
     private func resize(_ panel: NSPanel, model: AppModel) {
         let count = max(model.windows.count, 1)
-        let width = min(CGFloat(count) * 168 + 80, 960)
-        let height: CGFloat = model.isTrusted ? 300 : 280
+        let width = min(CGFloat(count) * 240 + 56, 1100)
+        let height: CGFloat = model.isTrusted ? 380 : 280
         panel.setContentSize(NSSize(width: width, height: height))
     }
 

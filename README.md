@@ -75,13 +75,20 @@ Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent`
 
-### Gravação da tela
+### Gravação da tela (prévias)
 
-Esta fatia **não** pede Screen Recording: o seletor mostra ícone do app + título, sem thumbnail ao vivo. Isso evita uma terceira permissão no primeiro uso.
+Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso.
+
+1. Abra o seletor uma vez: o sistema pede a permissão, ou use Ajustes do Vez → **Pedir permissão**.
+2. Ajustes do Sistema → Privacidade e segurança → **Gravação da tela**.
+3. Ative **Vez**. Sem isso o seletor continua funcionando, mas o card fica só com o ícone.
+
+- `x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture`
+- `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_ScreenCapture`
 
 ## Uso
 
-1. Conceda Acessibilidade.
+1. Conceda Acessibilidade. Para ver a prévia, conceda também Gravação da tela.
 2. **⌥⇥** abre o seletor. A primeira batida destaca a janela imediatamente abaixo da atual (como Alt-Tab).
 3. Continue com ⇥ / setas, solte ⌥ para focar, ou clique no card.
 4. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor.
@@ -92,7 +99,6 @@ Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos
 
 ## Limitações conhecidas desta fatia
 
-- Sem thumbnails ao vivo e sem pedir Screen Recording.
 - A ordem das janelas segue a lista do CoreGraphics (frente → trás), não um histórico MRU sofisticado.
 - Exclusão de janela depende do título: se o título mudar, a janela volta a aparecer.
 - Não substitui o ⌘⇥ do sistema.
@@ -106,7 +112,7 @@ Vez/
   VezApp.swift         entrada SwiftUI, sem Dock
   AppModel.swift       estado, atalho, exclusões
   Models/              janela, exclusão, atalho
-  Services/            CGWindowList, AX raise, Carbon hotkey, persistência
+  Services/            AX windows, CG metadata, prévia, Carbon hotkey, persistência
   Views/               HUD, ajustes, barra de menus
 ```
 

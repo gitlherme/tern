@@ -12,6 +12,7 @@ struct WindowInfo: Identifiable {
     let title: String
     let bounds: CGRect
     let isOnscreen: Bool
+    let isMinimized: Bool
 
     var displayTitle: String {
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
