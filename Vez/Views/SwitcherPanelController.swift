@@ -1,5 +1,12 @@
 import AppKit
+import CoreGraphics
 import SwiftUI
+
+@MainActor
+final class SwitcherPanel: NSPanel {
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { false }
+}
 
 @MainActor
 final class SwitcherPanelController {
@@ -19,6 +26,7 @@ final class SwitcherPanelController {
         let panel = makePanelIfNeeded(model: model)
         resize(panel, model: model)
         position(panel)
+        panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.popUpMenuWindow)))
         panel.orderFrontRegardless()
         panel.makeKey()
         installMonitors()
@@ -40,21 +48,22 @@ final class SwitcherPanelController {
             return panel
         }
 
-        let panel = NSPanel(
+        let panel = SwitcherPanel(
             contentRect: NSRect(x: 0, y: 0, width: 720, height: 320),
             styleMask: [.borderless, .nonactivatingPanel],
             backing: .buffered,
             defer: false
         )
         panel.isFloatingPanel = true
-        panel.level = .statusBar
+        panel.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.popUpMenuWindow)))
         panel.isOpaque = false
         panel.backgroundColor = .clear
         panel.hasShadow = true
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
         panel.isMovableByWindowBackground = false
-        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient, .ignoresCycle]
+        panel.worksWhenModal = true
+        panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary, .ignoresCycle]
         panel.animationBehavior = .utilityWindow
         panel.title = "Vez"
         panel.identifier = NSUserInterfaceItemIdentifier("vez.switcher")
@@ -91,14 +100,16 @@ final class SwitcherPanelController {
 
     private func installMonitors() {
         removeMonitors()
-        localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { event in
-            AppModel.handleSwitcherEventAssumingMain(event) ? nil : event
-        }
-        globalKeyMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown]) { event in
-            _ = AppModel.handleSwitcherEventAssumingMain(event)
-        }
-        globalFlagsMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.flagsChanged]) { event in
-            _ = AppModel.handleSwitcherEventAssumingMain(event)
+        if model?.keyboardInterceptor.isEnabled != true {
+            localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { event in
+                AppModel.handleSwitcherEventAssumingMain(event) ? nil : event
+            }
+            globalKeyMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown]) { event in
+                _ = AppModel.handleSwitcherEventAssumingMain(event)
+            }
+            globalFlagsMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.flagsChanged]) { event in
+                _ = AppModel.handleSwitcherEventAssumingMain(event)
+            }
         }
         mouseMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             Self.handleOutsideClickAssumingMain(controller: self, event: event)

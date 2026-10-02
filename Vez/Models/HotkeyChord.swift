@@ -42,6 +42,17 @@ struct HotkeyChord: Codable, Equatable {
         keyCode == UInt32(kVK_Tab) && carbonModifiers == UInt32(cmdKey)
     }
 
+    func matchesKeyEvent(_ event: NSEvent) -> Bool {
+        guard UInt32(event.keyCode) == keyCode else { return false }
+        let current = event.modifierFlags.intersection([.command, .option, .control, .shift])
+        let needed = modifierFlags.intersection([.command, .option, .control, .shift])
+        return current.subtracting(.shift) == needed.subtracting(.shift) && !needed.subtracting(.shift).isEmpty
+    }
+
+    func isReverse(_ event: NSEvent) -> Bool {
+        event.modifierFlags.contains(.shift) != modifierFlags.contains(.shift)
+    }
+
     var displayString: String {
         var parts: [String] = []
         if carbonModifiers & UInt32(controlKey) != 0 { parts.append("⌃") }

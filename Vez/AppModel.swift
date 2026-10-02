@@ -16,16 +16,19 @@ final class AppModel: ObservableObject {
     @Published var selectedIndex = 0
     @Published var confirmOnModifierRelease = false
     @Published var runningApps: [RunningAppInfo] = []
+    @Published var isInterceptingKeys = false
 
     let store = ExclusionStore()
     let enumerator = WindowEnumerator()
     let activator = WindowActivator()
     let hotkeys = HotkeyManager()
     let panel = SwitcherPanelController()
+    let keyboardInterceptor = KeyboardInterceptor()
 
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
     private var didAskScreenCapture = false
+    private var consumeOpeningKey = false
 
     private init() {
         exclusions = store.load()
@@ -41,8 +44,9 @@ final class AppModel: ObservableObject {
                 self?.handleHotkey(reverse: reverse)
             }
         }
-        hotkeys.register(hotkey)
         panel.attach(model: self)
+        startKeyboardInterceptor()
+        syncHotkeyRegistration()
 
         pollTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             Task { @MainActor in
@@ -53,8 +57,11 @@ final class AppModel: ObservableObject {
                     self.isTrusted = trusted
                     if trusted && self.isSwitcherVisible {
                         self.refreshWindows()
-                        self.selectedIndex = self.windows.count > 1 ? 1 : 0
                     }
+                }
+                if trusted, !self.keyboardInterceptor.isEnabled {
+                    self.startKeyboardInterceptor()
+                    self.syncHotkeyRegistration()
                 }
                 if capture != self.canCaptureScreen {
                     self.canCaptureScreen = capture
@@ -75,13 +82,12 @@ final class AppModel: ObservableObject {
     func setHotkey(_ chord: HotkeyChord) {
         hotkey = chord
         HotkeyDefaults.save(chord)
-        hotkeys.register(chord)
+        syncHotkeyRegistration()
     }
 
     func handleHotkey(reverse: Bool) {
         if !isTrusted {
             confirmOnModifierRelease = false
-            hotkeys.unregister()
             isSwitcherVisible = true
             panel.show()
             AccessibilityPermission.promptIfNeeded()
@@ -98,23 +104,25 @@ final class AppModel: ObservableObject {
         }
 
         refreshWindows()
-        if windows.count > 1 {
-            selectedIndex = reverse ? windows.count - 1 : 1
+        if reverse, windows.count > 1 {
+            selectedIndex = windows.count - 1
         } else {
             selectedIndex = 0
         }
+        consumeOpeningKey = true
         confirmOnModifierRelease = hotkey.hasModifiers
-        hotkeys.unregister()
         isSwitcherVisible = true
         panel.show()
         askScreenCaptureIfNeeded()
+        DispatchQueue.main.async { [weak self] in
+            self?.consumeOpeningKey = false
+        }
     }
 
     func openSwitcherFromMenu() {
         if !isTrusted {
             isSwitcherVisible = true
             confirmOnModifierRelease = false
-            hotkeys.unregister()
             panel.show()
             AccessibilityPermission.promptIfNeeded()
             return
@@ -122,7 +130,6 @@ final class AppModel: ObservableObject {
         refreshWindows()
         selectedIndex = 0
         confirmOnModifierRelease = false
-        hotkeys.unregister()
         isSwitcherVisible = true
         panel.show()
         askScreenCaptureIfNeeded()
@@ -186,8 +193,9 @@ final class AppModel: ObservableObject {
     func dismissSwitcher() {
         isSwitcherVisible = false
         confirmOnModifierRelease = false
+        consumeOpeningKey = false
         panel.hide()
-        hotkeys.register(hotkey)
+        syncHotkeyRegistration()
     }
 
     func excludeSelectedApp() {
@@ -272,6 +280,10 @@ final class AppModel: ObservableObject {
         guard event.type == .keyDown else { return false }
 
         if UInt32(event.keyCode) == hotkey.keyCode {
+            if consumeOpeningKey {
+                consumeOpeningKey = false
+                return true
+            }
             let shiftPressed = event.modifierFlags.contains(.shift)
             let chordHasShift = hotkey.modifierFlags.contains(.shift)
             if shiftPressed == chordHasShift {
@@ -309,6 +321,19 @@ final class AppModel: ObservableObject {
 
     private func persistExclusions() {
         store.save(exclusions)
+    }
+
+    private func startKeyboardInterceptor() {
+        keyboardInterceptor.start()
+        isInterceptingKeys = keyboardInterceptor.isEnabled
+    }
+
+    private func syncHotkeyRegistration() {
+        if keyboardInterceptor.isEnabled {
+            hotkeys.unregister()
+        } else {
+            hotkeys.register(hotkey)
+        }
     }
 
     private func askScreenCaptureIfNeeded() {

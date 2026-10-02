@@ -60,9 +60,17 @@ struct GeneralSettingsView: View {
                         }
                     }
                 }
-                Text("Monitoramento de entrada não é necessário para o atalho padrão: o Vez usa a API Carbon de hotkeys, não um event tap. Acessibilidade cobre a listagem e o foco das janelas.")
+                Text("Monitoramento de entrada não é necessário se a Acessibilidade estiver ligada: o Vez intercepta o atalho na origem para ele não disparar também no browser. Sem essa interceptação, ⌥⇥ vaza para o app da frente.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
+                if model.isTrusted && !model.isInterceptingKeys {
+                    Text("Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Vez, ou feche o app e rode de novo pelo Xcode.")
+                        .font(.callout)
+                        .foregroundStyle(.orange)
+                    Button("Abrir Monitoramento de entrada") {
+                        AccessibilityPermission.openInputMonitoringSettings()
+                    }
+                }
 
                 HStack(spacing: 10) {
                     Image(systemName: model.canCaptureScreen ? "checkmark.shield.fill" : "exclamationmark.shield.fill")
