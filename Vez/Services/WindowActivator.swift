@@ -21,17 +21,17 @@ struct WindowActivator {
     }
 
     private func findAXWindow(in axApp: AXUIElement, matching window: WindowInfo) -> AXUIElement? {
-        let axWindows = AXWindow.copy(axApp, kAXWindowsAttribute as String) as? [AXUIElement] ?? []
+        let axWindows = AccessibilityWindows.copy(axApp, kAXWindowsAttribute as String) as? [AXUIElement] ?? []
 
         for axWindow in axWindows {
-            if AXWindow.windowID(axWindow) == window.windowID {
+            if AccessibilityWindows.windowID(axWindow) == window.windowID {
                 return axWindow
             }
         }
 
         let targetTitle = window.title.trimmingCharacters(in: .whitespacesAndNewlines)
         if !targetTitle.isEmpty {
-            for axWindow in axWindows where AXWindow.title(axWindow) == targetTitle {
+            for axWindow in axWindows where AccessibilityWindows.title(axWindow) == targetTitle {
                 return axWindow
             }
         }
