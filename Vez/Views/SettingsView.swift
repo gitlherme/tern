@@ -80,10 +80,11 @@ struct GeneralSettingsView: View {
                     Spacer()
                     if !model.canCaptureScreen {
                         Button("Pedir permissão") {
-                            _ = ScreenCapturePermission.request()
-                            model.canCaptureScreen = ScreenCapturePermission.isTrusted
-                            if model.canCaptureScreen {
-                                model.refreshThumbnails()
+                            ScreenCapturePermission.request {
+                                model.canCaptureScreen = ScreenCapturePermission.isTrusted
+                                if model.canCaptureScreen {
+                                    model.refreshThumbnails()
+                                }
                             }
                         }
                     }
@@ -91,6 +92,9 @@ struct GeneralSettingsView: View {
                         ScreenCapturePermission.openSystemSettings()
                     }
                 }
+                Text("O macOS costuma não mostrar o diálogo se o Vez estiver só na barra. Pedir permissão traz o app para a frente e, se ainda assim nada aparecer, abre Gravação da tela. Depois de ligar o Vez nessa lista, feche o app e rode de novo pelo Xcode.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             } header: {
                 Text("Permissões")
             }

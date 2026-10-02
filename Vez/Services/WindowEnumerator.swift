@@ -2,6 +2,9 @@ import AppKit
 import ApplicationServices
 import CoreGraphics
 
+@_silgen_name("_AXUIElementGetWindow")
+func AXPrivateGetWindow(_ element: AXUIElement, _ identifierOut: UnsafeMutablePointer<CGWindowID>) -> AXError
+
 enum AccessibilityWindows {
     static func copy(_ element: AXUIElement, _ attribute: String) -> AnyObject? {
         var raw: AnyObject?
@@ -21,16 +24,24 @@ enum AccessibilityWindows {
 
     static func windows(for pid: pid_t) -> [AXUIElement] {
         let app = AXUIElementCreateApplication(pid)
+        AXUIElementSetMessagingTimeout(app, 0.8)
         return copy(app, kAXWindowsAttribute as String) as? [AXUIElement] ?? []
     }
 
     static func windowID(_ element: AXUIElement) -> CGWindowID? {
         let raw = copy(element, "AXWindowNumber")
         if let number = raw as? NSNumber {
-            return CGWindowID(truncating: number)
+            let identifier = CGWindowID(truncating: number)
+            if identifier != kCGNullWindowID { return identifier }
         }
         if let value = raw as? Int {
-            return CGWindowID(value)
+            let identifier = CGWindowID(value)
+            if identifier != kCGNullWindowID { return identifier }
+        }
+
+        var identifier = kCGNullWindowID
+        if AXPrivateGetWindow(element, &identifier) == .success, identifier != kCGNullWindowID {
+            return identifier
         }
         return nil
     }
@@ -43,11 +54,27 @@ enum AccessibilityWindows {
         boolValue(element, kAXMinimizedAttribute as String)
     }
 
+    static func frame(_ element: AXUIElement) -> CGRect? {
+        guard let position = copy(element, kAXPositionAttribute as String) as? AXValue,
+              let sizeValue = copy(element, kAXSizeAttribute as String) as? AXValue else {
+            return nil
+        }
+        var origin = CGPoint.zero
+        var size = CGSize.zero
+        guard AXValueGetValue(position, .cgPoint, &origin),
+              AXValueGetValue(sizeValue, .cgSize, &size),
+              size.width > 0,
+              size.height > 0 else {
+            return nil
+        }
+        return CGRect(origin: origin, size: size)
+    }
+
     static func isSwitcherWindow(_ element: AXUIElement) -> Bool {
         let role = stringValue(element, kAXRoleAttribute as String)
         guard role == "AXWindow" || role == "AXSheet" else { return false }
         switch stringValue(element, kAXSubroleAttribute as String) {
-        case "AXStandardWindow", "AXDialog", "AXSystemDialog", "":
+        case "AXStandardWindow", "AXDialog", "AXSystemDialog", "AXFloatingWindow", "AXUnknown", "":
             return true
         default:
             return false
@@ -70,7 +97,7 @@ struct WindowEnumerator {
 
     func enumerate(exclusions: PersistedExclusions, ignoringBundleID: String?) -> [WindowInfo] {
         let catalog = loadCatalog(ignoringBundleID: ignoringBundleID)
-        var seen = Set<CGWindowID>()
+        var usedIDs = Set<CGWindowID>()
         var result: [WindowInfo] = []
         var pidsCoveredByAX = Set<pid_t>()
 
@@ -79,39 +106,45 @@ struct WindowEnumerator {
                 guard let bundleID = app.bundleIdentifier else { continue }
                 if let ignoringBundleID, bundleID == ignoringBundleID { continue }
 
-                let axWindows = AccessibilityWindows.windows(for: app.processIdentifier)
-                var foundStandard = false
+                let pid = app.processIdentifier
+                let axWindows = AccessibilityWindows.windows(for: pid)
+                var addedForPID = 0
+
                 for axWindow in axWindows where AccessibilityWindows.isSwitcherWindow(axWindow) {
-                    foundStandard = true
-                    guard let windowID = AccessibilityWindows.windowID(axWindow), seen.insert(windowID).inserted else { continue }
-                    let cg = catalog[windowID]
-                    let title = preferredTitle(ax: AccessibilityWindows.title(axWindow), cg: cg?.title)
+                    let record = matchRecord(axWindow: axWindow, pid: pid, catalog: catalog, usedIDs: usedIDs)
+                    guard let windowID = record?.windowID ?? AccessibilityWindows.windowID(axWindow) else {
+                        continue
+                    }
+                    guard usedIDs.insert(windowID).inserted else { continue }
+
+                    let title = preferredTitle(ax: AccessibilityWindows.title(axWindow), cg: record?.title)
                     if exclusions.hides(bundleID: bundleID, title: title) { continue }
 
-                    let appName = app.localizedName ?? cg?.appName ?? bundleID
                     let minimized = AccessibilityWindows.isMinimized(axWindow)
                     result.append(
                         WindowInfo(
                             windowID: windowID,
-                            ownerPID: app.processIdentifier,
+                            ownerPID: pid,
                             bundleID: bundleID,
-                            appName: appName,
+                            appName: app.localizedName ?? record?.appName ?? bundleID,
                             title: title,
-                            bounds: cg?.bounds ?? .zero,
-                            isOnscreen: cg?.onscreen ?? !minimized,
+                            bounds: record?.bounds ?? AccessibilityWindows.frame(axWindow) ?? .zero,
+                            isOnscreen: record?.onscreen ?? !minimized,
                             isMinimized: minimized
                         )
                     )
+                    addedForPID += 1
                 }
-                if foundStandard {
-                    pidsCoveredByAX.insert(app.processIdentifier)
+
+                if addedForPID > 0 {
+                    pidsCoveredByAX.insert(pid)
                 }
             }
         }
 
         for record in catalog.values.sorted(by: { $0.order < $1.order }) {
             if pidsCoveredByAX.contains(record.pid) { continue }
-            guard seen.insert(record.windowID).inserted else { continue }
+            guard usedIDs.insert(record.windowID).inserted else { continue }
             guard isPlausibleWindow(record) else { continue }
             if exclusions.hides(bundleID: record.bundleID, title: record.title) { continue }
             result.append(
@@ -148,6 +181,53 @@ struct WindowEnumerator {
                 )
             }
             .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+    }
+
+    private func matchRecord(
+        axWindow: AXUIElement,
+        pid: pid_t,
+        catalog: [CGWindowID: CGRecord],
+        usedIDs: Set<CGWindowID>
+    ) -> CGRecord? {
+        if let identifier = AccessibilityWindows.windowID(axWindow),
+           let record = catalog[identifier],
+           !usedIDs.contains(identifier) {
+            return record
+        }
+
+        let candidates = catalog.values.filter { $0.pid == pid && !usedIDs.contains($0.windowID) }
+        guard !candidates.isEmpty else { return nil }
+
+        let title = AccessibilityWindows.title(axWindow).trimmingCharacters(in: .whitespacesAndNewlines)
+        let frame = AccessibilityWindows.frame(axWindow)
+        let titled = title.isEmpty ? [] : candidates.filter { $0.title == title }
+
+        if titled.count == 1 {
+            return titled[0]
+        }
+        if let frame, let best = closest(titled.isEmpty ? Array(candidates) : titled, to: frame) {
+            if frameDistance(best.bounds, frame) < 140 {
+                return best
+            }
+        }
+        if candidates.count == 1 {
+            return candidates[0]
+        }
+        return nil
+    }
+
+    private func closest(_ records: [CGRecord], to frame: CGRect) -> CGRecord? {
+        records.min { lhs, rhs in
+            frameDistance(lhs.bounds, frame) < frameDistance(rhs.bounds, frame)
+        }
+    }
+
+    private func frameDistance(_ lhs: CGRect, _ rhs: CGRect) -> CGFloat {
+        let dx = lhs.midX - rhs.midX
+        let dy = lhs.midY - rhs.midY
+        let dw = lhs.width - rhs.width
+        let dh = lhs.height - rhs.height
+        return (dx * dx + dy * dy + dw * dw + dh * dh).squareRoot()
     }
 
     private func loadCatalog(ignoringBundleID: String?) -> [CGWindowID: CGRecord] {

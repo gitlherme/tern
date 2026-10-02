@@ -313,11 +313,7 @@ final class AppModel: ObservableObject {
     private func askScreenCaptureIfNeeded() {
         guard !canCaptureScreen, !didAskScreenCapture else { return }
         didAskScreenCapture = true
-        _ = ScreenCapturePermission.request()
-        canCaptureScreen = ScreenCapturePermission.isTrusted
-        if canCaptureScreen {
-            refreshThumbnails()
-        }
+        ScreenCapturePermission.nudgePrompt()
     }
 
     /// NSEvent monitors run as nonisolated callbacks; AppKit delivers them on the main thread.

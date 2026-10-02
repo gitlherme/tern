@@ -77,11 +77,13 @@ Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**
 
 ### Gravação da tela (prévias)
 
-Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso.
+Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso. Sem a permissão o seletor **continua trocando de janela**; só a prévia some.
 
-1. Abra o seletor uma vez: o sistema pede a permissão, ou use Ajustes do Vez → **Pedir permissão**.
-2. Ajustes do Sistema → Privacidade e segurança → **Gravação da tela**.
-3. Ative **Vez**. Sem isso o seletor continua funcionando, mas o card fica só com o ícone.
+1. Em Ajustes do Vez, clique **Pedir permissão**. O Vez sai da barra, tenta o diálogo nativo e, se o macOS não mostrar nada, abre a lista de Gravação da tela.
+2. Ajustes do Sistema → Privacidade e segurança → **Gravação da tela** (em alguns macOS isso fica em Controle de dispositivos / Acesso a dados).
+3. Ative **Vez**. Feche o app (ícone da barra → Sair) e rode de novo pelo Xcode (**⌘R**). A permissão nova só vale no próximo processo.
+
+`CGRequestScreenCaptureAccess()` sozinho, num app `LSUIElement`, costuma não fazer nada. O botão agora ativa o app, dispara uma captura e usa ScreenCaptureKit.
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_ScreenCapture`

@@ -88,7 +88,7 @@ struct SwitcherView: View {
             return "O seletor só lista e troca janelas depois da permissão de Acessibilidade."
         }
         if model.windows.isEmpty {
-            return "Abra um app ou remova exclusões em Ajustes."
+            return "Abra um app, confira as exclusões em Ajustes, ou rode o Vez de novo pelo Xcode."
         }
         if !model.canCaptureScreen {
             return "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela"
@@ -215,7 +215,7 @@ struct EmptyWindowsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Label("Nenhuma janela para trocar", systemImage: "rectangle.slash")
                 .font(.headline)
-            Text("Não há janelas visíveis, ou todos os apps abertos estão na lista de exclusões. Remova uma exclusão ou abra outra janela.")
+            Text("Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Vez e rode de novo pelo Xcode depois de mudar permissões.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
