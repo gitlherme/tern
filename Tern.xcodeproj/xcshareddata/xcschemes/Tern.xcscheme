@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "2700"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "42AEFBAE01D2DFD981F7DA7D"
-               BuildableName = "Vez.app"
-               BlueprintName = "Vez"
-               ReferencedContainer = "container:Vez.xcodeproj">
+               BuildableName = "Tern.app"
+               BlueprintName = "Tern"
+               ReferencedContainer = "container:Tern.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42AEFBAE01D2DFD981F7DA7D"
-            BuildableName = "Vez.app"
-            BlueprintName = "Vez"
-            ReferencedContainer = "container:Vez.xcodeproj">
+            BuildableName = "Tern.app"
+            BlueprintName = "Tern"
+            ReferencedContainer = "container:Tern.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "42AEFBAE01D2DFD981F7DA7D"
-            BuildableName = "Vez.app"
-            BlueprintName = "Vez"
-            ReferencedContainer = "container:Vez.xcodeproj">
+            BuildableName = "Tern.app"
+            BlueprintName = "Tern"
+            ReferencedContainer = "container:Tern.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -22,9 +22,9 @@ struct SwitcherView: View {
 
     private var header: some View {
         HStack {
-            Image(systemName: "rectangle.on.rectangle")
+            Image("MenuBarIcon")
                 .foregroundStyle(.tint)
-            Text("Vez")
+            Text("Tern")
                 .font(.headline)
             Spacer()
             if model.isTrusted && !model.windows.isEmpty {
@@ -88,7 +88,7 @@ struct SwitcherView: View {
             return "O seletor só lista e troca janelas depois da permissão de Acessibilidade."
         }
         if model.windows.isEmpty {
-            return "Abra um app, confira as exclusões em Ajustes, ou rode o Vez de novo pelo Xcode."
+            return "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode."
         }
         if !model.canCaptureScreen {
             return "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela"
@@ -183,7 +183,7 @@ struct PermissionCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Label("Acessibilidade desligada", systemImage: "hand.raised.fill")
                 .font(.headline)
-            Text("O macOS só deixa o Vez listar e focar janelas de outros apps depois que você conceder Acessibilidade. Sem isso, o atalho não consegue trocar de janela.")
+            Text("O macOS só deixa o Tern listar e focar janelas de outros apps depois que você conceder Acessibilidade. Sem isso, o atalho não consegue trocar de janela.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -195,7 +195,7 @@ struct PermissionCard: View {
                 Button("Pedir permissão") {
                     AccessibilityPermission.promptIfNeeded()
                 }
-                Button("Ajustes do Vez") {
+                Button("Ajustes do Tern") {
                     AppModel.shared.openSettings()
                 }
                 .buttonStyle(.borderless)
@@ -215,7 +215,7 @@ struct EmptyWindowsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Label("Nenhuma janela para trocar", systemImage: "rectangle.slash")
                 .font(.headline)
-            Text("Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Vez e rode de novo pelo Xcode depois de mudar permissões.")
+            Text("Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Tern e rode de novo pelo Xcode depois de mudar permissões.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)

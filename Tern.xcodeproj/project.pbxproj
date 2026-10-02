@@ -1,0 +1,456 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0366047E1EAD5CC5EA2D8838 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A190201E6D76FCFD340ACF /* SettingsView.swift */; };
+		04A7814E4EEC70DE7D6C41B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D562B3E40B6C9EC53F38F07 /* Assets.xcassets */; };
+		052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */; };
+		0A62F82AF2EE8F0E80A99D85 /* HotkeyRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A839E94E93024129DBC0D85 /* HotkeyRecorderView.swift */; };
+		2097E9E3AC4B527340048E4D /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */; };
+		2D50945127F32F6A3C526953 /* WindowInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC58CC9FACB8EAF4491478A /* WindowInfo.swift */; };
+		3C6EB56215D45ADAECF41A7E /* SwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */; };
+		3E1C51F85697F9DCE81F656F /* TernApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326CB34EA25A66E30C0DD2D1 /* TernApp.swift */; };
+		40AF516FE0DF367E951504EA /* ExclusionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */; };
+		846B9F8FC92ED99DAD2DDF5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35E13A2A3939396D58C8CDD /* AppDelegate.swift */; };
+		A2BF29E2D2D9693F2AE06896 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51F0EC3513564F756F9F385 /* StatusItemController.swift */; };
+		B8D4F02C3E5F9012B7C6D5E4 /* ScreenCapturePermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */; };
+		C42B122F4C5426FC64DC48E1 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D699F13F170C719B14A1EE /* AppModel.swift */; };
+		C9C39135212B59FF9E310DC2 /* HotkeyChord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA37023E3ED9980A04338D2 /* HotkeyChord.swift */; };
+		D0F6B24E507B1234D9E8F706 /* WindowThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */; };
+		D34273DD597D946C532C09FF /* Exclusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC8EE75367D85FFEA5D73D6 /* Exclusion.swift */; };
+		DAE017DAACC552726F810D51 /* SwitcherPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */; };
+		DC2D22E544723122AFFB9D9C /* WindowEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1984AB34ED70748056F77E /* WindowEnumerator.swift */; };
+		E8F1A2B3C4D5E6F7081920BB /* KeyboardInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */; };
+		F1A2B3C4D5E6F708192031BB /* WindowRecency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */; };
+		F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C994C5A681BF3837ADCE5 /* WindowActivator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		004C994C5A681BF3837ADCE5 /* WindowActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowActivator.swift; sourceTree = "<group>"; };
+		1BC58CC9FACB8EAF4491478A /* WindowInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowInfo.swift; sourceTree = "<group>"; };
+		1DA37023E3ED9980A04338D2 /* HotkeyChord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyChord.swift; sourceTree = "<group>"; };
+		326CB34EA25A66E30C0DD2D1 /* TernApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TernApp.swift; sourceTree = "<group>"; };
+		3A839E94E93024129DBC0D85 /* HotkeyRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyRecorderView.swift; sourceTree = "<group>"; };
+		5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
+		7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherPanelController.swift; sourceTree = "<group>"; };
+		7BC8EE75367D85FFEA5D73D6 /* Exclusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exclusion.swift; sourceTree = "<group>"; };
+		840A3FB2571B05F6DFCE28F1 /* Tern.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tern.entitlements; sourceTree = "<group>"; };
+		8D562B3E40B6C9EC53F38F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExclusionStore.swift; sourceTree = "<group>"; };
+		A35E13A2A3939396D58C8CDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A51F0EC3513564F756F9F385 /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCapturePermission.swift; sourceTree = "<group>"; };
+		B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
+		BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherView.swift; sourceTree = "<group>"; };
+		BCB51839EEA339E71371A29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1D699F13F170C719B14A1EE /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowThumbnail.swift; sourceTree = "<group>"; };
+		D8A190201E6D76FCFD340ACF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInterceptor.swift; sourceTree = "<group>"; };
+		F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRecency.swift; sourceTree = "<group>"; };
+		F5BF48AA40CAD7891EB709FC /* Tern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tern.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC1984AB34ED70748056F77E /* WindowEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowEnumerator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F6F5CC3FCCF73F75AE9CCF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5928955287B8089ED2177128 = {
+			isa = PBXGroup;
+			children = (
+				A5F291A16DEE813B9995953A /* Tern */,
+				BF7A2D27A78D590BDEF15AF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		78EF4B0EA3FDA2A792BCF074 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */,
+				7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */,
+				D8A190201E6D76FCFD340ACF /* SettingsView.swift */,
+				A51F0EC3513564F756F9F385 /* StatusItemController.swift */,
+				3A839E94E93024129DBC0D85 /* HotkeyRecorderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		95DF61116CBC7317336DBE03 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */,
+				F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */,
+				FC1984AB34ED70748056F77E /* WindowEnumerator.swift */,
+				004C994C5A681BF3837ADCE5 /* WindowActivator.swift */,
+				B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */,
+				5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */,
+				A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */,
+				E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */,
+				C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A5F291A16DEE813B9995953A /* Tern */ = {
+			isa = PBXGroup;
+			children = (
+				326CB34EA25A66E30C0DD2D1 /* TernApp.swift */,
+				A35E13A2A3939396D58C8CDD /* AppDelegate.swift */,
+				C1D699F13F170C719B14A1EE /* AppModel.swift */,
+				CA608C0B22E7B6F9B389BDDD /* Models */,
+				95DF61116CBC7317336DBE03 /* Services */,
+				78EF4B0EA3FDA2A792BCF074 /* Views */,
+				8D562B3E40B6C9EC53F38F07 /* Assets.xcassets */,
+				BCB51839EEA339E71371A29B /* Info.plist */,
+				840A3FB2571B05F6DFCE28F1 /* Tern.entitlements */,
+			);
+			path = Tern;
+			sourceTree = "<group>";
+		};
+		BF7A2D27A78D590BDEF15AF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5BF48AA40CAD7891EB709FC /* Tern.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA608C0B22E7B6F9B389BDDD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BC58CC9FACB8EAF4491478A /* WindowInfo.swift */,
+				7BC8EE75367D85FFEA5D73D6 /* Exclusion.swift */,
+				1DA37023E3ED9980A04338D2 /* HotkeyChord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* Tern */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02FCC2BDE0CCA88BCBAA3FB5 /* Build configuration list for PBXNativeTarget "Tern" */;
+			buildPhases = (
+				F2AB5FB218DA8B84623F4557 /* Sources */,
+				4F6F5CC3FCCF73F75AE9CCF4 /* Frameworks */,
+				55B558C7EF820E6E00E5993B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tern;
+			productName = Tern;
+			productReference = F5BF48AA40CAD7891EB709FC /* Tern.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2700;
+				ORGANIZATIONNAME = "Guilherme Vieira";
+				TargetAttributes = {
+					42AEFBAE01D2DFD981F7DA7D = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 4623F89214148A3820E2F59A /* Build configuration list for PBXProject "Tern" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "pt-BR";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"pt-BR",
+			);
+			mainGroup = 5928955287B8089ED2177128;
+			productRefGroup = BF7A2D27A78D590BDEF15AF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* Tern */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55B558C7EF820E6E00E5993B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04A7814E4EEC70DE7D6C41B1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2AB5FB218DA8B84623F4557 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1C51F85697F9DCE81F656F /* TernApp.swift in Sources */,
+				846B9F8FC92ED99DAD2DDF5B /* AppDelegate.swift in Sources */,
+				C42B122F4C5426FC64DC48E1 /* AppModel.swift in Sources */,
+				2D50945127F32F6A3C526953 /* WindowInfo.swift in Sources */,
+				D34273DD597D946C532C09FF /* Exclusion.swift in Sources */,
+				C9C39135212B59FF9E310DC2 /* HotkeyChord.swift in Sources */,
+				40AF516FE0DF367E951504EA /* ExclusionStore.swift in Sources */,
+				F1A2B3C4D5E6F708192031BB /* WindowRecency.swift in Sources */,
+				DC2D22E544723122AFFB9D9C /* WindowEnumerator.swift in Sources */,
+				F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */,
+				052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */,
+				2097E9E3AC4B527340048E4D /* AccessibilityPermission.swift in Sources */,
+				B8D4F02C3E5F9012B7C6D5E4 /* ScreenCapturePermission.swift in Sources */,
+				E8F1A2B3C4D5E6F7081920BB /* KeyboardInterceptor.swift in Sources */,
+				D0F6B24E507B1234D9E8F706 /* WindowThumbnail.swift in Sources */,
+				3C6EB56215D45ADAECF41A7E /* SwitcherView.swift in Sources */,
+				DAE017DAACC552726F810D51 /* SwitcherPanelController.swift in Sources */,
+				0366047E1EAD5CC5EA2D8838 /* SettingsView.swift in Sources */,
+				A2BF29E2D2D9693F2AE06896 /* StatusItemController.swift in Sources */,
+				0A62F82AF2EE8F0E80A99D85 /* HotkeyRecorderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7BF40F069D95C38DE60AA602 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DRCDGWPCLY;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8CBC338D09B9279147FBD852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tern/Tern.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tern/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tern;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Guilherme Vieira.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.guilhermevieira.Tern;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C286FC8B91125F435CB47F15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tern/Tern.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tern/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Tern;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Guilherme Vieira.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.guilhermevieira.Tern;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		EC86DC4F4B4C60C3EC031655 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DRCDGWPCLY;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02FCC2BDE0CCA88BCBAA3FB5 /* Build configuration list for PBXNativeTarget "Tern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CBC338D09B9279147FBD852 /* Debug */,
+				C286FC8B91125F435CB47F15 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4623F89214148A3820E2F59A /* Build configuration list for PBXProject "Tern" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC86DC4F4B4C60C3EC031655 /* Debug */,
+				7BF40F069D95C38DE60AA602 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}

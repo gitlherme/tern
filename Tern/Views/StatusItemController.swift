@@ -29,10 +29,11 @@ final class StatusItemController: NSObject {
 
     private func configureButton() {
         guard let button = item.button else { return }
-        let image = NSImage(systemSymbolName: "rectangle.on.rectangle", accessibilityDescription: "Vez")?.copy() as? NSImage
+        let image = NSImage(named: "MenuBarIcon")
         image?.isTemplate = true
+        image?.accessibilityDescription = "Tern"
         button.image = image
-        button.toolTip = "Vez — seletor de janelas"
+        button.toolTip = "Tern — seletor de janelas"
     }
 
     private func rebuildMenu() {
@@ -63,7 +64,7 @@ final class StatusItemController: NSObject {
         }
 
         menu.addItem(.separator())
-        let quit = NSMenuItem(title: "Sair do Vez", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        let quit = NSMenuItem(title: "Sair do Tern", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         menu.addItem(quit)
 
         item.menu = menu
