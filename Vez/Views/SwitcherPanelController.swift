@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 
+@MainActor
 final class SwitcherPanelController {
     private weak var model: AppModel?
     private var panel: NSPanel?
@@ -90,20 +91,28 @@ final class SwitcherPanelController {
 
     private func installMonitors() {
         removeMonitors()
-        localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { [weak self] event in
-            guard let self, let model = self.model else { return event }
-            return model.handleSwitcherEvent(event) ? nil : event
+        localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { event in
+            AppModel.handleSwitcherEventAssumingMain(event) ? nil : event
         }
-        globalKeyMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown]) { [weak self] event in
-            _ = self?.model?.handleSwitcherEvent(event)
+        globalKeyMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.keyDown]) { event in
+            _ = AppModel.handleSwitcherEventAssumingMain(event)
         }
-        globalFlagsMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.flagsChanged]) { [weak self] event in
-            _ = self?.model?.handleSwitcherEvent(event)
+        globalFlagsMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.flagsChanged]) { event in
+            _ = AppModel.handleSwitcherEventAssumingMain(event)
         }
         mouseMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            guard let self, let panel = self.panel else { return }
+            Self.handleOutsideClickAssumingMain(controller: self, event: event)
+        }
+    }
+
+    private nonisolated static func handleOutsideClickAssumingMain(
+        controller: SwitcherPanelController?,
+        event: NSEvent
+    ) {
+        MainActor.assumeIsolated {
+            guard let controller, let panel = controller.panel else { return }
             if event.window != panel {
-                self.model?.dismissSwitcher()
+                controller.model?.dismissSwitcher()
             }
         }
     }

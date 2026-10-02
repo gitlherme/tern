@@ -282,4 +282,17 @@ final class AppModel: ObservableObject {
     private func persistExclusions() {
         store.save(exclusions)
     }
+
+    /// NSEvent monitors run as nonisolated callbacks; AppKit delivers them on the main thread.
+    nonisolated static func handleSwitcherEventAssumingMain(_ event: NSEvent) -> Bool {
+        MainActor.assumeIsolated {
+            shared.handleSwitcherEvent(event)
+        }
+    }
+
+    nonisolated static func dismissSwitcherAssumingMain() {
+        MainActor.assumeIsolated {
+            shared.dismissSwitcher()
+        }
+    }
 }
