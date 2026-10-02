@@ -137,6 +137,12 @@ struct GeneralSettingsView: View {
             } header: {
                 Text("Barra de menus")
             }
+
+            Section {
+                UpdateSettingsRow()
+            } header: {
+                Text("Atualizações")
+            }
         }
         .formStyle(.grouped)
         .padding(8)
@@ -372,5 +378,21 @@ struct ContentUnavailableHint: View {
             Spacer()
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct UpdateSettingsRow: View {
+    @ObservedObject private var updates = UpdateService.shared
+
+    var body: some View {
+        Toggle("Procurar atualizações automaticamente", isOn: $updates.automaticallyChecks)
+        HStack {
+            Text("Versão \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")")
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button("Procurar agora") {
+                updates.checkForUpdates()
+            }
+        }
     }
 }

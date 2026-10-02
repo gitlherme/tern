@@ -134,6 +134,16 @@
         }
       }
     },
+    "Acabou de atualizar e o Tern já está ligado na lista? Selecione-o, remova com – e adicione de novo com +.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Just updated and Tern is already switched on in the list? Select it, remove it with –, and add it again with +."
+          }
+        }
+      }
+    },
     "Acessibilidade concedida": {
       "localizations": {
         "en": {
@@ -270,6 +280,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Turn on previews"
+          }
+        }
+      }
+    },
+    "Atualizações": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updates"
           }
         }
       }
@@ -734,6 +754,36 @@
         }
       }
     },
+    "Procurar agora": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check now"
+          }
+        }
+      }
+    },
+    "Procurar atualizações automaticamente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for updates automatically"
+          }
+        }
+      }
+    },
+    "Procurar atualizações…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates…"
+          }
+        }
+      }
+    },
     "Remover": {
       "localizations": {
         "en": {
@@ -860,6 +910,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "An app on this list disappears from the switcher entirely, across all its windows. It’s the main way to hide, say, 1 app out of 5 open."
+          }
+        }
+      }
+    },
+    "Versão %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
           }
         }
       }

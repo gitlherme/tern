@@ -12,3 +12,4 @@ playcover/
 .idea/
 *.swp
 .claude/
+build/

@@ -40,9 +40,15 @@ struct WelcomeView: View {
                     detail: "O macOS só deixa o Tern listar e trocar janelas com essa permissão. Ligue a chave do Tern na lista e volte aqui."
                 ) {
                     if !model.isTrusted {
-                        Button("Abrir Ajustes do Sistema") {
-                            AccessibilityPermission.promptIfNeeded()
-                            AccessibilityPermission.openSystemSettings()
+                        VStack(alignment: .leading, spacing: 8) {
+                            Button("Abrir Ajustes do Sistema") {
+                                AccessibilityPermission.promptIfNeeded()
+                                AccessibilityPermission.openSystemSettings()
+                            }
+                            Text("Acabou de atualizar e o Tern já está ligado na lista? Selecione-o, remova com – e adicione de novo com +.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
