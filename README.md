@@ -156,3 +156,7 @@ site/                    landing page (static HTML, pt-BR and en/)
 ```
 
 Bundle id: `dev.guilhermevieira.Tern`. Deployment target: macOS 13+.
+
+## License
+
+[MIT](LICENSE) © Guilherme Vieira. Free and open source: use, modify, and redistribute it as you like.

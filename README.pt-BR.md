@@ -156,3 +156,7 @@ site/                  página de apresentação (HTML estático)
 ```
 
 Bundle id: `dev.guilhermevieira.Tern`. Deployment: macOS 13+.
+
+## Licença
+
+[MIT](LICENSE) © Guilherme Vieira. Gratuito e open source: use, modifique e redistribua como quiser.
