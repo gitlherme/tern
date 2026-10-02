@@ -55,14 +55,14 @@ enum AccessibilityWindows {
     }
 
     static func frame(_ element: AXUIElement) -> CGRect? {
-        guard let position = copy(element, kAXPositionAttribute as String) as? AXValue,
-              let sizeValue = copy(element, kAXSizeAttribute as String) as? AXValue else {
+        guard let position = copy(element, kAXPositionAttribute as String),
+              let sizeValue = copy(element, kAXSizeAttribute as String) else {
             return nil
         }
         var origin = CGPoint.zero
         var size = CGSize.zero
-        guard AXValueGetValue(position, .cgPoint, &origin),
-              AXValueGetValue(sizeValue, .cgSize, &size),
+        guard AXValueGetValue(position as! AXValue, .cgPoint, &origin),
+              AXValueGetValue(sizeValue as! AXValue, .cgSize, &size),
               size.width > 0,
               size.height > 0 else {
             return nil
