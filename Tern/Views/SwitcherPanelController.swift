@@ -65,7 +65,7 @@ final class SwitcherPanelController {
         panel.worksWhenModal = true
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary, .ignoresCycle]
         panel.animationBehavior = .utilityWindow
-        panel.title = "Vez"
+        panel.title = "Tern"
         panel.identifier = NSUserInterfaceItemIdentifier("vez.switcher")
 
         let root = SwitcherView()

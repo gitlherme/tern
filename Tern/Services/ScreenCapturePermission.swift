@@ -14,11 +14,11 @@ enum ScreenCapturePermission {
     static var userApplicationsCopyURL: URL {
         FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent("Applications", isDirectory: true)
-            .appendingPathComponent("Vez.app")
+            .appendingPathComponent("Tern.app")
     }
 
     /// Pedido vindo dos Ajustes: o macOS 15+ quase nunca cria a linha sozinho
-    /// para app accessory assinado localmente. Mantém o Vez no Dock, registra
+    /// para app accessory assinado localmente. Mantém o Tern no Dock, registra
     /// no Launch Services, abre a lista e o Finder no .app certo para o +.
     @MainActor
     static func request(completion: (() -> Void)? = nil) {
@@ -139,20 +139,20 @@ enum ScreenCapturePermission {
     @MainActor
     private static func showAddAppAlert() {
         let alert = NSAlert()
-        alert.messageText = "O Vez não entra sozinho nessa lista"
+        alert.messageText = "O Tern não entra sozinho nessa lista"
         alert.informativeText = """
-        Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Vez rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.
+        Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Tern rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.
 
         1. Clique no + embaixo da lista.
-        2. Escolha o Vez.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.
+        2. Escolha o Tern.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.
         3. Ligue o interruptor.
-        4. No Vez, barra de menus → Sair, depois ⌘R no Xcode.
+        4. No Tern, barra de menus → Sair, depois ⌘R no Xcode.
 
         Caminho:
         \(publishToUserApplications().path)
         """
         alert.alertStyle = .informational
-        alert.addButton(withTitle: "Mostrar Vez.app")
+        alert.addButton(withTitle: "Mostrar Tern.app")
         alert.addButton(withTitle: "OK")
         NSApp.activate(ignoringOtherApps: true)
         if alert.runModal() == .alertFirstButtonReturn {

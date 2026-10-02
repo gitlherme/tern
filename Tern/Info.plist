@@ -9,9 +9,9 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>O Vez precisa controlar outros aplicativos para trazer a janela escolhida para a frente.</string>
+	<string>O Tern precisa controlar outros aplicativos para trazer a janela escolhida para a frente.</string>
 	<key>NSScreenCaptureUsageDescription</key>
-	<string>O Vez captura uma miniatura de cada janela para mostrar a prévia no seletor.</string>
+	<string>O Tern captura uma miniatura de cada janela para mostrar a prévia no seletor.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 </dict>

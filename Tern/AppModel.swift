@@ -273,9 +273,9 @@ final class AppModel: ObservableObject {
                 backing: .buffered,
                 defer: false
             )
-            window.title = "Ajustes do Vez"
+            window.title = "Ajustes do Tern"
             window.contentView = NSHostingView(rootView: SettingsView().environmentObject(self))
-            window.setFrameAutosaveName("VezSettings")
+            window.setFrameAutosaveName("TernSettings")
             window.isReleasedWhenClosed = false
             window.minSize = NSSize(width: 520, height: 420)
             window.center()

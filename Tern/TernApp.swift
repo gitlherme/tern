@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct VezApp: App {
+struct TernApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {

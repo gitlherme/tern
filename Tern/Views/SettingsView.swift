@@ -48,7 +48,7 @@ struct GeneralSettingsView: View {
                         Text(model.isTrusted ? "Acessibilidade concedida" : "Acessibilidade necessária")
                             .font(.headline)
                         Text(model.isTrusted
-                             ? "O Vez pode listar janelas e trazer a escolhida para a frente."
+                             ? "O Tern pode listar janelas e trazer a escolhida para a frente."
                              : "Sem esta permissão o atalho abre só o aviso, sem trocar de janela.")
                             .font(.callout)
                             .foregroundStyle(.secondary)
@@ -60,11 +60,11 @@ struct GeneralSettingsView: View {
                         }
                     }
                 }
-                Text("Monitoramento de entrada não é necessário se a Acessibilidade estiver ligada: o Vez intercepta o atalho na origem para ele não disparar também no browser. Sem essa interceptação, ⌥⇥ vaza para o app da frente.")
+                Text("Monitoramento de entrada não é necessário se a Acessibilidade estiver ligada: o Tern intercepta o atalho na origem para ele não disparar também no browser. Sem essa interceptação, ⌥⇥ vaza para o app da frente.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
                 if model.isTrusted && !model.isInterceptingKeys {
-                    Text("Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Vez, ou feche o app e rode de novo pelo Xcode.")
+                    Text("Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Tern, ou feche o app e rode de novo pelo Xcode.")
                         .font(.callout)
                         .foregroundStyle(.orange)
                     Button("Abrir Monitoramento de entrada") {
@@ -96,7 +96,7 @@ struct GeneralSettingsView: View {
                                     }
                                 }
                             }
-                            Button("Mostrar Vez.app no Finder") {
+                            Button("Mostrar Tern.app no Finder") {
                                 ScreenCapturePermission.revealInFinder()
                             }
                         }
@@ -105,7 +105,7 @@ struct GeneralSettingsView: View {
                         }
                     }
                 }
-                Text("O Vez não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Vez.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.")
+                Text("O Tern não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Tern.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {
@@ -113,7 +113,7 @@ struct GeneralSettingsView: View {
             }
 
             Section {
-                Text("O Vez fica só na barra de menus, sem ícone no Dock. Clique no ícone de retângulos para abrir o seletor, os ajustes ou sair.")
+                Text("O Tern fica só na barra de menus, sem ícone no Dock. Clique no ícone de retângulos para abrir o seletor, os ajustes ou sair.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {

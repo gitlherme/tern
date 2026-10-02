@@ -32,7 +32,7 @@ final class HotkeyManager {
             &forwardRef
         )
         if forwardStatus != noErr {
-            NSLog("Vez: falha ao registrar atalho (%d)", forwardStatus)
+            NSLog("Tern: falha ao registrar atalho (%d)", forwardStatus)
         }
 
         if let reverseMods = chord.reverseCarbonModifiers {
@@ -79,7 +79,7 @@ final class HotkeyManager {
             &handlerRef
         )
         if status != noErr {
-            NSLog("Vez: falha ao instalar handler de atalho (%d)", status)
+            NSLog("Tern: falha ao instalar handler de atalho (%d)", status)
         }
     }
 }

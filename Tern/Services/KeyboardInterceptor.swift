@@ -42,7 +42,7 @@ final class KeyboardInterceptor {
         }
 
         isEnabled = false
-        NSLog("Vez: não consegui interceptar o teclado; o atalho pode vazar para o app da frente.")
+        NSLog("Tern: não consegui interceptar o teclado; o atalho pode vazar para o app da frente.")
     }
 
     func stop() {
