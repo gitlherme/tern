@@ -273,7 +273,7 @@ final class AppModel: ObservableObject {
                 backing: .buffered,
                 defer: false
             )
-            window.title = "Ajustes do Tern"
+            window.title = String(localized: "Ajustes do Tern")
             window.contentView = NSHostingView(rootView: SettingsView().environmentObject(self))
             window.setFrameAutosaveName("TernSettings")
             window.isReleasedWhenClosed = false

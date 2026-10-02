@@ -28,6 +28,8 @@
 		E8F1A2B3C4D5E6F7081920BB /* KeyboardInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */; };
 		F1A2B3C4D5E6F708192031BB /* WindowRecency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */; };
 		F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C994C5A681BF3837ADCE5 /* WindowActivator.swift */; };
+		A1B2C3D4E5F60718293A4B02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B01 /* Localizable.xcstrings */; };
+		A1B2C3D4E5F60718293A4B04 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRecency.swift; sourceTree = "<group>"; };
 		F5BF48AA40CAD7891EB709FC /* Tern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1984AB34ED70748056F77E /* WindowEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowEnumerator.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B01 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B03 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				78EF4B0EA3FDA2A792BCF074 /* Views */,
 				8D562B3E40B6C9EC53F38F07 /* Assets.xcassets */,
 				BCB51839EEA339E71371A29B /* Info.plist */,
+				A1B2C3D4E5F60718293A4B01 /* Localizable.xcstrings */,
+				A1B2C3D4E5F60718293A4B03 /* InfoPlist.xcstrings */,
 				840A3FB2571B05F6DFCE28F1 /* Tern.entitlements */,
 			);
 			path = Tern;
@@ -199,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A7814E4EEC70DE7D6C41B1 /* Assets.xcassets in Resources */,
+				A1B2C3D4E5F60718293A4B02 /* Localizable.xcstrings in Resources */,
+				A1B2C3D4E5F60718293A4B04 /* InfoPlist.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

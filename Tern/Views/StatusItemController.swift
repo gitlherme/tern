@@ -33,7 +33,7 @@ final class StatusItemController: NSObject {
         image?.isTemplate = true
         image?.accessibilityDescription = "Tern"
         button.image = image
-        button.toolTip = "Tern — seletor de janelas"
+        button.toolTip = String(localized: "Tern — seletor de janelas")
     }
 
     private func rebuildMenu() {
@@ -41,21 +41,21 @@ final class StatusItemController: NSObject {
         menu.autoenablesItems = false
 
         let open = NSMenuItem(
-            title: "Abrir seletor (\(model.hotkey.displayString))",
+            title: String(localized: "Abrir seletor (\(model.hotkey.displayString))"),
             action: #selector(openSwitcher),
             keyEquivalent: ""
         )
         open.target = self
         menu.addItem(open)
 
-        let settings = NSMenuItem(title: "Ajustes…", action: #selector(openSettings), keyEquivalent: ",")
+        let settings = NSMenuItem(title: String(localized: "Ajustes…"), action: #selector(openSettings), keyEquivalent: ",")
         settings.target = self
         menu.addItem(settings)
 
         if !model.isTrusted {
             menu.addItem(.separator())
             let permission = NSMenuItem(
-                title: "Conceder Acessibilidade…",
+                title: String(localized: "Conceder Acessibilidade…"),
                 action: #selector(openAccessibility),
                 keyEquivalent: ""
             )
@@ -64,7 +64,7 @@ final class StatusItemController: NSObject {
         }
 
         menu.addItem(.separator())
-        let quit = NSMenuItem(title: "Sair do Tern", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        let quit = NSMenuItem(title: String(localized: "Sair do Tern"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         menu.addItem(quit)
 
         item.menu = menu

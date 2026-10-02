@@ -14,7 +14,7 @@ struct WindowExclusion: Codable, Identifiable, Hashable {
 
     var displayTitle: String {
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? "Janela sem título" : trimmed
+        return trimmed.isEmpty ? String(localized: "Janela sem título") : trimmed
     }
 }
 

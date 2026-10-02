@@ -24,11 +24,11 @@ struct SwitcherView: View {
         HStack {
             Image("MenuBarIcon")
                 .foregroundStyle(.tint)
-            Text("Tern")
+            Text(verbatim: "Tern")
                 .font(.headline)
             Spacer()
             if model.isTrusted && !model.windows.isEmpty {
-                Text("\(model.windows.count) janela\(model.windows.count == 1 ? "" : "s")")
+                Text("\(model.windows.count) janelas")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -85,15 +85,15 @@ struct SwitcherView: View {
 
     private var footerText: String {
         if !model.isTrusted {
-            return "O seletor só lista e troca janelas depois da permissão de Acessibilidade."
+            return String(localized: "O seletor só lista e troca janelas depois da permissão de Acessibilidade.")
         }
         if model.windows.isEmpty {
-            return "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode."
+            return String(localized: "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode.")
         }
         if !model.canCaptureScreen {
-            return "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela"
+            return String(localized: "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela")
         }
-        return "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar"
+        return String(localized: "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar")
     }
 }
 

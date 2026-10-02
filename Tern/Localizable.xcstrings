@@ -1,0 +1,729 @@
+{
+  "sourceLanguage": "pt-BR",
+  "strings": {
+    "%@, %@": {
+      "shouldTranslate": false
+    },
+    "%lld janelas": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld window"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld windows"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld janela"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld janelas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window exclusions match bundle id + title. If the title changes, the window shows up again. In the switcher, ⌫ hides the app; ⌥⌫ hides just that window."
+          }
+        }
+      }
+    },
+    "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open an app, check your exclusions in Settings, or relaunch Tern from Xcode."
+          }
+        }
+      }
+    },
+    "Abra uma janela ou remova exclusões de app. Sem Acessibilidade, os títulos podem vir vazios.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a window or remove app exclusions. Without Accessibility, titles may come back empty."
+          }
+        }
+      }
+    },
+    "Abrir Ajustes": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        }
+      }
+    },
+    "Abrir Ajustes do Sistema": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open System Settings"
+          }
+        }
+      }
+    },
+    "Abrir Monitoramento de entrada": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Input Monitoring"
+          }
+        }
+      }
+    },
+    "Abrir seletor (%@)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open switcher (%@)"
+          }
+        }
+      }
+    },
+    "Acessibilidade concedida": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accessibility granted"
+          }
+        }
+      }
+    },
+    "Acessibilidade desligada": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accessibility is off"
+          }
+        }
+      }
+    },
+    "Acessibilidade necessária": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accessibility required"
+          }
+        }
+      }
+    },
+    "Adicionar app em execução…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add running app…"
+          }
+        }
+      }
+    },
+    "Adicionar janela aberta…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add open window…"
+          }
+        }
+      }
+    },
+    "Aguardando tecla…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for key…"
+          }
+        }
+      }
+    },
+    "Ajustes do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern Settings"
+          }
+        }
+      }
+    },
+    "Ajustes…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings…"
+          }
+        }
+      }
+    },
+    "Apps e janelas ocultos não aparecem no seletor. Adicione um app em execução para experimentá-lo: com 5 apps abertos e um oculto, o atalho mostra só os outros 4.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hidden apps and windows don’t appear in the switcher. Add a running app to try it: with 5 apps open and one hidden, the shortcut shows only the other 4."
+          }
+        }
+      }
+    },
+    "Apps ocultos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hidden apps"
+          }
+        }
+      }
+    },
+    "Atalho global": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Global shortcut"
+          }
+        }
+      }
+    },
+    "Barra de menus": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menu bar"
+          }
+        }
+      }
+    },
+    "Cancelar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "Conceder Acessibilidade…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grant Accessibility…"
+          }
+        }
+      }
+    },
+    "Espaço": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Space"
+          }
+        }
+      }
+    },
+    "Exclusões": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exclusions"
+          }
+        }
+      }
+    },
+    "Geral": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "General"
+          }
+        }
+      }
+    },
+    "Gravação da tela concedida": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Recording granted"
+          }
+        }
+      }
+    },
+    "Gravação da tela para prévias": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen Recording for previews"
+          }
+        }
+      }
+    },
+    "Inclua pelo menos um modificador (⌥, ⌃, ⇧ ou ⌘).": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Include at least one modifier (⌥, ⌃, ⇧, or ⌘)."
+          }
+        }
+      }
+    },
+    "Janela sem título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Untitled window"
+          }
+        }
+      }
+    },
+    "Janelas ocultas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hidden windows"
+          }
+        }
+      }
+    },
+    "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on Screen Recording in Settings to see previews.  ⌫ hide app   ⌥⌫ just this window"
+          }
+        }
+      }
+    },
+    "Monitoramento de entrada não é necessário se a Acessibilidade estiver ligada: o Tern intercepta o atalho na origem para ele não disparar também no browser. Sem essa interceptação, ⌥⇥ vaza para o app da frente.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Input Monitoring isn’t needed when Accessibility is on: Tern intercepts the shortcut at the source so it doesn’t also fire in your browser. Without that, ⌥⇥ leaks through to the frontmost app."
+          }
+        }
+      }
+    },
+    "Mostrar Tern.app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Tern.app"
+          }
+        }
+      }
+    },
+    "Mostrar Tern.app no Finder": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Tern.app in Finder"
+          }
+        }
+      }
+    },
+    "Nada para adicionar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing to add"
+          }
+        }
+      }
+    },
+    "Nenhum app oculto": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hidden apps"
+          }
+        }
+      }
+    },
+    "Nenhuma janela listável": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No windows to list"
+          }
+        }
+      }
+    },
+    "Nenhuma janela oculta. Use isto só quando quiser esconder uma janela e manter as outras do mesmo app.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hidden windows. Use this only when you want to hide one window and keep the app’s others."
+          }
+        }
+      }
+    },
+    "Nenhuma janela para trocar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No windows to switch to"
+          }
+        }
+      }
+    },
+    "Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Tern rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.\n\n1. Clique no + embaixo da lista.\n2. Escolha o Tern.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.\n3. Ligue o interruptor.\n4. No Tern, barra de menus → Sair, depois ⌘R no Xcode.\n\nCaminho:": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On this macOS, the Screen & System Audio Recording list only shows apps that have already asked for permission — and Tern running from Xcode (signed locally) almost never shows up on its own.\n\n1. Click + below the list.\n2. Choose the Tern.app selected in Finder (the copy in your user Applications folder) — or drag it into the list.\n3. Turn the switch on.\n4. In Tern, menu bar → Quit, then ⌘R in Xcode.\n\nPath:"
+          }
+        }
+      }
+    },
+    "Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Tern e rode de novo pelo Xcode depois de mudar permissões.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No regular app windows found right now. If you have windows open, check your exclusions in Settings — or quit Tern and relaunch it from Xcode after changing permissions."
+          }
+        }
+      }
+    },
+    "Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Tern, ou feche o app e rode de novo pelo Xcode.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t intercept the keyboard in this process. Turn on Input Monitoring for Tern, or quit the app and relaunch it from Xcode."
+          }
+        }
+      }
+    },
+    "O Tern fica só na barra de menus, sem ícone no Dock. Clique no ícone de retângulos para abrir o seletor, os ajustes ou sair.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern lives only in the menu bar, with no Dock icon. Click the rectangles icon to open the switcher, settings, or quit."
+          }
+        }
+      }
+    },
+    "O Tern não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Tern.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern doesn’t show up in Screen & System Audio Recording on its own when run from Xcode. Click +, choose ~/Applications/Tern.app (Request permission / Show in Finder selects that file for you), and turn the switch on. Then: menu bar → Quit, and ⌘R."
+          }
+        }
+      }
+    },
+    "O Tern não entra sozinho nessa lista": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern doesn’t add itself to this list"
+          }
+        }
+      }
+    },
+    "O Tern pode listar janelas e trazer a escolhida para a frente.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern can list windows and bring the one you pick to the front."
+          }
+        }
+      }
+    },
+    "O app deixa de aparecer no seletor até você removê-lo da lista.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app stops appearing in the switcher until you remove it from the list."
+          }
+        }
+      }
+    },
+    "O macOS só deixa o Tern listar e focar janelas de outros apps depois que você conceder Acessibilidade. Sem isso, o atalho não consegue trocar de janela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS only lets Tern list and focus other apps’ windows after you grant Accessibility. Without it, the shortcut can’t switch windows."
+          }
+        }
+      }
+    },
+    "O seletor mostra uma miniatura de cada janela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The switcher shows a thumbnail of each window."
+          }
+        }
+      }
+    },
+    "O seletor só lista e troca janelas depois da permissão de Acessibilidade.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The switcher can only list and switch windows after you grant Accessibility."
+          }
+        }
+      }
+    },
+    "Ocultar app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide app"
+          }
+        }
+      }
+    },
+    "Ocultar janela": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide window"
+          }
+        }
+      }
+    },
+    "Padrão: ⌥⇥, no estilo do alt-tab.app. Segure os modificadores e toque a tecla para gravar outro atalho. Não use ⌘⇥ — o macOS reserva esse atalho para o seletor de apps.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Default: ⌥⇥, in the style of alt-tab.app. Hold the modifiers and press the key to record a new shortcut. Don’t use ⌘⇥ — macOS reserves it for the app switcher."
+          }
+        }
+      }
+    },
+    "Pedir permissão": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Request permission"
+          }
+        }
+      }
+    },
+    "Permissões": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permissions"
+          }
+        }
+      }
+    },
+    "Remover": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "Sair do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit Tern"
+          }
+        }
+      }
+    },
+    "Seletor": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switcher"
+          }
+        }
+      }
+    },
+    "Sem esta permissão o atalho abre só o aviso, sem trocar de janela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without this permission, the shortcut only shows a notice and can’t switch windows."
+          }
+        }
+      }
+    },
+    "Sem esta permissão os cards ficam só com o ícone do app. O seletor continua trocando de janela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without this permission, cards show only the app icon. The switcher still switches windows."
+          }
+        }
+      }
+    },
+    "Sem prévia": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No preview"
+          }
+        }
+      }
+    },
+    "Só esta janela some. As outras do mesmo app continuam no seletor.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only this window is hidden. The app’s other windows stay in the switcher."
+          }
+        }
+      }
+    },
+    "Tecla %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key %lld"
+          }
+        }
+      }
+    },
+    "Tern — seletor de janelas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern — window switcher"
+          }
+        }
+      }
+    },
+    "Todos os apps regulares em execução já estão ocultos, ou não há apps abertos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every running app is already hidden, or no apps are open."
+          }
+        }
+      }
+    },
+    "Um app nesta lista some por completo do seletor, em todas as janelas. É o caminho principal para esconder, por exemplo, 1 app entre 5 abertos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An app on this list disappears from the switcher entirely, across all its windows. It’s the main way to hide, say, 1 app out of 5 open."
+          }
+        }
+      }
+    },
+    "minimizada": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "minimized"
+          }
+        }
+      }
+    },
+    "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⇥ next   ⇧⇥ previous   ⌫ hide app   ⌥⌫ just this window   ⏎ open   esc close"
+          }
+        }
+      }
+    },
+    "⌘⇥ é do seletor de apps do macOS. Escolha outro atalho, como ⌥⇥.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⌘⇥ belongs to the macOS app switcher. Pick another shortcut, like ⌥⇥."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
