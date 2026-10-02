@@ -53,7 +53,9 @@ struct SwitcherView: View {
                     ForEach(Array(model.windows.enumerated()), id: \.element.id) { index, window in
                         WindowCard(
                             window: window,
-                            selected: index == model.selectedIndex
+                            selected: index == model.selectedIndex,
+                            preview: model.thumbnails[window.windowID],
+                            showsCaptureHint: !model.canCaptureScreen
                         )
                         .id(window.id)
                         .onTapGesture {
@@ -71,7 +73,7 @@ struct SwitcherView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, minHeight: 168)
+        .frame(maxWidth: .infinity, minHeight: 188)
     }
 
     private var footer: some View {
@@ -88,6 +90,9 @@ struct SwitcherView: View {
         if model.windows.isEmpty {
             return "Abra um app ou remova exclusões em Ajustes."
         }
+        if !model.canCaptureScreen {
+            return "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela"
+        }
         return "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar"
     }
 }
@@ -95,35 +100,39 @@ struct SwitcherView: View {
 struct WindowCard: View {
     let window: WindowInfo
     let selected: Bool
+    let preview: NSImage?
+    let showsCaptureHint: Bool
 
     var body: some View {
-        VStack(spacing: 8) {
-            Image(nsImage: window.icon)
-                .resizable()
-                .interpolation(.high)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 56, height: 56)
-                .shadow(color: .black.opacity(0.18), radius: 4, y: 2)
-
+        VStack(alignment: .leading, spacing: 8) {
+            ZStack(alignment: .bottomLeading) {
+                previewPane
+                Image(nsImage: window.icon)
+                    .resizable()
+                    .interpolation(.high)
+                    .frame(width: 28, height: 28)
+                    .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                    .shadow(color: .black.opacity(0.35), radius: 3, y: 1)
+                    .padding(8)
+            }
             Text(window.displayTitle)
                 .font(.system(size: 12, weight: selected ? .semibold : .medium))
                 .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .frame(height: 32)
-
-            Text(window.appName)
-                .font(.system(size: 11))
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-
-            if !window.isOnscreen {
-                Text("minimizada")
-                    .font(.system(size: 10, weight: .medium))
+                .frame(height: 32, alignment: .topLeading)
+            HStack(spacing: 6) {
+                Text(window.appName)
+                    .font(.system(size: 11))
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
+                if window.isMinimized {
+                    Text("minimizada")
+                        .font(.system(size: 10, weight: .medium))
+                        .foregroundStyle(.secondary)
+                }
             }
         }
-        .padding(12)
-        .frame(width: 148, height: 168)
+        .padding(10)
+        .frame(width: 228, height: 228)
         .background(
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(selected ? Color.accentColor.opacity(0.22) : Color.black.opacity(0.18))
@@ -137,6 +146,35 @@ struct WindowCard: View {
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(selected ? .isSelected : [])
         .accessibilityLabel("\(window.appName), \(window.displayTitle)")
+    }
+
+    @ViewBuilder
+    private var previewPane: some View {
+        RoundedRectangle(cornerRadius: 10, style: .continuous)
+            .fill(Color.black.opacity(0.35))
+            .frame(width: 208, height: 124)
+            .overlay {
+                if let preview {
+                    Image(nsImage: preview)
+                        .resizable()
+                        .interpolation(.high)
+                        .scaledToFill()
+                        .frame(width: 208, height: 124)
+                        .clipped()
+                } else {
+                    VStack(spacing: 6) {
+                        Image(nsImage: window.icon)
+                            .resizable()
+                            .frame(width: 44, height: 44)
+                        if showsCaptureHint {
+                            Text("Sem prévia")
+                                .font(.system(size: 10, weight: .medium))
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 }
 

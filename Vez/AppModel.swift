@@ -9,8 +9,10 @@ final class AppModel: ObservableObject {
     @Published var exclusions: PersistedExclusions
     @Published var hotkey: HotkeyChord
     @Published var isTrusted = false
+    @Published var canCaptureScreen = false
     @Published var isSwitcherVisible = false
     @Published var windows: [WindowInfo] = []
+    @Published var thumbnails: [CGWindowID: NSImage] = [:]
     @Published var selectedIndex = 0
     @Published var confirmOnModifierRelease = false
     @Published var runningApps: [RunningAppInfo] = []
@@ -23,6 +25,7 @@ final class AppModel: ObservableObject {
 
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
+    private var didAskScreenCapture = false
 
     private init() {
         exclusions = store.load()
@@ -31,6 +34,7 @@ final class AppModel: ObservableObject {
 
     func start() {
         isTrusted = AccessibilityPermission.isTrusted
+        canCaptureScreen = ScreenCapturePermission.isTrusted
         refreshRunningApps()
         hotkeys.onPressed = { [weak self] reverse in
             Task { @MainActor in
@@ -44,11 +48,20 @@ final class AppModel: ObservableObject {
             Task { @MainActor in
                 guard let self else { return }
                 let trusted = AccessibilityPermission.isTrusted
+                let capture = ScreenCapturePermission.isTrusted
                 if trusted != self.isTrusted {
                     self.isTrusted = trusted
                     if trusted && self.isSwitcherVisible {
                         self.refreshWindows()
                         self.selectedIndex = self.windows.count > 1 ? 1 : 0
+                    }
+                }
+                if capture != self.canCaptureScreen {
+                    self.canCaptureScreen = capture
+                    if capture && self.isSwitcherVisible {
+                        self.refreshThumbnails()
+                    } else if !capture {
+                        self.thumbnails = [:]
                     }
                 }
             }
@@ -93,6 +106,7 @@ final class AppModel: ObservableObject {
         hotkeys.unregister()
         isSwitcherVisible = true
         panel.show()
+        askScreenCaptureIfNeeded()
     }
 
     func openSwitcherFromMenu() {
@@ -110,6 +124,7 @@ final class AppModel: ObservableObject {
         hotkeys.unregister()
         isSwitcherVisible = true
         panel.show()
+        askScreenCaptureIfNeeded()
     }
 
     func refreshWindows() {
@@ -124,6 +139,18 @@ final class AppModel: ObservableObject {
         }
         if isSwitcherVisible {
             panel.updateFrameIfVisible()
+        }
+        refreshThumbnails()
+    }
+
+    func refreshThumbnails() {
+        let ids = Set(windows.map(\.windowID))
+        thumbnails = thumbnails.filter { ids.contains($0.key) }
+        guard canCaptureScreen else { return }
+        for window in windows where thumbnails[window.windowID] == nil {
+            if let image = WindowThumbnail.capture(windowID: window.windowID) {
+                thumbnails[window.windowID] = image
+            }
         }
     }
 
@@ -281,6 +308,16 @@ final class AppModel: ObservableObject {
 
     private func persistExclusions() {
         store.save(exclusions)
+    }
+
+    private func askScreenCaptureIfNeeded() {
+        guard !canCaptureScreen, !didAskScreenCapture else { return }
+        didAskScreenCapture = true
+        _ = ScreenCapturePermission.request()
+        canCaptureScreen = ScreenCapturePermission.isTrusted
+        if canCaptureScreen {
+            refreshThumbnails()
+        }
     }
 
     /// NSEvent monitors run as nonisolated callbacks; AppKit delivers them on the main thread.

@@ -63,8 +63,33 @@ struct GeneralSettingsView: View {
                 Text("Monitoramento de entrada não é necessário para o atalho padrão: o Vez usa a API Carbon de hotkeys, não um event tap. Acessibilidade cobre a listagem e o foco das janelas.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
-                Button("Abrir Monitoramento de entrada") {
-                    AccessibilityPermission.openInputMonitoringSettings()
+
+                HStack(spacing: 10) {
+                    Image(systemName: model.canCaptureScreen ? "checkmark.shield.fill" : "exclamationmark.shield.fill")
+                        .foregroundStyle(model.canCaptureScreen ? Color.green : Color.orange)
+                        .imageScale(.large)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(model.canCaptureScreen ? "Gravação da tela concedida" : "Gravação da tela para prévias")
+                            .font(.headline)
+                        Text(model.canCaptureScreen
+                             ? "O seletor mostra uma miniatura de cada janela."
+                             : "Sem esta permissão os cards ficam só com o ícone do app. O seletor continua trocando de janela.")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    if !model.canCaptureScreen {
+                        Button("Pedir permissão") {
+                            _ = ScreenCapturePermission.request()
+                            model.canCaptureScreen = ScreenCapturePermission.isTrusted
+                            if model.canCaptureScreen {
+                                model.refreshThumbnails()
+                            }
+                        }
+                    }
+                    Button("Abrir Ajustes do Sistema") {
+                        ScreenCapturePermission.openSystemSettings()
+                    }
                 }
             } header: {
                 Text("Permissões")

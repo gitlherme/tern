@@ -2,54 +2,83 @@ import AppKit
 import CoreGraphics
 
 struct WindowEnumerator {
-    func enumerate(exclusions: PersistedExclusions, ignoringBundleID: String?) -> [WindowInfo] {
-        let options: CGWindowListOption = [.optionAll, .excludeDesktopElements]
-        guard let raw = CGWindowListCopyWindowInfo(options, kCGNullWindowID) as? [[String: Any]] else {
-            return []
-        }
+    private struct CGRecord {
+        var windowID: CGWindowID
+        var pid: pid_t
+        var title: String
+        var bounds: CGRect
+        var onscreen: Bool
+        var alpha: CGFloat
+        var order: Int
+        var bundleID: String
+        var appName: String
+    }
 
+    func enumerate(exclusions: PersistedExclusions, ignoringBundleID: String?) -> [WindowInfo] {
+        let catalog = loadCatalog(ignoringBundleID: ignoringBundleID)
         var seen = Set<CGWindowID>()
         var result: [WindowInfo] = []
+        var pidsCoveredByAX = Set<pid_t>()
 
-        for entry in raw {
-            guard let rawID = Self.intValue(entry[kCGWindowNumber as String]) else { continue }
-            let windowID = CGWindowID(UInt32(clamping: rawID))
-            guard seen.insert(windowID).inserted else { continue }
-            guard let layer = Self.intValue(entry[kCGWindowLayer as String]), layer == 0 else { continue }
-            guard let pidNumber = Self.intValue(entry[kCGWindowOwnerPID as String]) else { continue }
-            let pid = pid_t(Int32(clamping: pidNumber))
-            guard let app = NSRunningApplication(processIdentifier: pid),
-                  app.activationPolicy == .regular,
-                  let bundleID = app.bundleIdentifier else { continue }
-            if let ignoringBundleID, bundleID == ignoringBundleID { continue }
+        if AccessibilityPermission.isTrusted {
+            for app in NSWorkspace.shared.runningApplications where app.activationPolicy == .regular {
+                guard let bundleID = app.bundleIdentifier else { continue }
+                if let ignoringBundleID, bundleID == ignoringBundleID { continue }
 
-            let title = entry[kCGWindowName as String] as? String ?? ""
-            if exclusions.hides(bundleID: bundleID, title: title) { continue }
+                let axWindows = AXWindow.windows(for: app.processIdentifier)
+                var foundStandard = false
+                for axWindow in axWindows where AXWindow.isSwitcherWindow(axWindow) {
+                    foundStandard = true
+                    guard let windowID = AXWindow.windowID(axWindow), seen.insert(windowID).inserted else { continue }
+                    let cg = catalog[windowID]
+                    let title = preferredTitle(ax: AXWindow.title(axWindow), cg: cg?.title)
+                    if exclusions.hides(bundleID: bundleID, title: title) { continue }
 
-            let bounds = Self.bounds(from: entry)
-            let onscreen = Self.boolValue(entry[kCGWindowIsOnscreen as String])
-            if onscreen && bounds.width > 0 && bounds.height > 0 && (bounds.width < 50 || bounds.height < 50) {
-                continue
+                    let appName = app.localizedName ?? cg?.appName ?? bundleID
+                    let minimized = AXWindow.isMinimized(axWindow)
+                    result.append(
+                        WindowInfo(
+                            windowID: windowID,
+                            ownerPID: app.processIdentifier,
+                            bundleID: bundleID,
+                            appName: appName,
+                            title: title,
+                            bounds: cg?.bounds ?? .zero,
+                            isOnscreen: cg?.onscreen ?? !minimized,
+                            isMinimized: minimized
+                        )
+                    )
+                }
+                if foundStandard {
+                    pidsCoveredByAX.insert(app.processIdentifier)
+                }
             }
+        }
 
-            let appName = app.localizedName
-                ?? (entry[kCGWindowOwnerName as String] as? String)
-                ?? bundleID
-
+        for record in catalog.values.sorted(by: { $0.order < $1.order }) {
+            if pidsCoveredByAX.contains(record.pid) { continue }
+            guard seen.insert(record.windowID).inserted else { continue }
+            guard isPlausibleWindow(record) else { continue }
+            if exclusions.hides(bundleID: record.bundleID, title: record.title) { continue }
             result.append(
                 WindowInfo(
-                    windowID: windowID,
-                    ownerPID: pid,
-                    bundleID: bundleID,
-                    appName: appName,
-                    title: title,
-                    bounds: bounds,
-                    isOnscreen: onscreen
+                    windowID: record.windowID,
+                    ownerPID: record.pid,
+                    bundleID: record.bundleID,
+                    appName: record.appName,
+                    title: record.title,
+                    bounds: record.bounds,
+                    isOnscreen: record.onscreen,
+                    isMinimized: !record.onscreen
                 )
             )
         }
 
-        return result
+        return result.sorted { lhs, rhs in
+            let left = catalog[lhs.windowID]?.order ?? Int.max
+            let right = catalog[rhs.windowID]?.order ?? Int.max
+            return left < right
+        }
     }
 
     func runningRegularApps(ignoringBundleID: String?) -> [RunningAppInfo] {
@@ -67,15 +96,68 @@ struct WindowEnumerator {
             .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
 
+    private func loadCatalog(ignoringBundleID: String?) -> [CGWindowID: CGRecord] {
+        let options: CGWindowListOption = [.optionAll, .excludeDesktopElements]
+        guard let raw = CGWindowListCopyWindowInfo(options, kCGNullWindowID) as? [[String: Any]] else {
+            return [:]
+        }
+
+        var catalog: [CGWindowID: CGRecord] = [:]
+        for (order, entry) in raw.enumerated() {
+            guard let layer = Self.intValue(entry[kCGWindowLayer as String]), layer == 0 else { continue }
+            guard let rawID = Self.intValue(entry[kCGWindowNumber as String]) else { continue }
+            let windowID = CGWindowID(UInt32(clamping: rawID))
+            guard catalog[windowID] == nil else { continue }
+            guard let pidNumber = Self.intValue(entry[kCGWindowOwnerPID as String]) else { continue }
+            let pid = pid_t(Int32(clamping: pidNumber))
+            guard let app = NSRunningApplication(processIdentifier: pid),
+                  app.activationPolicy == .regular,
+                  let bundleID = app.bundleIdentifier else { continue }
+            if let ignoringBundleID, bundleID == ignoringBundleID { continue }
+
+            catalog[windowID] = CGRecord(
+                windowID: windowID,
+                pid: pid,
+                title: entry[kCGWindowName as String] as? String ?? "",
+                bounds: Self.bounds(from: entry),
+                onscreen: Self.boolValue(entry[kCGWindowIsOnscreen as String]),
+                alpha: Self.cgFloat(entry[kCGWindowAlpha as String]),
+                order: order,
+                bundleID: bundleID,
+                appName: app.localizedName
+                    ?? (entry[kCGWindowOwnerName as String] as? String)
+                    ?? bundleID
+            )
+        }
+        return catalog
+    }
+
+    private func isPlausibleWindow(_ record: CGRecord) -> Bool {
+        if record.alpha <= 0.05 { return false }
+        if record.bounds.width < 80 || record.bounds.height < 80 { return false }
+        let titled = !record.title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        if record.onscreen {
+            return titled || record.bounds.height >= 160
+        }
+        return titled && record.bounds.width >= 240 && record.bounds.height >= 160
+    }
+
+    private func preferredTitle(ax: String, cg: String?) -> String {
+        let axTitle = ax.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !axTitle.isEmpty { return axTitle }
+        return cg ?? ""
+    }
+
     private static func bounds(from entry: [String: Any]) -> CGRect {
         guard let dict = entry[kCGWindowBounds as String] as? [String: Any] else {
             return .zero
         }
-        let x = Self.cgFloat(dict["X"])
-        let y = Self.cgFloat(dict["Y"])
-        let width = Self.cgFloat(dict["Width"])
-        let height = Self.cgFloat(dict["Height"])
-        return CGRect(x: x, y: y, width: width, height: height)
+        return CGRect(
+            x: Self.cgFloat(dict["X"]),
+            y: Self.cgFloat(dict["Y"]),
+            width: Self.cgFloat(dict["Width"]),
+            height: Self.cgFloat(dict["Height"])
+        )
     }
 
     private static func intValue(_ value: Any?) -> Int? {
