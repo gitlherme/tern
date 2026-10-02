@@ -94,12 +94,32 @@
         }
       }
     },
+    "Abrir Itens de Início": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Login Items"
+          }
+        }
+      }
+    },
     "Abrir Monitoramento de entrada": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Input Monitoring"
+          }
+        }
+      }
+    },
+    "Abrir o Tern ao iniciar sessão": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tern at login"
           }
         }
       }
@@ -140,6 +160,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Accessibility required"
+          }
+        }
+      }
+    },
+    "Ache o Tern na barra de menus": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Tern in the menu bar"
           }
         }
       }
@@ -194,6 +224,16 @@
         }
       }
     },
+    "Aperte %@ para abrir o seletor. Continue segurando o modificador para avançar e solte para focar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Press %@ to open the switcher. Keep holding the modifier to move forward, and let go to focus."
+          }
+        }
+      }
+    },
     "Apps e janelas ocultos não aparecem no seletor. Adicione um app em execução para experimentá-lo: com 5 apps abertos e um oculto, o atalho mostra só os outros 4.": {
       "localizations": {
         "en": {
@@ -224,12 +264,32 @@
         }
       }
     },
+    "Ative as prévias": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn on previews"
+          }
+        }
+      }
+    },
     "Barra de menus": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Menu bar"
+          }
+        }
+      }
+    },
+    "Boas-vindas ao Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to Tern"
           }
         }
       }
@@ -244,12 +304,42 @@
         }
       }
     },
+    "Com Gravação da Tela, cada card mostra uma miniatura da janela. O Tern não grava nada.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With Screen Recording, each card shows a thumbnail of the window. Tern doesn’t record anything."
+          }
+        }
+      }
+    },
+    "Começar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get started"
+          }
+        }
+      }
+    },
     "Conceder Acessibilidade…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Grant Accessibility…"
+          }
+        }
+      }
+    },
+    "Ele não aparece no Dock. Procure o ícone de duas janelas no canto superior direito da tela.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It doesn’t appear in the Dock. Look for the two-windows icon in the top-right corner of your screen."
           }
         }
       }
@@ -270,6 +360,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Exclusions"
+          }
+        }
+      }
+    },
+    "Experimente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try it"
+          }
+        }
+      }
+    },
+    "Falta aprovar o Tern em Itens de Início.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern still needs approval in Login Items."
           }
         }
       }
@@ -370,6 +480,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Show Tern.app in Finder"
+          }
+        }
+      }
+    },
+    "Mostrar boas-vindas": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show welcome"
           }
         }
       }
@@ -504,6 +624,16 @@
         }
       }
     },
+    "O macOS só deixa o Tern listar e trocar janelas com essa permissão. Ligue a chave do Tern na lista e volte aqui.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS only lets Tern list and switch windows with this permission. Turn on the switch next to Tern, then come back here."
+          }
+        }
+      }
+    },
     "O seletor mostra uma miniatura de cada janela.": {
       "localizations": {
         "en": {
@@ -524,6 +654,16 @@
         }
       }
     },
+    "Obrigatório": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Required"
+          }
+        }
+      }
+    },
     "Ocultar app": {
       "localizations": {
         "en": {
@@ -540,6 +680,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hide window"
+          }
+        }
+      }
+    },
+    "Opcional": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optional"
           }
         }
       }
@@ -570,6 +720,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Permissions"
+          }
+        }
+      }
+    },
+    "Permita Acessibilidade": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Accessibility"
           }
         }
       }
@@ -680,6 +840,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Every running app is already hidden, or no apps are open."
+          }
+        }
+      }
+    },
+    "Troque de janela pelo teclado e esconda os apps que só atrapalham. São poucos passos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switch windows from the keyboard and hide the apps that get in the way. Just a few steps."
           }
         }
       }

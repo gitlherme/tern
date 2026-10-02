@@ -8,6 +8,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
         AppModel.shared.start()
         statusItem = StatusItemController(model: AppModel.shared)
+        if AppModel.shared.shouldShowWelcome {
+            AppModel.shared.openWelcome()
+        }
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {

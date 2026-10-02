@@ -30,6 +30,8 @@
 		F21749965170BB1A3E535326 /* WindowActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004C994C5A681BF3837ADCE5 /* WindowActivator.swift */; };
 		A1B2C3D4E5F60718293A4B02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B01 /* Localizable.xcstrings */; };
 		A1B2C3D4E5F60718293A4B04 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B03 /* InfoPlist.xcstrings */; };
+		B1C2D3E4F5A60718293A4B12 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A60718293A4B11 /* LaunchAtLogin.swift */; };
+		B1C2D3E4F5A60718293A4B14 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C2D3E4F5A60718293A4B13 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		FC1984AB34ED70748056F77E /* WindowEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowEnumerator.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B01 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B03 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		B1C2D3E4F5A60718293A4B11 /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		B1C2D3E4F5A60718293A4B13 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 		78EF4B0EA3FDA2A792BCF074 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1C2D3E4F5A60718293A4B13 /* WelcomeView.swift */,
 				BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */,
 				7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */,
 				D8A190201E6D76FCFD340ACF /* SettingsView.swift */,
@@ -95,6 +100,7 @@
 		95DF61116CBC7317336DBE03 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B1C2D3E4F5A60718293A4B11 /* LaunchAtLogin.swift */,
 				8E2DE84B14878C9BB87CBE24 /* ExclusionStore.swift */,
 				F1A2B3C4D5E6F708192031AA /* WindowRecency.swift */,
 				FC1984AB34ED70748056F77E /* WindowEnumerator.swift */,
@@ -217,6 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1C2D3E4F5A60718293A4B14 /* WelcomeView.swift in Sources */,
+				B1C2D3E4F5A60718293A4B12 /* LaunchAtLogin.swift in Sources */,
 				3E1C51F85697F9DCE81F656F /* TernApp.swift in Sources */,
 				846B9F8FC92ED99DAD2DDF5B /* AppDelegate.swift in Sources */,
 				C42B122F4C5426FC64DC48E1 /* AppModel.swift in Sources */,

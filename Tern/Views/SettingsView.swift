@@ -113,9 +113,27 @@ struct GeneralSettingsView: View {
             }
 
             Section {
+                Toggle("Abrir o Tern ao iniciar sessão", isOn: Binding(
+                    get: { model.launchAtLogin },
+                    set: { model.setLaunchAtLogin($0) }
+                ))
+                if model.launchAtLoginNeedsApproval {
+                    HStack {
+                        Text("Falta aprovar o Tern em Itens de Início.")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Abrir Itens de Início") {
+                            LaunchAtLogin.openSystemSettings()
+                        }
+                    }
+                }
                 Text("O Tern fica só na barra de menus, sem ícone no Dock. Clique no ícone de retângulos para abrir o seletor, os ajustes ou sair.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
+                Button("Mostrar boas-vindas") {
+                    model.openWelcome()
+                }
             } header: {
                 Text("Barra de menus")
             }

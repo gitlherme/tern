@@ -79,7 +79,6 @@ final class StatusItemController: NSObject {
     }
 
     @objc private func openAccessibility() {
-        AccessibilityPermission.promptIfNeeded()
-        AccessibilityPermission.openSystemSettings()
+        model.openWelcome()
     }
 }
