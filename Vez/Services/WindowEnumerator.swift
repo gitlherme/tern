@@ -46,6 +46,11 @@ enum AccessibilityWindows {
         return nil
     }
 
+    static func child(_ element: AXUIElement, _ attribute: String) -> AXUIElement? {
+        guard let raw = copy(element, attribute) else { return nil }
+        return (raw as! AXUIElement)
+    }
+
     static func title(_ element: AXUIElement) -> String {
         stringValue(element, kAXTitleAttribute as String)
     }
@@ -161,11 +166,7 @@ struct WindowEnumerator {
             )
         }
 
-        return result.sorted { lhs, rhs in
-            let left = catalog[lhs.windowID]?.order ?? Int.max
-            let right = catalog[rhs.windowID]?.order ?? Int.max
-            return left < right
-        }
+        return orderedForSwitcher(result, catalog: catalog)
     }
 
     func runningRegularApps(ignoringBundleID: String?) -> [RunningAppInfo] {
@@ -181,6 +182,57 @@ struct WindowEnumerator {
                 )
             }
             .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+    }
+
+    private func orderedForSwitcher(_ windows: [WindowInfo], catalog: [CGWindowID: CGRecord]) -> [WindowInfo] {
+        let frontID = frontmostWindowID(in: windows, catalog: catalog)
+        return windows.sorted { lhs, rhs in
+            if let frontID {
+                if lhs.windowID == frontID { return true }
+                if rhs.windowID == frontID { return false }
+            }
+            if lhs.isMinimized != rhs.isMinimized {
+                return !lhs.isMinimized
+            }
+            let left = catalog[lhs.windowID]?.order ?? Int.max
+            let right = catalog[rhs.windowID]?.order ?? Int.max
+            return left < right
+        }
+    }
+
+    /// Janela que o usuário está vendo agora: focused/main do app da frente, senão a primeira on-screen.
+    private func frontmostWindowID(in windows: [WindowInfo], catalog: [CGWindowID: CGRecord]) -> CGWindowID? {
+        let ids = Set(windows.map(\.windowID))
+        let frontPID = NSWorkspace.shared.frontmostApplication?.processIdentifier
+
+        if let frontPID {
+            let app = AXUIElementCreateApplication(frontPID)
+            for attribute in [kAXFocusedWindowAttribute as String, kAXMainWindowAttribute as String] {
+                if let focused = AccessibilityWindows.child(app, attribute) {
+                    if let identifier = AccessibilityWindows.windowID(focused), ids.contains(identifier) {
+                        return identifier
+                    }
+                    let title = AccessibilityWindows.title(focused).trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !title.isEmpty,
+                       let match = windows.first(where: { $0.ownerPID == frontPID && $0.title == title && !$0.isMinimized }) {
+                        return match.windowID
+                    }
+                }
+            }
+
+            let ofApp = windows
+                .filter { $0.ownerPID == frontPID && !$0.isMinimized }
+                .sorted { (catalog[$0.windowID]?.order ?? Int.max) < (catalog[$1.windowID]?.order ?? Int.max) }
+            if let first = ofApp.first {
+                return first.windowID
+            }
+        }
+
+        return windows
+            .filter { !$0.isMinimized }
+            .sorted { (catalog[$0.windowID]?.order ?? Int.max) < (catalog[$1.windowID]?.order ?? Int.max) }
+            .first?
+            .windowID
     }
 
     private func matchRecord(

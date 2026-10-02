@@ -92,7 +92,7 @@ Neste Mac não há certificado de Developer; o app vai assinado localmente (`adh
 ## Uso
 
 1. Conceda Acessibilidade. Para ver a prévia, conceda também Gravação da tela.
-2. **⌥⇥** abre o seletor na janela da frente (o primeiro card). ⇥ vai para a próxima; solte ⌥ para focar.
+2. **⌥⇥** abre o seletor com a janela que você está vendo no índice 0; as outras vêm depois, minimizadas no fim. ⇥ avança; solte ⌥ para focar — se a escolhida estiver minimizada, ela restaura.
 3. Continue com ⇥ / setas, solte ⌥ para focar, ou clique no card.
 4. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor.
 5. Para ocultar só uma janela: **Adicionar janela aberta…** ou **⌥⌫**.
@@ -102,7 +102,7 @@ Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos
 
 ## Limitações conhecidas desta fatia
 
-- A ordem das janelas segue a lista do CoreGraphics (frente → trás), não um histórico MRU sofisticado.
+- A ordem é: janela da frente → demais visíveis (z-order) → minimizadas no fim.
 - Exclusão de janela depende do título: se o título mudar, a janela volta a aparecer.
 - Não substitui o ⌘⇥ do sistema.
 - Não há sandbox: utilitários deste tipo precisam falar com as janelas dos outros apps.
