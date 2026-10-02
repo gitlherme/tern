@@ -53,8 +53,19 @@ enum ScreenCapturePermission {
     @MainActor
     static func revealInFinder() {
         registerWithLaunchServices()
-        let url = publishToUserApplications()
-        NSWorkspace.shared.activateFileViewerSelecting([url])
+        NSWorkspace.shared.activateFileViewerSelecting([appURLForSettingsList()])
+    }
+
+    /// Build do Xcode: o + dos Ajustes não navega até o DerivedData.
+    static var isRunningFromBuildFolder: Bool {
+        let path = appBundleURL.standardizedFileURL.path
+        return path.contains("/DerivedData/") || path.contains("/Build/Products/")
+    }
+
+    /// O .app que a pessoa deve escolher no + dos Ajustes. Instalado, é o próprio
+    /// bundle; rodando pelo Xcode, uma cópia em ~/Applications.
+    static func appURLForSettingsList() -> URL {
+        isRunningFromBuildFolder ? publishToUserApplications() : appBundleURL
     }
 
     /// Cópia em ~/Applications para o + dos Ajustes achar um .app fora do DerivedData.
@@ -141,16 +152,16 @@ enum ScreenCapturePermission {
         let alert = NSAlert()
         alert.messageText = String(localized: "O Tern não entra sozinho nessa lista")
         let steps = String(localized: """
-        Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Tern rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.
+        O macOS nem sempre adiciona o Tern sozinho à lista de Gravação da Tela.
 
         1. Clique no + embaixo da lista.
-        2. Escolha o Tern.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.
-        3. Ligue o interruptor.
-        4. No Tern, barra de menus → Sair, depois ⌘R no Xcode.
+        2. Escolha o Tern, que já está selecionado no Finder — ou arraste-o para a lista.
+        3. Ligue a chave.
+        4. Saia do Tern pela barra de menus e abra de novo.
 
         Caminho:
         """)
-        alert.informativeText = steps + "\n" + publishToUserApplications().path
+        alert.informativeText = steps + "\n" + appURLForSettingsList().path
         alert.alertStyle = .informational
         alert.addButton(withTitle: String(localized: "Mostrar Tern.app"))
         alert.addButton(withTitle: "OK")

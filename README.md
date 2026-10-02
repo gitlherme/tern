@@ -112,9 +112,9 @@ System Settings → Privacy & Security → **Input Monitoring**.
 
 Cards show a **thumbnail of each window**, which macOS gates behind Screen Recording. Without it the switcher **still switches windows**; only the preview goes away.
 
-1. In Tern Settings, click **Request permission** (or **Show Tern.app in Finder**). This copies the app to `~/Applications/Tern.app` and selects it in Finder.
+1. In Tern Settings, click **Request permission** (or **Show Tern.app in Finder**). This selects Tern in Finder. When run from Xcode, it first copies the app to `~/Applications/Tern.app`, since the Settings + button can't reach DerivedData.
 2. System Settings → Privacy & Security → **Screen & System Audio Recording**.
-3. Tern **doesn't add itself** to this list. Click **+**, choose `Tern.app` (in your user Applications folder) or drag it in from Finder, and turn the switch on.
+3. Tern **doesn't add itself** to this list. Click **+**, choose `Tern.app` (the one selected in Finder) or drag it into the list, and turn the switch on.
 4. Menu bar → **Quit**, then run Tern again. The new permission only applies to the next process.
 
 With "Sign to Run Locally" (`adhoc` signature), every rebuild changes the `cdhash` and the switch may need to be turned on again. Signing with your Personal Team avoids that.
