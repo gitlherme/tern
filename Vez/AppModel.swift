@@ -64,6 +64,7 @@ final class AppModel: ObservableObject {
                         self.thumbnails = [:]
                     }
                 }
+                ScreenCapturePermission.restoreAccessoryIfTrusted()
             }
         }
         if let pollTimer {

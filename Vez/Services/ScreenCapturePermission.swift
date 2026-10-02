@@ -7,17 +7,42 @@ enum ScreenCapturePermission {
         CGPreflightScreenCaptureAccess()
     }
 
-    /// Pedido vindo dos Ajustes: coloca o Vez na frente, dispara o diálogo do sistema
-    /// e abre a lista de Gravação da tela se o macOS não mostrar nada.
-    @MainActor
-    static func request(completion: (() -> Void)? = nil) {
-        presentPrompt(openSettingsIfDenied: true, completion: completion)
+    static var appBundleURL: URL {
+        Bundle.main.bundleURL
     }
 
-    /// Primeiro uso do seletor: tenta o diálogo sem roubar a tela para os Ajustes.
+    static var userApplicationsCopyURL: URL {
+        FileManager.default.homeDirectoryForCurrentUser
+            .appendingPathComponent("Applications", isDirectory: true)
+            .appendingPathComponent("Vez.app")
+    }
+
+    /// Pedido vindo dos Ajustes: o macOS 15+ quase nunca cria a linha sozinho
+    /// para app accessory assinado localmente. Mantém o Vez no Dock, registra
+    /// no Launch Services, abre a lista e o Finder no .app certo para o +.
+    @MainActor
+    static func request(completion: (() -> Void)? = nil) {
+        presentAsRegularApp()
+        registerWithLaunchServices()
+        _ = CGRequestScreenCaptureAccess()
+        triggerCaptureForTCC()
+
+        Task { @MainActor in
+            await requestShareableContent()
+            if !isTrusted {
+                openSystemSettings()
+                revealInFinder()
+                showAddAppAlert()
+            }
+            completion?()
+        }
+    }
+
+    /// Primeiro uso do seletor: tenta o diálogo sem abrir o Finder.
     @MainActor
     static func nudgePrompt() {
-        NSApp.activate(ignoringOtherApps: true)
+        presentAsRegularApp()
+        registerWithLaunchServices()
         _ = CGRequestScreenCaptureAccess()
         triggerCaptureForTCC()
         Task { @MainActor in
@@ -26,25 +51,64 @@ enum ScreenCapturePermission {
     }
 
     @MainActor
-    private static func presentPrompt(openSettingsIfDenied: Bool, completion: (() -> Void)?) {
-        let previousPolicy = NSApp.activationPolicy()
-        if previousPolicy != .regular {
+    static func revealInFinder() {
+        registerWithLaunchServices()
+        let url = publishToUserApplications()
+        NSWorkspace.shared.activateFileViewerSelecting([url])
+    }
+
+    /// Cópia em ~/Applications para o + dos Ajustes achar um .app fora do DerivedData.
+    /// O cdhash é o mesmo do processo que está rodando, então a permissão vale nos dois.
+    @discardableResult
+    static func publishToUserApplications() -> URL {
+        let dest = userApplicationsCopyURL
+        let source = appBundleURL.standardizedFileURL
+        if source == dest.standardizedFileURL {
+            return dest
+        }
+        let fm = FileManager.default
+        do {
+            try fm.createDirectory(at: dest.deletingLastPathComponent(), withIntermediateDirectories: true)
+            if fm.fileExists(atPath: dest.path) {
+                try fm.removeItem(at: dest)
+            }
+            try fm.copyItem(at: source, to: dest)
+            registerURL(dest)
+            return dest
+        } catch {
+            return source
+        }
+    }
+
+    @MainActor
+    private static func presentAsRegularApp() {
+        if NSApp.activationPolicy() != .regular {
             NSApp.setActivationPolicy(.regular)
         }
         NSApp.activate(ignoringOtherApps: true)
+    }
 
-        _ = CGRequestScreenCaptureAccess()
-        triggerCaptureForTCC()
+    /// Restaura o modo só-barra depois que a permissão existir (ou no próximo launch).
+    @MainActor
+    static func restoreAccessoryIfTrusted() {
+        guard isTrusted else { return }
+        if NSApp.activationPolicy() != .accessory {
+            NSApp.setActivationPolicy(.accessory)
+        }
+    }
 
-        Task { @MainActor in
-            await requestShareableContent()
-            if openSettingsIfDenied && !isTrusted {
-                openSystemSettings()
-            }
-            if NSApp.activationPolicy() != previousPolicy {
-                NSApp.setActivationPolicy(previousPolicy)
-            }
-            completion?()
+    static func registerWithLaunchServices() {
+        let lsregister = URL(fileURLWithPath: "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister")
+        guard FileManager.default.isExecutableFile(atPath: lsregister.path) else { return }
+        let proc = Process()
+        proc.executableURL = lsregister
+        proc.arguments = ["-f", appBundleURL.path]
+        proc.standardOutput = FileHandle.nullDevice
+        proc.standardError = FileHandle.nullDevice
+        do {
+            try proc.run()
+        } catch {
+            return
         }
     }
 
@@ -65,6 +129,30 @@ enum ScreenCapturePermission {
             _ = try await SCShareableContent.excludingDesktopWindows(false, onScreenWindowsOnly: true)
         } catch {
             // Diálogo recusado, ou a permissão ainda não vale neste processo.
+        }
+    }
+
+    @MainActor
+    private static func showAddAppAlert() {
+        let alert = NSAlert()
+        alert.messageText = "O Vez não entra sozinho nessa lista"
+        alert.informativeText = """
+        Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Vez rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.
+
+        1. Clique no + embaixo da lista.
+        2. Escolha o Vez.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.
+        3. Ligue o interruptor.
+        4. No Vez, barra de menus → Sair, depois ⌘R no Xcode.
+
+        Caminho:
+        \(publishToUserApplications().path)
+        """
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Mostrar Vez.app")
+        alert.addButton(withTitle: "OK")
+        NSApp.activate(ignoringOtherApps: true)
+        if alert.runModal() == .alertFirstButtonReturn {
+            revealInFinder()
         }
     }
 
