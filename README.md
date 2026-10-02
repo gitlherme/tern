@@ -1,19 +1,33 @@
-# Vez
+<p align="center">
+  <img src="brand/tern-icon.svg" width="128" height="128" alt="Ícone do Tern">
+</p>
 
-Seletor de janelas nativo para macOS, só na barra de menus (sem ícone no Dock). O atalho global abre um HUD para ciclar e focar janelas abertas — no espírito do [alt-tab.app](https://alt-tab.app), com um diferencial: você **oculta um app (ou uma janela)** e ele deixa de aparecer no seletor até você tirá-lo da lista.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/tern-wordmark-light.svg">
+    <img src="brand/tern-wordmark-dark.svg" height="56" alt="Tern">
+  </picture>
+</p>
+
+<p align="center">
+  <strong>Seletor de janelas para Mac, com o poder de esconder o que atrapalha.</strong><br>
+  <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela · <kbd>⌫</kbd> para ocultar um app
+</p>
+
+---
+
+Tern é um seletor de janelas nativo para macOS que vive só na barra de menus, sem ícone no Dock. O atalho global abre um HUD para ciclar e focar janelas abertas — no espírito do [alt-tab.app](https://alt-tab.app), com um diferencial: você **oculta um app (ou uma janela)** e ele deixa de aparecer no seletor até você tirá-lo da lista.
 
 Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os outros quatro.
 
-Este repositório é um projeto Xcode completo (`Vez.xcodeproj`). Foi escrito para abrir e rodar num Mac; **não dá para compilar aqui em Linux**.
-
-## O que esta fatia faz
+## Recursos
 
 - App de barra de menus (`LSUIElement`), Swift + SwiftUI/AppKit.
 - Atalho global configurável (padrão **⌥⇥**). O HUD sobrepõe o app da frente e o atalho **não** dispara também no browser. Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
 - Exclusão por **bundle id** (caminho principal) e exclusão por janela (bundle id + título).
+- Prévia de cada janela nos cards (com permissão de Gravação da tela).
 - Persistência das exclusões e do atalho em `UserDefaults`.
 - Ajustes para gravar o atalho, conceder Acessibilidade e adicionar/remover exclusões.
-- Estados vazios: sem janelas (ou todas ocultas), lista de exclusões vazia, Acessibilidade desligada com CTA para os Ajustes do Sistema.
 
 No seletor: **⌫** oculta o app da janela destacada; **⌥⌫** oculta só aquela janela.
 
@@ -21,44 +35,46 @@ No seletor: **⌫** oculta o app da janela destacada; **⌥⌫** oculta só aque
 
 - macOS 13 Ventura ou posterior
 - Xcode 15 ou posterior
-- Conta Apple para assinar o app (ou “Sign to Run Locally”)
+- Um Apple ID (grátis) para assinar o app localmente
 
-## Build / run on macOS
-
-```bash
-git clone <repo-url>
-cd <repo>
-open Vez.xcodeproj
-```
-
-In Xcode:
-
-1. Select the **Vez** scheme.
-2. Debug already uses **Sign to Run Locally** (no Apple Developer team required). To ship later, pick a Team in Signing & Capabilities.
-3. Run (**⌘R**). The app appears in the menu bar as two overlapping rectangles, not in the Dock.
-
-CLI (same machine, with Command Line Tools):
+## Compilar e rodar
 
 ```bash
-xcodebuild -project Vez.xcodeproj -scheme Vez -configuration Debug -destination 'platform=macOS' build
+git clone https://github.com/gitlherme/vez.git
+cd vez
+open Tern.xcodeproj
 ```
 
-The `.app` lands under Xcode’s DerivedData. First launch from Xcode is the usual path, because Accessibility is granted to that exact binary.
+No Xcode:
+
+1. Escolha o scheme **Tern**.
+2. Em **TARGETS › Tern › Signing & Capabilities**, marque *Automatically manage signing* e escolha seu **Personal Team**. Com uma assinatura estável, as permissões de Acessibilidade e Gravação da tela continuam valendo entre builds.
+3. Rode (**⌘R**). O Tern aparece na barra de menus, não no Dock.
+
+Pela linha de comando:
+
+```bash
+xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Debug -destination 'platform=macOS' build
+```
+
+### Instalar para uso diário
+
+**Product › Archive › Distribute App › Custom › Copy App** e mova o `Tern.app` para `/Applications`. Depois adicione-o em Ajustes do Sistema › Geral › Itens de início.
 
 ## Permissões
 
 ### Acessibilidade (obrigatória)
 
-O macOS só deixa o Vez **listar títulos de janela** e **trazer a janela escolhida para a frente** com Acessibilidade ligada.
+O macOS só deixa o Tern **listar títulos de janela** e **trazer a janela escolhida para a frente** com Acessibilidade ligada.
 
-1. Rode o Vez pelo Xcode.
+1. Rode o Tern pelo Xcode.
 2. Pressione **⌥⇥** (ou o atalho que você gravou). Se a permissão estiver off, o HUD pede Acessibilidade.
 3. Clique **Abrir Ajustes do Sistema** (ou **Pedir permissão** para o diálogo nativo).
 4. Ajustes do Sistema → Privacidade e segurança → **Acessibilidade**.
-5. Ative **Vez**. Se o Vez não aparecer, use o **+** e escolha `Vez.app` no DerivedData ou em Produtos do Xcode.
-6. Volte ao Vez e use o atalho de novo.
+5. Ative **Tern**. Se o Tern não aparecer, use o **+** e escolha `Tern.app` no DerivedData ou em Produtos do Xcode.
+6. Volte ao Tern e use o atalho de novo.
 
-Se você recompilar com outro caminho ou outra assinatura, o macOS trata como um app novo: desligue e ligue de novo o Vez na lista, ou remova e adicione outra vez.
+Se você recompilar com outro caminho ou outra assinatura, o macOS trata como um app novo: desligue e ligue de novo o Tern na lista, ou remova e adicione outra vez.
 
 Atalho direto (Ventura/Sonoma/Sequoia):
 
@@ -67,9 +83,9 @@ Atalho direto (Ventura/Sonoma/Sequoia):
 
 ### Monitoramento de entrada (só se o atalho vazar)
 
-Com Acessibilidade ligada o Vez instala um event tap e **engole** o atalho, para o ⌥⇥ não rodar também no browser. Na maioria dos macOS isso basta.
+Com Acessibilidade ligada o Tern instala um event tap e **engole** o atalho, para o ⌥⇥ não rodar também no browser. Na maioria dos macOS isso basta.
 
-Se mesmo assim o app da frente reagir ao atalho, ligue **Monitoramento de entrada** para o Vez:
+Se mesmo assim o app da frente reagir ao atalho, ligue **Monitoramento de entrada** para o Tern:
 
 Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**.
 
@@ -79,12 +95,12 @@ Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**
 
 Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso. Sem a permissão o seletor **continua trocando de janela**; só a prévia some.
 
-1. Em Ajustes do Vez, clique **Pedir permissão** (ou **Mostrar Vez.app no Finder**). Isso copia o app para `~/Applications/Vez.app` e seleciona no Finder.
+1. Em Ajustes do Tern, clique **Pedir permissão** (ou **Mostrar Tern.app no Finder**). Isso copia o app para `~/Applications/Tern.app` e seleciona no Finder.
 2. Ajustes do Sistema → Privacidade e segurança → **Screen & System Audio Recording**.
-3. O Vez **não entra sozinho** nessa lista. Clique no **+**, escolha `Vez.app` (em Aplicativos da sua pasta de usuário) ou arraste-o do Finder para a lista, e ligue o interruptor.
+3. O Tern **não entra sozinho** nessa lista. Clique no **+**, escolha `Tern.app` (em Aplicativos da sua pasta de usuário) ou arraste-o do Finder para a lista, e ligue o interruptor.
 4. Barra de menus → **Sair**, depois rode de novo no Xcode (**⌘R**). A permissão nova só vale no próximo processo.
 
-Neste Mac não há certificado de Developer; o app vai assinado localmente (`adhoc`). O macOS trata isso como um app que precisa ser adicionado na mão. Cada rebuild muda o `cdhash` e o interruptor pode precisar ser religado.
+Com "Sign to Run Locally" (assinatura `adhoc`) cada rebuild muda o `cdhash` e o interruptor pode precisar ser religado. Assinar com o Personal Team evita isso.
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_ScreenCapture`
@@ -110,13 +126,15 @@ Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos
 ## Estrutura
 
 ```
-Vez.xcodeproj          projeto Xcode
-Vez/
-  VezApp.swift         entrada SwiftUI, sem Dock
+Tern.xcodeproj         projeto Xcode
+Tern/
+  TernApp.swift        entrada SwiftUI, sem Dock
   AppModel.swift       estado, atalho, exclusões
   Models/              janela, exclusão, atalho
   Services/            AX windows, CG metadata, prévia, Carbon hotkey, persistência
   Views/               HUD, ajustes, barra de menus
+brand/                 ícone, logotipo e variações
+site/                  página de apresentação (HTML estático)
 ```
 
-Bundle id: `dev.guilhermevieira.Vez`. Deployment: macOS 13+.
+Bundle id: `dev.guilhermevieira.Tern`. Deployment: macOS 13+.
