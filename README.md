@@ -26,7 +26,7 @@ Example: five apps open, one on the exclusion list, and the shortcut shows only 
 
 ## Download
 
-Get **`Tern-x.y.z.dmg`** from the [latest release](https://github.com/gitlherme/vez/releases/latest), open it, and drag Tern into **Applications**.
+Get **`Tern-x.y.z.dmg`** from the [latest release](https://github.com/gitlherme/tern/releases/latest), open it, and drag Tern into **Applications**.
 
 The app isn't notarized by Apple yet, so macOS blocks the first launch. Open Tern once, dismiss the warning, then go to **System Settings › Privacy & Security › Open Anyway**. Or run:
 
@@ -57,8 +57,8 @@ In the switcher: **⌫** hides the highlighted window's app; **⌥⌫** hides ju
 ## Build and run
 
 ```bash
-git clone https://github.com/gitlherme/vez.git
-cd vez
+git clone https://github.com/gitlherme/tern.git
+cd tern
 open Tern.xcodeproj
 ```
 
