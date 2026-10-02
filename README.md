@@ -79,11 +79,12 @@ Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**
 
 Os cards mostram uma **miniatura da janela**. O macOS exige Gravação da tela para isso. Sem a permissão o seletor **continua trocando de janela**; só a prévia some.
 
-1. Em Ajustes do Vez, clique **Pedir permissão**. O Vez sai da barra, tenta o diálogo nativo e, se o macOS não mostrar nada, abre a lista de Gravação da tela.
-2. Ajustes do Sistema → Privacidade e segurança → **Gravação da tela** (em alguns macOS isso fica em Controle de dispositivos / Acesso a dados).
-3. Ative **Vez**. Feche o app (ícone da barra → Sair) e rode de novo pelo Xcode (**⌘R**). A permissão nova só vale no próximo processo.
+1. Em Ajustes do Vez, clique **Pedir permissão** (ou **Mostrar Vez.app no Finder**). Isso copia o app para `~/Applications/Vez.app` e seleciona no Finder.
+2. Ajustes do Sistema → Privacidade e segurança → **Screen & System Audio Recording**.
+3. O Vez **não entra sozinho** nessa lista. Clique no **+**, escolha `Vez.app` (em Aplicativos da sua pasta de usuário) ou arraste-o do Finder para a lista, e ligue o interruptor.
+4. Barra de menus → **Sair**, depois rode de novo no Xcode (**⌘R**). A permissão nova só vale no próximo processo.
 
-`CGRequestScreenCaptureAccess()` sozinho, num app `LSUIElement`, costuma não fazer nada. O botão agora ativa o app, dispara uma captura e usa ScreenCaptureKit.
+Neste Mac não há certificado de Developer; o app vai assinado localmente (`adhoc`). O macOS trata isso como um app que precisa ser adicionado na mão. Cada rebuild muda o `cdhash` e o interruptor pode precisar ser religado.
 
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_ScreenCapture`

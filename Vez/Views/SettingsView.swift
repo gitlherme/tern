@@ -78,21 +78,26 @@ struct GeneralSettingsView: View {
                             .foregroundStyle(.secondary)
                     }
                     Spacer()
-                    if !model.canCaptureScreen {
-                        Button("Pedir permissão") {
-                            ScreenCapturePermission.request {
-                                model.canCaptureScreen = ScreenCapturePermission.isTrusted
-                                if model.canCaptureScreen {
-                                    model.refreshThumbnails()
+                    VStack(alignment: .trailing, spacing: 6) {
+                        if !model.canCaptureScreen {
+                            Button("Pedir permissão") {
+                                ScreenCapturePermission.request {
+                                    model.canCaptureScreen = ScreenCapturePermission.isTrusted
+                                    if model.canCaptureScreen {
+                                        model.refreshThumbnails()
+                                    }
                                 }
                             }
+                            Button("Mostrar Vez.app no Finder") {
+                                ScreenCapturePermission.revealInFinder()
+                            }
+                        }
+                        Button("Abrir Ajustes do Sistema") {
+                            ScreenCapturePermission.openSystemSettings()
                         }
                     }
-                    Button("Abrir Ajustes do Sistema") {
-                        ScreenCapturePermission.openSystemSettings()
-                    }
                 }
-                Text("O macOS costuma não mostrar o diálogo se o Vez estiver só na barra. Pedir permissão traz o app para a frente e, se ainda assim nada aparecer, abre Gravação da tela. Depois de ligar o Vez nessa lista, feche o app e rode de novo pelo Xcode.")
+                Text("O Vez não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Vez.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {
