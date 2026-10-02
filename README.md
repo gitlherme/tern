@@ -34,7 +34,7 @@ open Vez.xcodeproj
 In Xcode:
 
 1. Select the **Vez** scheme.
-2. Signing & Capabilities → Team (your Apple ID) **or** Signing Certificate → **Sign to Run Locally**.
+2. Debug already uses **Sign to Run Locally** (no Apple Developer team required). To ship later, pick a Team in Signing & Capabilities.
 3. Run (**⌘R**). The app appears in the menu bar as two overlapping rectangles, not in the Dock.
 
 CLI (same machine, with Command Line Tools):

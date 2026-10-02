@@ -1,6 +1,7 @@
 import AppKit
 import Combine
 
+@MainActor
 final class StatusItemController: NSObject {
     private let model: AppModel
     private let item: NSStatusItem

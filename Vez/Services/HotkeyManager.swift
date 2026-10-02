@@ -22,7 +22,7 @@ final class HotkeyManager {
         unregister()
         installHandlerIfNeeded()
 
-        var forwardID = EventHotKeyID(signature: Self.signature, id: 1)
+        let forwardID = EventHotKeyID(signature: Self.signature, id: 1)
         let forwardStatus = RegisterEventHotKey(
             chord.keyCode,
             chord.carbonModifiers,
@@ -36,7 +36,7 @@ final class HotkeyManager {
         }
 
         if let reverseMods = chord.reverseCarbonModifiers {
-            var reverseID = EventHotKeyID(signature: Self.signature, id: 2)
+            let reverseID = EventHotKeyID(signature: Self.signature, id: 2)
             _ = RegisterEventHotKey(
                 chord.keyCode,
                 reverseMods,
