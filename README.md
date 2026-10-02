@@ -9,7 +9,7 @@ Este repositório é um projeto Xcode completo (`Vez.xcodeproj`). Foi escrito pa
 ## O que esta fatia faz
 
 - App de barra de menus (`LSUIElement`), Swift + SwiftUI/AppKit.
-- Atalho global configurável (padrão **⌥⇥**). Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
+- Atalho global configurável (padrão **⌥⇥**). O HUD sobrepõe o app da frente e o atalho **não** dispara também no browser. Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
 - Exclusão por **bundle id** (caminho principal) e exclusão por janela (bundle id + título).
 - Persistência das exclusões e do atalho em `UserDefaults`.
 - Ajustes para gravar o atalho, conceder Acessibilidade e adicionar/remover exclusões.
@@ -65,11 +65,11 @@ Atalho direto (Ventura/Sonoma/Sequoia):
 - `x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility`
 - `x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_Accessibility`
 
-### Monitoramento de entrada (não necessário nesta fatia)
+### Monitoramento de entrada (só se o atalho vazar)
 
-O atalho global usa `RegisterEventHotKey` (Carbon), não um CGEvent tap. **Monitoramento de entrada / Input Monitoring não precisa estar ligado** para o padrão ⌥⇥.
+Com Acessibilidade ligada o Vez instala um event tap e **engole** o atalho, para o ⌥⇥ não rodar também no browser. Na maioria dos macOS isso basta.
 
-Se no futuro o Vez passar a interceptar ⌘⇥ do sistema, aí sim essa permissão entra. O README documenta o caminho para quando isso acontecer:
+Se mesmo assim o app da frente reagir ao atalho, ligue **Monitoramento de entrada** para o Vez:
 
 Ajustes do Sistema → Privacidade e segurança → **Monitoramento de entrada**.
 
@@ -92,7 +92,7 @@ Neste Mac não há certificado de Developer; o app vai assinado localmente (`adh
 ## Uso
 
 1. Conceda Acessibilidade. Para ver a prévia, conceda também Gravação da tela.
-2. **⌥⇥** abre o seletor. A primeira batida destaca a janela imediatamente abaixo da atual (como Alt-Tab).
+2. **⌥⇥** abre o seletor na janela da frente (o primeiro card). ⇥ vai para a próxima; solte ⌥ para focar.
 3. Continue com ⇥ / setas, solte ⌥ para focar, ou clique no card.
 4. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor.
 5. Para ocultar só uma janela: **Adicionar janela aberta…** ou **⌥⌫**.

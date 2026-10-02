@@ -19,6 +19,7 @@
 		052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */; };
 		2097E9E3AC4B527340048E4D /* AccessibilityPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */; };
 		B8D4F02C3E5F9012B7C6D5E4 /* ScreenCapturePermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */; };
+		E8F1A2B3C4D5E6F7081920BB /* KeyboardInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */; };
 		D0F6B24E507B1234D9E8F706 /* WindowThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */; };
 		3C6EB56215D45ADAECF41A7E /* SwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */; };
 		DAE017DAACC552726F810D51 /* SwitcherPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */; };
@@ -45,6 +46,7 @@
 		B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
 		5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermission.swift; sourceTree = "<group>"; };
 		A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCapturePermission.swift; sourceTree = "<group>"; };
+		E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInterceptor.swift; sourceTree = "<group>"; };
 		C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowThumbnail.swift; sourceTree = "<group>"; };
 		BA9D5F7017774927B62F6FD5 /* SwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherView.swift; sourceTree = "<group>"; };
 		7A731B2FAB1956901890A74D /* SwitcherPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherPanelController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				B041259EC60DE4E5A52CFEEE /* HotkeyManager.swift */,
 				5B23FCD49DFE4F7CCE93ECDE /* AccessibilityPermission.swift */,
 				A7C3E91B2D4E8F01A6B5C4D3 /* ScreenCapturePermission.swift */,
+				E8F1A2B3C4D5E6F7081920AA /* KeyboardInterceptor.swift */,
 				C9E5A13D4F6A0123C8D7E6F5 /* WindowThumbnail.swift */,
 			);
 			path = Services;
@@ -215,6 +218,7 @@
 				052F522295E62018C35FEEF6 /* HotkeyManager.swift in Sources */,
 				2097E9E3AC4B527340048E4D /* AccessibilityPermission.swift in Sources */,
 				B8D4F02C3E5F9012B7C6D5E4 /* ScreenCapturePermission.swift in Sources */,
+				E8F1A2B3C4D5E6F7081920BB /* KeyboardInterceptor.swift in Sources */,
 				D0F6B24E507B1234D9E8F706 /* WindowThumbnail.swift in Sources */,
 				3C6EB56215D45ADAECF41A7E /* SwitcherView.swift in Sources */,
 				DAE017DAACC552726F810D51 /* SwitcherPanelController.swift in Sources */,
