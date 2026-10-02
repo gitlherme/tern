@@ -54,12 +54,12 @@
         }
       }
     },
-    "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode.": {
+    "Abra um app ou confira as exclusões em Ajustes.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open an app, check your exclusions in Settings, or relaunch Tern from Xcode."
+            "value": "Open an app or check your exclusions in Settings."
           }
         }
       }
@@ -424,32 +424,22 @@
         }
       }
     },
-    "Neste macOS a lista Screen & System Audio Recording só mostra apps que já pediram a permissão — e o Tern rodando pelo Xcode (assinado localmente) quase nunca aparece sozinho.\n\n1. Clique no + embaixo da lista.\n2. Escolha o Tern.app que está selecionado no Finder (cópia em Aplicativos da sua pasta de usuário) — ou arraste-o para a lista.\n3. Ligue o interruptor.\n4. No Tern, barra de menus → Sair, depois ⌘R no Xcode.\n\nCaminho:": {
+    "Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche e abra o Tern de novo depois de mudar permissões.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "On this macOS, the Screen & System Audio Recording list only shows apps that have already asked for permission — and Tern running from Xcode (signed locally) almost never shows up on its own.\n\n1. Click + below the list.\n2. Choose the Tern.app selected in Finder (the copy in your user Applications folder) — or drag it into the list.\n3. Turn the switch on.\n4. In Tern, menu bar → Quit, then ⌘R in Xcode.\n\nPath:"
+            "value": "No regular app windows found right now. If you have windows open, check your exclusions in Settings — or quit and reopen Tern after changing permissions."
           }
         }
       }
     },
-    "Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Tern e rode de novo pelo Xcode depois de mudar permissões.": {
+    "Não consegui interceptar o teclado. Ligue Monitoramento de entrada para o Tern, ou feche e abra o Tern de novo.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No regular app windows found right now. If you have windows open, check your exclusions in Settings — or quit Tern and relaunch it from Xcode after changing permissions."
-          }
-        }
-      }
-    },
-    "Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Tern, ou feche o app e rode de novo pelo Xcode.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn’t intercept the keyboard in this process. Turn on Input Monitoring for Tern, or quit the app and relaunch it from Xcode."
+            "value": "Couldn’t intercept the keyboard. Turn on Input Monitoring for Tern, or quit and reopen Tern."
           }
         }
       }
@@ -460,16 +450,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tern lives only in the menu bar, with no Dock icon. Click the rectangles icon to open the switcher, settings, or quit."
-          }
-        }
-      }
-    },
-    "O Tern não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Tern.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tern doesn’t show up in Screen & System Audio Recording on its own when run from Xcode. Click +, choose ~/Applications/Tern.app (Request permission / Show in Finder selects that file for you), and turn the switch on. Then: menu bar → Quit, and ⌘R."
           }
         }
       }
@@ -500,6 +480,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The app stops appearing in the switcher until you remove it from the list."
+          }
+        }
+      }
+    },
+    "O macOS nem sempre adiciona o Tern sozinho à lista de Gravação da Tela.\n\n1. Clique no + embaixo da lista.\n2. Escolha o Tern, que já está selecionado no Finder — ou arraste-o para a lista.\n3. Ligue a chave.\n4. Saia do Tern pela barra de menus e abra de novo.\n\nCaminho:": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS doesn’t always add Tern to the Screen Recording list by itself.\n\n1. Click + below the list.\n2. Choose Tern, already selected in Finder — or drag it into the list.\n3. Turn the switch on.\n4. Quit Tern from the menu bar and open it again.\n\nPath:"
           }
         }
       }
@@ -600,6 +590,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quit Tern"
+          }
+        }
+      }
+    },
+    "Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern (Mostrar no Finder deixa ele selecionado) e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If Tern doesn’t appear under Screen Recording, click + below the list, choose Tern (Show in Finder selects it for you), and turn the switch on. Then quit Tern from the menu bar and open it again."
           }
         }
       }

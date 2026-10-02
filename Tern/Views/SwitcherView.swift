@@ -88,7 +88,7 @@ struct SwitcherView: View {
             return String(localized: "O seletor só lista e troca janelas depois da permissão de Acessibilidade.")
         }
         if model.windows.isEmpty {
-            return String(localized: "Abra um app, confira as exclusões em Ajustes, ou rode o Tern de novo pelo Xcode.")
+            return String(localized: "Abra um app ou confira as exclusões em Ajustes.")
         }
         if !model.canCaptureScreen {
             return String(localized: "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela")
@@ -215,7 +215,7 @@ struct EmptyWindowsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             Label("Nenhuma janela para trocar", systemImage: "rectangle.slash")
                 .font(.headline)
-            Text("Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche o Tern e rode de novo pelo Xcode depois de mudar permissões.")
+            Text("Não achei janelas de apps regulares agora. Se você tem janelas abertas, olhe as exclusões em Ajustes — ou feche e abra o Tern de novo depois de mudar permissões.")
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)

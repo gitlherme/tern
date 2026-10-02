@@ -64,7 +64,7 @@ struct GeneralSettingsView: View {
                     .font(.callout)
                     .foregroundStyle(.secondary)
                 if model.isTrusted && !model.isInterceptingKeys {
-                    Text("Não consegui interceptar o teclado neste processo. Ligue Monitoramento de entrada para o Tern, ou feche o app e rode de novo pelo Xcode.")
+                    Text("Não consegui interceptar o teclado. Ligue Monitoramento de entrada para o Tern, ou feche e abra o Tern de novo.")
                         .font(.callout)
                         .foregroundStyle(.orange)
                     Button("Abrir Monitoramento de entrada") {
@@ -105,7 +105,7 @@ struct GeneralSettingsView: View {
                         }
                     }
                 }
-                Text("O Tern não aparece sozinho em Screen & System Audio Recording quando roda pelo Xcode. Clique +, escolha ~/Applications/Tern.app (Pedir permissão / Mostrar no Finder deixa esse arquivo selecionado) e ligue o interruptor. Depois: barra de menus → Sair, e ⌘R.")
+                Text("Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern (Mostrar no Finder deixa ele selecionado) e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {
