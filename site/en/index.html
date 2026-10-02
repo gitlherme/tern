@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tern — seletor de janelas para Mac</title>
-<meta name="description" content="Tern é um seletor de janelas para macOS que fica na barra de menus. ⌥⇥ para trocar de janela, ⌫ para esconder o que você não quer ver.">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="pt-BR" href="./">
-<link rel="alternate" hreflang="en" href="en/">
-<link rel="alternate" hreflang="x-default" href="en/">
+<title>Tern — window switcher for Mac</title>
+<meta name="description" content="Tern is a menu bar window switcher for macOS. ⌥⇥ to switch windows, ⌫ to hide what you don’t want to see.">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="pt-BR" href="../">
+<link rel="alternate" hreflang="en" href="./">
+<link rel="alternate" hreflang="x-default" href="./">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -175,99 +175,99 @@
 
 <header class="wrap top">
   <a class="brand" href="#" aria-label="Tern">
-    <img src="icon.svg" alt="">
+    <img src="../icon.svg" alt="">
     <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
   </a>
-  <nav><a class="hide-sm" href="#recursos">Recursos</a><a href="https://github.com/gitlherme/vez">GitHub</a><a class="lang" href="en/" hreflang="en" lang="en" data-lang="en">English</a></nav>
+  <nav><a class="hide-sm" href="#features">Features</a><a href="https://github.com/gitlherme/vez">GitHub</a><a class="lang" href="../" hreflang="pt-BR" lang="pt-BR" data-lang="pt">Português</a></nav>
 </header>
 
 <main>
   <section class="wrap hero">
-    <img class="icon" src="icon.svg" alt="Ícone do Tern: duas janelas sobrepostas">
-    <h1>Sua vez, <span>janela certa.</span></h1>
-    <p class="lede">Tern é um seletor de janelas para Mac que fica na barra de menus. Aperte <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela e esconda os apps que só atrapalham a troca.</p>
+    <img class="icon" src="../icon.svg" alt="Tern icon: two overlapping windows">
+    <h1>Your turn, <span>right window.</span></h1>
+    <p class="lede">Tern is a window switcher for Mac that lives in your menu bar. Press <kbd>⌥</kbd> <kbd>⇥</kbd> to switch windows, and hide the apps that just get in the way.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/gitlherme/vez/releases/latest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
-        Baixar para macOS
+        Download for macOS
       </a>
-      <a class="btn btn-ghost" href="#recursos">Como funciona</a>
+      <a class="btn btn-ghost" href="#features">How it works</a>
     </div>
-    <p class="note">macOS 13 Ventura ou posterior · Apple silicon e Intel · Português e inglês</p>
-    <p class="note">Ainda sem notarização da Apple: na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › <b>Abrir Mesmo Assim</b>.</p>
+    <p class="note">macOS 13 Ventura or later · Apple silicon and Intel · English and Portuguese</p>
+    <p class="note">Not notarized by Apple yet: on first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>.</p>
 
-    <div class="stage" aria-label="Demonstração do seletor do Tern">
+    <div class="stage" aria-label="Tern switcher demo">
       <div class="hud">
         <div class="hud-head">
           <div class="left">
             <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 10.5 H3.5 A2 2 0 0 1 1.5 8.5 V4.5 A2 2 0 0 1 3.5 2.5 H9.5 A2 2 0 0 1 11.5 4.5 V5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="6" y="7" width="10.5" height="8.5" rx="2" fill="currentColor"/></svg>
             Tern
           </div>
-          <span class="count">4 janelas</span>
+          <span class="count">4 windows</span>
         </div>
         <div class="cards" id="cards">
-          <div class="card"><div class="thumb" style="--bar:#4A8BE8"><i></i><i></i></div><p>Safari<small>Documentação</small></p></div>
+          <div class="card"><div class="thumb" style="--bar:#4A8BE8"><i></i><i></i></div><p>Safari<small>Documentation</small></p></div>
           <div class="card on"><div class="thumb" style="--bar:#2E3D5E"><i></i><i></i></div><p>Xcode<small>Tern.xcodeproj</small></p></div>
-          <div class="card"><div class="thumb" style="--bar:#7F77DD"><i></i><i></i></div><p>Figma<small>Ícones</small></p></div>
-          <div class="card"><div class="thumb" style="--bar:#1D9E75"><i></i><i></i></div><p>Notas<small>Ideias</small></p></div>
+          <div class="card"><div class="thumb" style="--bar:#7F77DD"><i></i><i></i></div><p>Figma<small>Icons</small></p></div>
+          <div class="card"><div class="thumb" style="--bar:#1D9E75"><i></i><i></i></div><p>Notes<small>Ideas</small></p></div>
         </div>
-        <div class="hidden-row"><span class="dot" aria-hidden="true"></span><span><b>Mensagens</b> está oculto e não aparece aqui.</span></div>
+        <div class="hidden-row"><span class="dot" aria-hidden="true"></span><span><b>Messages</b> is hidden and won’t show up here.</span></div>
       </div>
-      <p class="stage-caption">Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.</p>
+      <p class="stage-caption">Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move. Let go to focus.</p>
     </div>
   </section>
 
-  <section class="wrap features" id="recursos">
-    <p class="eyebrow">Recursos</p>
-    <h2>O seletor que o Mac não tem.</h2>
+  <section class="wrap features" id="features">
+    <p class="eyebrow">Features</p>
+    <h2>The switcher your Mac is missing.</h2>
     <div class="grid">
       <div class="feat">
         <div class="glyph">⌥⇥</div>
-        <h3>Janelas, não apps</h3>
-        <p>Cada janela vira um card com prévia, na ordem em que você usou. A anterior está sempre a um toque.</p>
+        <h3>Windows, not apps</h3>
+        <p>Every window is a card with a preview, in the order you used them. The previous one is always a tap away.</p>
       </div>
       <div class="feat">
         <div class="glyph coral">⌫</div>
-        <h3>Esconda o que atrapalha</h3>
-        <p>Oculte um app inteiro ou só uma janela. O Tern deixa de mostrá-los até você tirar da lista.</p>
+        <h3>Hide what gets in the way</h3>
+        <p>Hide a whole app or just one window. Tern stops showing them until you take them off the list.</p>
       </div>
       <div class="feat">
         <div class="glyph">⌘</div>
-        <h3>Atalho que é seu</h3>
-        <p>Grave qualquer combinação. O Tern intercepta o atalho para ele não disparar também no app da frente.</p>
+        <h3>Your shortcut</h3>
+        <p>Record any combination. Tern intercepts it so it doesn’t also fire in the frontmost app.</p>
       </div>
       <div class="feat">
         <div class="glyph">◐</div>
-        <h3>Discreto</h3>
-        <p>Vive na barra de menus, sem ícone no Dock. Nativo em Swift, leve e sem conta nem rastreamento.</p>
+        <h3>Out of the way</h3>
+        <p>Lives in the menu bar, with no Dock icon. Native Swift, lightweight, no account, no tracking.</p>
       </div>
     </div>
   </section>
 
   <section class="wrap keys">
-    <p class="eyebrow">Atalhos</p>
-    <h2>Tudo pelo teclado.</h2>
+    <p class="eyebrow">Shortcuts</p>
+    <h2>All from the keyboard.</h2>
     <ul class="keylist">
-      <li>Abrir e avançar <span><kbd>⌥</kbd> <kbd>⇥</kbd></span></li>
-      <li>Voltar <span><kbd>⇧</kbd> <kbd>⇥</kbd></span></li>
-      <li>Focar a janela <span><kbd>⏎</kbd></span></li>
-      <li>Ocultar o app <span><kbd>⌫</kbd></span></li>
-      <li>Ocultar só a janela <span><kbd>⌥</kbd> <kbd>⌫</kbd></span></li>
-      <li>Fechar o seletor <span><kbd>esc</kbd></span></li>
+      <li>Open and move forward <span><kbd>⌥</kbd> <kbd>⇥</kbd></span></li>
+      <li>Move back <span><kbd>⇧</kbd> <kbd>⇥</kbd></span></li>
+      <li>Focus the window <span><kbd>⏎</kbd></span></li>
+      <li>Hide the app <span><kbd>⌫</kbd></span></li>
+      <li>Hide just the window <span><kbd>⌥</kbd> <kbd>⌫</kbd></span></li>
+      <li>Close the switcher <span><kbd>esc</kbd></span></li>
     </ul>
   </section>
 
   <section class="wrap final">
-    <h2>Troque de janela sem pensar.</h2>
-    <p>Baixe o Tern, conceda Acessibilidade e aperte <kbd>⌥</kbd> <kbd>⇥</kbd>.</p>
-    <a class="btn btn-primary" href="https://github.com/gitlherme/vez/releases/latest">Baixar para macOS</a>
+    <h2>Switch windows without thinking.</h2>
+    <p>Download Tern, grant Accessibility, and press <kbd>⌥</kbd> <kbd>⇥</kbd>.</p>
+    <a class="btn btn-primary" href="https://github.com/gitlherme/vez/releases/latest">Download for macOS</a>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Tern · feito por Guilherme Vieira</span>
-    <a href="https://github.com/gitlherme/vez">Código no GitHub</a>
+    <span>Tern · made by Guilherme Vieira</span>
+    <a href="https://github.com/gitlherme/vez">Source on GitHub</a>
   </div>
 </footer>
 
