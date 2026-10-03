@@ -178,7 +178,11 @@ struct PersistedExclusions: Codable, Equatable {
     }
 
     mutating func addApp(bundleID: String, name: String, until: Date? = nil) {
-        windows.removeAll { $0.bundleID == bundleID }
+        // Esconder para sempre torna as exclusões de janela do app redundantes; numa soneca
+        // elas precisam continuar lá para quando o app voltar.
+        if until == nil {
+            windows.removeAll { $0.bundleID == bundleID }
+        }
         if let index = apps.firstIndex(where: { $0.bundleID == bundleID }) {
             // Já oculto para sempre continua para sempre; uma soneca nova substitui a anterior.
             if apps[index].until != nil {
