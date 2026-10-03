@@ -64,7 +64,9 @@ struct SwitcherView: View {
                         }
                     }
                 }
-                .padding(.vertical, 4)
+                // Folga para a borda de 2pt e o scale de 1.03 do card destacado não serem cortados.
+                .padding(.horizontal, 6)
+                .padding(.vertical, 6)
             }
             .onChange(of: model.selectedIndex) { newValue in
                 guard model.windows.indices.contains(newValue) else { return }
