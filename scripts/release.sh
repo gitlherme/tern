@@ -3,7 +3,12 @@
 # A versão vem de MARKETING_VERSION no projeto. A chave EdDSA fica no Keychain (conta "tern").
 #
 # Uso: scripts/release.sh
-# Variáveis opcionais: BUILD_DIR (padrão: build), APPCAST (padrão: site/appcast.xml)
+# Variáveis opcionais: BUILD_DIR (padrão: build), APPCAST (padrão: site/appcast.xml),
+#   SIGN_IDENTITY (padrão: certificado "Tern Code Signing" do Keychain)
+#
+# O app é assinado com um certificado autoassinado estável. Assim a identidade do app
+# (bundle id + certificado) não muda entre versões e o macOS mantém a Acessibilidade
+# depois de cada atualização. Assinatura ad-hoc mudaria a cada build.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -13,6 +18,12 @@ APPCAST=${APPCAST:-site/appcast.xml}
 DD="$BUILD_DIR/DerivedData"
 OUT="$BUILD_DIR/release-$VERSION"
 SPARKLE_BIN="$DD/SourcePackages/artifacts/sparkle/Sparkle/bin"
+SIGN_IDENTITY=${SIGN_IDENTITY:-$(security find-identity -p codesigning | awk -F'"' '/"Tern Code Signing"/ {split($1, a, " "); print a[2]; exit}')}
+if [[ -z "$SIGN_IDENTITY" ]]; then
+  echo "ERRO: certificado \"Tern Code Signing\" não encontrado no Keychain. Sem ele, a release" >&2
+  echo "sairia ad-hoc e todo usuário teria que conceder Acessibilidade de novo." >&2
+  exit 1
+fi
 
 echo "==> Tern $VERSION"
 rm -rf "$OUT"
@@ -25,6 +36,21 @@ xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Release \
   -quiet build
 
 APP="$DD/Build/Products/Release/Tern.app"
+
+# Reassina de dentro para fora, como o Sparkle orienta (sem --deep).
+echo "==> Assinando com $SIGN_IDENTITY"
+SPARKLE="$APP/Contents/Frameworks/Sparkle.framework/Versions/B"
+sign() { codesign --force --sign "$SIGN_IDENTITY" --options runtime "$@" 2>&1 | grep -v "replacing existing signature" || true; }
+for xpc in "$SPARKLE"/XPCServices/*.xpc; do sign --preserve-metadata=entitlements "$xpc"; done
+sign "$SPARKLE/Autoupdate"
+sign "$SPARKLE/Updater.app"
+sign "$APP/Contents/Frameworks/Sparkle.framework"
+sign --entitlements Tern/Tern.entitlements "$APP"
+codesign --verify --deep --strict "$APP"
+if ! codesign -d -r- "$APP" 2>&1 | grep -q 'certificate root = H"'; then
+  echo "ERRO: a identidade do app não ficou presa ao certificado." >&2
+  exit 1
+fi
 
 # Abre o app por alguns segundos: se o dyld ou o macOS recusarem algo (como na 1.1.0,
 # que fechava ao abrir por validação de biblioteca), a release para aqui.
