@@ -33,7 +33,6 @@ final class AppModel: ObservableObject {
     private var welcomeWindow: NSWindow?
     private var welcomeCloseObserver: NSObjectProtocol?
     private static let welcomeDoneKey = "TernWelcomeCompleted"
-    private var didAskScreenCapture = false
     private var consumeOpeningKey = false
     private var workspaceObserver: NSObjectProtocol?
 
@@ -109,10 +108,10 @@ final class AppModel: ObservableObject {
 
     func handleHotkey(reverse: Bool) {
         if !isTrusted {
+            // O seletor mostra o aviso com os botões; sem diálogo do macOS a cada toque.
             confirmOnModifierRelease = false
             isSwitcherVisible = true
             panel.show()
-            AccessibilityPermission.promptIfNeeded()
             return
         }
 
@@ -137,7 +136,6 @@ final class AppModel: ObservableObject {
         confirmOnModifierRelease = hotkey.hasModifiers
         isSwitcherVisible = true
         panel.show()
-        askScreenCaptureIfNeeded()
         DispatchQueue.main.async { [weak self] in
             self?.consumeOpeningKey = false
         }
@@ -148,7 +146,6 @@ final class AppModel: ObservableObject {
             isSwitcherVisible = true
             confirmOnModifierRelease = false
             panel.show()
-            AccessibilityPermission.promptIfNeeded()
             return
         }
         refreshWindows()
@@ -156,7 +153,6 @@ final class AppModel: ObservableObject {
         confirmOnModifierRelease = false
         isSwitcherVisible = true
         panel.show()
-        askScreenCaptureIfNeeded()
     }
 
     func refreshWindows() {
@@ -414,12 +410,6 @@ final class AppModel: ObservableObject {
         } else {
             hotkeys.register(hotkey)
         }
-    }
-
-    private func askScreenCaptureIfNeeded() {
-        guard !canCaptureScreen, !didAskScreenCapture else { return }
-        didAskScreenCapture = true
-        ScreenCapturePermission.nudgePrompt()
     }
 
     /// NSEvent monitors run as nonisolated callbacks; AppKit delivers them on the main thread.

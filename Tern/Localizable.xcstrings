@@ -134,16 +134,6 @@
         }
       }
     },
-    "Acabou de atualizar e o Tern já está ligado na lista? Selecione-o, remova com – e adicione de novo com +.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Just updated and Tern is already switched on in the list? Select it, remove it with –, and add it again with +."
-          }
-        }
-      }
-    },
     "Acessibilidade concedida": {
       "localizations": {
         "en": {
@@ -234,16 +224,6 @@
         }
       }
     },
-    "Aperte %@ para abrir o seletor. Continue segurando o modificador para avançar e solte para focar.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Press %@ to open the switcher. Keep holding the modifier to move forward, and let go to focus."
-          }
-        }
-      }
-    },
     "Apps e janelas ocultos não aparecem no seletor. Adicione um app em execução para experimentá-lo: com 5 apps abertos e um oculto, o atalho mostra só os outros 4.": {
       "localizations": {
         "en": {
@@ -324,6 +304,16 @@
         }
       }
     },
+    "Clique no atalho para gravar outro, se quiser. Depois aperte para abrir o seletor: continue segurando o modificador para avançar e solte para focar.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click the shortcut to record a different one if you like. Then press it to open the switcher: keep holding the modifier to move forward, and let go to focus."
+          }
+        }
+      }
+    },
     "Com Gravação da Tela, cada card mostra uma miniatura da janela. O Tern não grava nada.": {
       "localizations": {
         "en": {
@@ -364,6 +354,16 @@
         }
       }
     },
+    "Escolha o atalho e experimente": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick your shortcut and try it"
+          }
+        }
+      }
+    },
     "Espaço": {
       "localizations": {
         "en": {
@@ -380,16 +380,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Exclusions"
-          }
-        }
-      }
-    },
-    "Experimente": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Try it"
           }
         }
       }
@@ -754,6 +744,16 @@
         }
       }
     },
+    "Permitir Acessibilidade": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Accessibility"
+          }
+        }
+      }
+    },
     "Procurar agora": {
       "localizations": {
         "en": {
@@ -804,12 +804,12 @@
         }
       }
     },
-    "Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern (Mostrar no Finder deixa ele selecionado) e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.": {
+    "Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern em Aplicativos e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "If Tern doesn’t appear under Screen Recording, click + below the list, choose Tern (Show in Finder selects it for you), and turn the switch on. Then quit Tern from the menu bar and open it again."
+            "value": "If Tern doesn’t appear under Screen Recording, click + below the list, choose Tern in Applications, and turn the switch on. Then quit Tern from the menu bar and open it again."
           }
         }
       }
@@ -910,6 +910,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "An app on this list disappears from the switcher entirely, across all its windows. It’s the main way to hide, say, 1 app out of 5 open."
+          }
+        }
+      }
+    },
+    "Ver passo a passo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show me how"
           }
         }
       }

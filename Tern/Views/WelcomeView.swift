@@ -40,15 +40,8 @@ struct WelcomeView: View {
                     detail: "O macOS só deixa o Tern listar e trocar janelas com essa permissão. Ligue a chave do Tern na lista e volte aqui."
                 ) {
                     if !model.isTrusted {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Button("Abrir Ajustes do Sistema") {
-                                AccessibilityPermission.promptIfNeeded()
-                                AccessibilityPermission.openSystemSettings()
-                            }
-                            Text("Acabou de atualizar e o Tern já está ligado na lista? Selecione-o, remova com – e adicione de novo com +.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                                .fixedSize(horizontal: false, vertical: true)
+                        Button("Permitir Acessibilidade") {
+                            AccessibilityPermission.request()
                         }
                     }
                 }
@@ -72,12 +65,13 @@ struct WelcomeView: View {
                 WelcomeStep(
                     number: 4,
                     done: triedSwitcher,
-                    title: "Experimente",
-                    detail: "Aperte \(model.hotkey.displayString) para abrir o seletor. Continue segurando o modificador para avançar e solte para focar."
+                    title: "Escolha o atalho e experimente",
+                    detail: "Clique no atalho para gravar outro, se quiser. Depois aperte para abrir o seletor: continue segurando o modificador para avançar e solte para focar."
                 ) {
-                    EmptyView()
+                    HotkeyRecorderView(chord: model.hotkey) { newChord in
+                        model.setHotkey(newChord)
+                    }
                 }
-                .opacity(model.isTrusted ? 1 : 0.5)
             }
 
             Divider()

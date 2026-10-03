@@ -190,15 +190,12 @@ struct PermissionCard: View {
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 8) {
-                Button("Abrir Ajustes do Sistema") {
-                    AccessibilityPermission.openSystemSettings()
+                Button("Permitir Acessibilidade") {
+                    AccessibilityPermission.request()
                 }
                 .keyboardShortcut(.defaultAction)
-                Button("Pedir permissão") {
-                    AccessibilityPermission.promptIfNeeded()
-                }
-                Button("Ajustes do Tern") {
-                    AppModel.shared.openSettings()
+                Button("Ver passo a passo") {
+                    AppModel.shared.openWelcome()
                 }
                 .buttonStyle(.borderless)
             }
