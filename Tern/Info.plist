@@ -14,5 +14,11 @@
 	<true/>
 	<key>NSScreenCaptureUsageDescription</key>
 	<string>O Tern captura uma miniatura de cada janela para mostrar a prévia no seletor.</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/gitlherme/tern/main/site/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>EHAZ8FCwp6lBR6EX40IKyPx9HHdlD9nGREREBWL1l4M=</string>
 </dict>
 </plist>

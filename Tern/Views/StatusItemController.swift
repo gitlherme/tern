@@ -1,4 +1,5 @@
 import AppKit
+import Sparkle
 import Combine
 
 @MainActor
@@ -64,6 +65,13 @@ final class StatusItemController: NSObject {
         }
 
         menu.addItem(.separator())
+        let updates = NSMenuItem(
+            title: String(localized: "Procurar atualizações…"),
+            action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)),
+            keyEquivalent: ""
+        )
+        updates.target = UpdateService.shared.controller
+        menu.addItem(updates)
         let quit = NSMenuItem(title: String(localized: "Sair do Tern"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         menu.addItem(quit)
 
@@ -79,7 +87,6 @@ final class StatusItemController: NSObject {
     }
 
     @objc private func openAccessibility() {
-        AccessibilityPermission.promptIfNeeded()
-        AccessibilityPermission.openSystemSettings()
+        model.openWelcome()
     }
 }

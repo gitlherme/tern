@@ -113,11 +113,35 @@ struct GeneralSettingsView: View {
             }
 
             Section {
+                Toggle("Abrir o Tern ao iniciar sessão", isOn: Binding(
+                    get: { model.launchAtLogin },
+                    set: { model.setLaunchAtLogin($0) }
+                ))
+                if model.launchAtLoginNeedsApproval {
+                    HStack {
+                        Text("Falta aprovar o Tern em Itens de Início.")
+                            .font(.callout)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Button("Abrir Itens de Início") {
+                            LaunchAtLogin.openSystemSettings()
+                        }
+                    }
+                }
                 Text("O Tern fica só na barra de menus, sem ícone no Dock. Clique no ícone de retângulos para abrir o seletor, os ajustes ou sair.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
+                Button("Mostrar boas-vindas") {
+                    model.openWelcome()
+                }
             } header: {
                 Text("Barra de menus")
+            }
+
+            Section {
+                UpdateSettingsRow()
+            } header: {
+                Text("Atualizações")
             }
         }
         .formStyle(.grouped)
@@ -354,5 +378,21 @@ struct ContentUnavailableHint: View {
             Spacer()
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct UpdateSettingsRow: View {
+    @ObservedObject private var updates = UpdateService.shared
+
+    var body: some View {
+        Toggle("Procurar atualizações automaticamente", isOn: $updates.automaticallyChecks)
+        HStack {
+            Text("Versão \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")")
+                .foregroundStyle(.secondary)
+            Spacer()
+            Button("Procurar agora") {
+                updates.checkForUpdates()
+            }
+        }
     }
 }

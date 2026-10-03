@@ -17,6 +17,8 @@ final class AppModel: ObservableObject {
     @Published var confirmOnModifierRelease = false
     @Published var runningApps: [RunningAppInfo] = []
     @Published var isInterceptingKeys = false
+    @Published var launchAtLogin = LaunchAtLogin.isEnabled
+    @Published var launchAtLoginNeedsApproval = LaunchAtLogin.needsApproval
 
     let store = ExclusionStore()
     let enumerator = WindowEnumerator()
@@ -28,6 +30,9 @@ final class AppModel: ObservableObject {
     private var recency = WindowRecency()
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
+    private var welcomeWindow: NSWindow?
+    private var welcomeCloseObserver: NSObjectProtocol?
+    private static let welcomeDoneKey = "TernWelcomeCompleted"
     private var didAskScreenCapture = false
     private var consumeOpeningKey = false
     private var workspaceObserver: NSObjectProtocol?
@@ -85,6 +90,7 @@ final class AppModel: ObservableObject {
                     }
                 }
                 ScreenCapturePermission.restoreAccessoryIfTrusted()
+                self.refreshLaunchAtLogin()
                 if !self.isSwitcherVisible {
                     self.recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
                 }
@@ -259,6 +265,57 @@ final class AppModel: ObservableObject {
         exclusions.removeWindow(item)
         persistExclusions()
         refreshWindows()
+    }
+
+    func setLaunchAtLogin(_ enabled: Bool) {
+        LaunchAtLogin.set(enabled)
+        refreshLaunchAtLogin()
+    }
+
+    /// O estado pode mudar por fora, em Ajustes do Sistema › Itens de Início.
+    func refreshLaunchAtLogin() {
+        let enabled = LaunchAtLogin.isEnabled
+        let needsApproval = LaunchAtLogin.needsApproval
+        if enabled != launchAtLogin { launchAtLogin = enabled }
+        if needsApproval != launchAtLoginNeedsApproval { launchAtLoginNeedsApproval = needsApproval }
+    }
+
+    /// Mostra as boas-vindas na primeira vez e sempre que faltar Acessibilidade.
+    var shouldShowWelcome: Bool {
+        !UserDefaults.standard.bool(forKey: Self.welcomeDoneKey) || !AccessibilityPermission.isTrusted
+    }
+
+    func openWelcome() {
+        dismissSwitcher()
+        NSApp.activate(ignoringOtherApps: true)
+
+        if welcomeWindow == nil {
+            let hosting = NSHostingView(rootView: WelcomeView().environmentObject(self))
+            let window = NSWindow(
+                contentRect: NSRect(origin: .zero, size: hosting.fittingSize),
+                styleMask: [.titled, .closable],
+                backing: .buffered,
+                defer: false
+            )
+            window.title = String(localized: "Boas-vindas ao Tern")
+            window.contentView = hosting
+            window.isReleasedWhenClosed = false
+            window.center()
+            welcomeCloseObserver = NotificationCenter.default.addObserver(
+                forName: NSWindow.willCloseNotification,
+                object: window,
+                queue: .main
+            ) { _ in
+                UserDefaults.standard.set(true, forKey: Self.welcomeDoneKey)
+            }
+            welcomeWindow = window
+        }
+
+        welcomeWindow?.makeKeyAndOrderFront(nil)
+    }
+
+    func closeWelcome() {
+        welcomeWindow?.close()
     }
 
     func openSettings() {
