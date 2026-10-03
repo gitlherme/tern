@@ -364,12 +364,12 @@
         }
       }
     },
-    "Digite para buscar   ⇥ próximo   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   esc fechar": {
+    "Digite para buscar   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   ⌘W fechar janela   ⌘M minimizar   ⌘Q encerrar app": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Type to search   ⇥ next   ⏎ open   ⌫ hide app   ⌥⌫ just this window   esc close"
+            "value": "Type to search   ⏎ open   ⌫ hide app   ⌥⌫ just this window   ⌘W close window   ⌘M minimize   ⌘Q quit app"
           }
         }
       }
@@ -994,12 +994,12 @@
         }
       }
     },
-    "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca": {
+    "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca   ⌘W fechar janela": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "⏎ open   ⇥ next   ⌫ delete   esc clear search"
+            "value": "⏎ open   ⇥ next   ⌫ delete   esc clear search   ⌘W close window"
           }
         }
       }

@@ -250,6 +250,41 @@ final class AppModel: ObservableObject {
         }
     }
 
+    // MARK: Ações na janela selecionada (#12)
+
+    func closeSelectedWindow() {
+        guard let window = selectedWindow else { return }
+        activator.close(window)
+        refreshAfterAction(delays: [0.15, 0.6])
+    }
+
+    func minimizeSelectedWindow() {
+        guard let window = selectedWindow else { return }
+        activator.minimize(window)
+        refreshAfterAction(delays: [0.3])
+    }
+
+    func quitSelectedApp() {
+        guard let window = selectedWindow else { return }
+        activator.quitApp(of: window)
+        refreshAfterAction(delays: [0.6, 1.5])
+    }
+
+    private var selectedWindow: WindowInfo? {
+        windows.indices.contains(selectedIndex) ? windows[selectedIndex] : nil
+    }
+
+    /// O app leva um instante para fechar ou minimizar; se ele abrir um "salvar alterações?",
+    /// a janela continua na lista e a pessoa pode ir até ela.
+    private func refreshAfterAction(delays: [TimeInterval]) {
+        for delay in delays {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                guard let self, self.isSwitcherVisible else { return }
+                self.refreshWindows()
+            }
+        }
+    }
+
     func dismissSwitcher() {
         isSwitcherVisible = false
         filterText = ""
@@ -436,6 +471,22 @@ final class AppModel: ObservableObject {
             return true
         default:
             break
+        }
+
+        if event.modifierFlags.contains(.command), !event.modifierFlags.contains(.control) {
+            switch Int(event.keyCode) {
+            case kVK_ANSI_W:
+                closeSelectedWindow()
+                return true
+            case kVK_ANSI_M:
+                minimizeSelectedWindow()
+                return true
+            case kVK_ANSI_Q:
+                quitSelectedApp()
+                return true
+            default:
+                break
+            }
         }
 
         if let typed = Self.filterCharacters(from: event) {

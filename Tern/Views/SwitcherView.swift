@@ -96,7 +96,7 @@ struct SwitcherView: View {
             return String(localized: "O seletor só lista e troca janelas depois da permissão de Acessibilidade.")
         }
         if !model.filterText.isEmpty {
-            return String(localized: "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca")
+            return String(localized: "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca   ⌘W fechar janela")
         }
         if model.windows.isEmpty {
             return String(localized: "Abra um app ou confira as exclusões em Ajustes.")
@@ -104,7 +104,7 @@ struct SwitcherView: View {
         if !model.canCaptureScreen {
             return String(localized: "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela")
         }
-        return String(localized: "Digite para buscar   ⇥ próximo   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   esc fechar")
+        return String(localized: "Digite para buscar   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   ⌘W fechar janela   ⌘M minimizar   ⌘Q encerrar app")
     }
 }
 
