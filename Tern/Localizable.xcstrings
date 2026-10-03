@@ -147,6 +147,16 @@
         }
       }
     },
+    "Abrir o seletor do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tern switcher"
+          }
+        }
+      }
+    },
     "Abrir seletor (%@)": {
       "localizations": {
         "en": {
@@ -457,6 +467,16 @@
         }
       }
     },
+    "Devolve ao seletor um app que estava escondido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brings a hidden app back to the switcher."
+          }
+        }
+      }
+    },
     "Digite para buscar   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   ⌘W fechar janela   ⌘M minimizar   ⌘Q encerrar app": {
       "localizations": {
         "en": {
@@ -473,6 +493,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Type some text to see which open windows the rule hides."
+          }
+        }
+      }
+    },
+    "Duração": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
           }
         }
       }
@@ -563,6 +593,26 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "Esconder ${app} no Tern por ${duration}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide ${app} in Tern for ${duration}"
+          }
+        }
+      }
+    },
+    "Esconder app no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide app in Tern"
           }
         }
       }
@@ -667,6 +717,16 @@
         }
       }
     },
+    "Liga um modo do Tern, ou desliga se nenhum for escolhido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turns on a Tern mode, or turns it off if none is chosen."
+          }
+        }
+      }
+    },
     "Ligar a um Foco do macOS": {
       "localizations": {
         "en": {
@@ -747,6 +807,26 @@
         }
       }
     },
+    "Mostra o seletor de janelas, como o atalho de teclado.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows the window switcher, like the keyboard shortcut."
+          }
+        }
+      }
+    },
+    "Mostrar ${app} no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show ${app} in Tern"
+          }
+        }
+      }
+    },
     "Mostrar Tern.app": {
       "localizations": {
         "en": {
@@ -767,12 +847,42 @@
         }
       }
     },
+    "Mostrar app no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show app in Tern"
+          }
+        }
+      }
+    },
     "Mostrar boas-vindas": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Show welcome"
+          }
+        }
+      }
+    },
+    "Mudar o modo do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Tern mode"
+          }
+        }
+      }
+    },
+    "Mudar o modo do Tern para ${mode}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Tern mode to ${mode}"
           }
         }
       }
@@ -1303,6 +1413,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Title text"
+          }
+        }
+      }
+    },
+    "Tira um app do seletor de janelas, para sempre ou por um tempo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removes an app from the window switcher, for good or for a while."
           }
         }
       }

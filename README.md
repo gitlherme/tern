@@ -40,13 +40,18 @@ Then grant Accessibility when Tern asks and press **⌥⇥**.
 
 - Menu bar app (`LSUIElement`), Swift + SwiftUI/AppKit.
 - Configurable global shortcut (default **⌥⇥**). The HUD floats over the frontmost app, and the shortcut **doesn't** also fire in your browser. Hold the modifier and tap the key again to move forward; release the modifier to focus the window. **⇧⇥** moves back. Click, **⏎**, and **esc** work too.
-- Exclusion by **bundle id** (the main path) and by window (bundle id + title).
+- **Type to search:** with the switcher open, type to filter windows by app name and title ("vsc" finds Visual Studio Code).
+- **Window actions:** **⌘W** closes the highlighted window, **⌘M** minimizes it, **⌘Q** quits its app.
+- Exclusion by **bundle id** (the main path), by window (bundle id + title), and by **title rule** (text or `*` pattern, in one app or any app).
+- **Snooze:** **⇧⌫** hides an app for an hour; in Settings, hide for 1 hour, until tomorrow, or always.
+- **Modes:** named sets of extra apps to hide (Work, Personal…), switched from the menu bar or automatically by a **macOS Focus** through a Focus Filter.
+- **Automation:** Shortcuts actions and a `tern://` URL scheme (see below).
 - Live preview of each window on its card (with Screen Recording permission).
 - UI in **English and Portuguese** (follows the macOS language; other languages fall back to English).
 - Exclusions and shortcut persisted in `UserDefaults`.
 - Settings to record the shortcut, grant Accessibility, and add or remove exclusions.
 
-In the switcher: **⌫** hides the highlighted window's app; **⌥⌫** hides just that window.
+In the switcher: **⌫** hides the highlighted window's app, **⇧⌫** hides it for an hour, **⌥⌫** hides just that window. While searching, **⌫** edits the search instead.
 
 ## Requirements
 
@@ -127,16 +132,33 @@ With "Sign to Run Locally" (`adhoc` signature), every rebuild changes the `cdhas
 1. Grant Accessibility. For previews, grant Screen Recording too.
 2. **⌥⇥** opens the switcher with the current window at index 0 and the previous one at 1. Release ⌥ to jump to the previous window; ⇥ moves further back in recency. Minimized windows come last and are restored when focused.
 3. Keep going with ⇥ / arrow keys, release ⌥ to focus, or click a card.
-4. To hide an app: Settings → Exclusions → **Add running app…**, or **⌫** in the switcher.
-5. To hide a single window: **Add open window…** or **⌥⌫**.
-6. Menu bar: Open switcher, Settings, Quit.
+4. Start typing to search. Once you type, releasing ⌥ no longer confirms: **⏎** opens, **esc** clears the search.
+5. To hide an app: Settings → Exclusions → **Add running app…**, or **⌫** in the switcher (**⇧⌫** for an hour).
+6. To hide a single window: **Add open window…** or **⌥⌫**. To hide windows whose title changes, add a **title rule**.
+7. Modes: Settings → Modes. To link one to a Focus, go to System Settings › Focus › (a Focus) › Focus Filters › Add Filter › Tern.
+8. Menu bar: Open switcher, Mode, Settings, Check for Updates, Quit.
+
+### Automation
+
+Shortcuts app actions: **Open Tern switcher**, **Hide app in Tern** (always, 1 hour, until tomorrow), **Show app in Tern**, and **Set Tern mode**.
+
+URL scheme, for scripts, Raycast, or anything that opens links:
+
+| URL | Does |
+|---|---|
+| `tern://open` | Opens the switcher |
+| `tern://hide?app=com.spotify.client` | Hides an app (add `&for=1h` or `&for=tomorrow` to snooze) |
+| `tern://unhide?app=com.spotify.client` | Shows it again |
+| `tern://mode?name=Work` | Turns on a mode; `tern://mode` turns it off |
+
+Any web page can open a `tern://` link, so URLs only do harmless things: nothing closes windows or quits apps.
 
 Don't record **⌘⇥**: macOS reserves it for the app switcher.
 
 ## Known limitations
 
 - Order is by recency: current window → previous → other recently used → minimized last.
-- Window exclusions match by title: if the title changes, the window shows up again.
+- Window exclusions match the exact title: if it changes, the window shows up again. Title rules cover that case.
 - Doesn't replace the system's ⌘⇥.
 - No sandbox: utilities like this need to talk to other apps' windows, which also rules out the Mac App Store.
 
