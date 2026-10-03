@@ -155,6 +155,7 @@ struct ExclusionsSettingsView: View {
     @EnvironmentObject private var model: AppModel
     @State private var showAppPicker = false
     @State private var showWindowPicker = false
+    @State private var showRuleEditor = false
 
     var body: some View {
         Form {
@@ -228,6 +229,42 @@ struct ExclusionsSettingsView: View {
             } footer: {
                 Text("A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.")
             }
+
+            Section {
+                if model.exclusions.titleRules.isEmpty {
+                    Label("Nenhuma regra. Use para esconder janelas pelo título, como Picture in Picture ou as barras flutuantes do Zoom.", systemImage: "text.magnifyingglass")
+                        .foregroundStyle(.secondary)
+                        .padding(.vertical, 4)
+                } else {
+                    ForEach(model.exclusions.titleRules) { rule in
+                        HStack(spacing: 10) {
+                            Image(systemName: "text.magnifyingglass")
+                                .frame(width: 24, height: 24)
+                                .foregroundStyle(.secondary)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(verbatim: rule.pattern)
+                                Text(rule.appName ?? String(localized: "Qualquer app"))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Button(role: .destructive) {
+                                model.removeTitleRule(rule)
+                            } label: {
+                                Text("Remover")
+                            }
+                        }
+                    }
+                }
+                Button("Adicionar regra…") {
+                    model.refreshRunningApps()
+                    showRuleEditor = true
+                }
+            } header: {
+                Text("Regras por título")
+            } footer: {
+                Text("Sem *, esconde as janelas cujo título contém o texto. Com *, o padrão cobre o título todo: Picture* esconde “Picture in Picture”. Maiúsculas e acentos não importam, e a regra continua valendo quando o título muda.")
+            }
         }
         .formStyle(.grouped)
         .padding(8)
@@ -237,6 +274,10 @@ struct ExclusionsSettingsView: View {
         }
         .sheet(isPresented: $showWindowPicker) {
             OpenWindowsPicker(isPresented: $showWindowPicker)
+                .environmentObject(model)
+        }
+        .sheet(isPresented: $showRuleEditor) {
+            TitleRuleEditor(isPresented: $showRuleEditor)
                 .environmentObject(model)
         }
     }
@@ -359,6 +400,81 @@ struct OpenWindowsPicker: View {
         }
         .padding(20)
         .frame(width: 440, height: 420)
+    }
+}
+
+struct TitleRuleEditor: View {
+    @EnvironmentObject private var model: AppModel
+    @Binding var isPresented: Bool
+    @State private var pattern = ""
+    @State private var scopeBundleID = ""
+
+    /// Janelas abertas agora (sem as já ocultas) que a regra esconderia.
+    private var preview: [WindowInfo] {
+        let rule = draft
+        guard !pattern.trimmingCharacters(in: .whitespaces).isEmpty else { return [] }
+        return WindowEnumerator()
+            .enumerate(exclusions: model.exclusions, ignoringBundleID: Bundle.main.bundleIdentifier)
+            .filter { rule.matches(bundleID: $0.bundleID, title: $0.title) }
+    }
+
+    private var draft: TitleRule {
+        let app = model.runningApps.first { $0.bundleID == scopeBundleID }
+        return TitleRule(pattern: pattern, bundleID: scopeBundleID.isEmpty ? nil : scopeBundleID, appName: app?.name)
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Nova regra por título")
+                .font(.title2.weight(.semibold))
+            Text("Janelas cujo título combina com a regra somem do seletor, mesmo que o título mude depois.")
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            TextField("Texto do título", text: $pattern, prompt: Text(verbatim: "Picture in Picture"))
+                .textFieldStyle(.roundedBorder)
+            Picker("App", selection: $scopeBundleID) {
+                Text("Qualquer app").tag("")
+                ForEach(model.runningApps) { app in
+                    Text(verbatim: app.name).tag(app.bundleID)
+                }
+            }
+            GroupBox {
+                let matches = preview
+                VStack(alignment: .leading, spacing: 6) {
+                    if pattern.trimmingCharacters(in: .whitespaces).isEmpty {
+                        Text("Digite um texto para ver quais janelas abertas a regra esconde.")
+                            .foregroundStyle(.secondary)
+                    } else if matches.isEmpty {
+                        Text("Nenhuma janela aberta agora combina com a regra.")
+                            .foregroundStyle(.secondary)
+                    } else {
+                        Text("Esconde agora: \(matches.count) janelas")
+                            .font(.headline)
+                        ForEach(matches.prefix(5)) { window in
+                            Text(verbatim: "\(window.appName) — \(window.displayTitle)")
+                                .font(.callout)
+                                .lineLimit(1)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            Spacer()
+            HStack {
+                Spacer()
+                Button("Cancelar") { isPresented = false }
+                    .keyboardShortcut(.cancelAction)
+                Button("Adicionar") {
+                    let rule = draft
+                    model.addTitleRule(pattern: rule.pattern, bundleID: rule.bundleID, appName: rule.appName)
+                    isPresented = false
+                }
+                .keyboardShortcut(.defaultAction)
+                .disabled(pattern.trimmingCharacters(in: .whitespaces).isEmpty)
+            }
+        }
+        .padding(20)
+        .frame(width: 460, height: 420)
     }
 }
 

@@ -334,6 +334,18 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
+    func addTitleRule(pattern: String, bundleID: String?, appName: String?) {
+        exclusions.addTitleRule(TitleRule(pattern: pattern, bundleID: bundleID, appName: appName))
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func removeTitleRule(_ rule: TitleRule) {
+        exclusions.removeTitleRule(rule)
+        persistExclusions()
+        refreshWindows()
+    }
+
     func setLaunchAtLogin(_ enabled: Bool) {
         LaunchAtLogin.set(enabled)
         refreshLaunchAtLogin()

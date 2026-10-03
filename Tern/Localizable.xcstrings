@@ -174,6 +174,16 @@
         }
       }
     },
+    "Adicionar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
     "Adicionar app em execução…": {
       "localizations": {
         "en": {
@@ -190,6 +200,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add open window…"
+          }
+        }
+      }
+    },
+    "Adicionar regra…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add rule…"
           }
         }
       }
@@ -230,6 +250,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delete with ⌫ or clear the search with esc."
+          }
+        }
+      }
+    },
+    "App": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
           }
         }
       }
@@ -374,6 +404,16 @@
         }
       }
     },
+    "Digite um texto para ver quais janelas abertas a regra esconde.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type some text to see which open windows the rule hides."
+          }
+        }
+      }
+    },
     "Ele não aparece no Dock. Procure o ícone de duas janelas no canto superior direito da tela.": {
       "localizations": {
         "en": {
@@ -390,6 +430,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pick your shortcut and try it"
+          }
+        }
+      }
+    },
+    "Esconde agora: %lld janelas": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Hides right now: %lld window"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Hides right now: %lld windows"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Esconde agora: %lld janela"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Esconde agora: %lld janelas"
+                }
+              }
+            }
           }
         }
       }
@@ -474,6 +554,16 @@
         }
       }
     },
+    "Janelas cujo título combina com a regra somem do seletor, mesmo que o título mude depois.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows whose title matches the rule disappear from the switcher, even if the title changes later."
+          }
+        }
+      }
+    },
     "Janelas ocultas": {
       "localizations": {
         "en": {
@@ -554,6 +644,16 @@
         }
       }
     },
+    "Nenhuma janela aberta agora combina com a regra.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open window matches the rule right now."
+          }
+        }
+      }
+    },
     "Nenhuma janela com “%@”": {
       "localizations": {
         "en": {
@@ -590,6 +690,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "No windows to switch to"
+          }
+        }
+      }
+    },
+    "Nenhuma regra. Use para esconder janelas pelo título, como Picture in Picture ou as barras flutuantes do Zoom.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rules. Use them to hide windows by title, like Picture in Picture or Zoom’s floating toolbars."
+          }
+        }
+      }
+    },
+    "Nova regra por título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New title rule"
           }
         }
       }
@@ -824,6 +944,26 @@
         }
       }
     },
+    "Qualquer app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any app"
+          }
+        }
+      }
+    },
+    "Regras por título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title rules"
+          }
+        }
+      }
+    },
     "Remover": {
       "localizations": {
         "en": {
@@ -860,6 +1000,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Switcher"
+          }
+        }
+      }
+    },
+    "Sem *, esconde as janelas cujo título contém o texto. Com *, o padrão cobre o título todo: Picture* esconde “Picture in Picture”. Maiúsculas e acentos não importam, e a regra continua valendo quando o título muda.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without *, hides windows whose title contains the text. With *, the pattern covers the whole title: Picture* hides “Picture in Picture”. Case and accents don’t matter, and the rule keeps working when the title changes."
           }
         }
       }
@@ -920,6 +1070,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tern — window switcher"
+          }
+        }
+      }
+    },
+    "Texto do título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title text"
           }
         }
       }
