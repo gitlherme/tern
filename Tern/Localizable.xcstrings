@@ -44,6 +44,16 @@
         }
       }
     },
+    "1 hora": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 hour"
+          }
+        }
+      }
+    },
     "A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.": {
       "localizations": {
         "en": {
@@ -310,6 +320,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Updates"
+          }
+        }
+      }
+    },
+    "Até amanhã": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until tomorrow"
           }
         }
       }
@@ -764,12 +784,12 @@
         }
       }
     },
-    "O app deixa de aparecer no seletor até você removê-lo da lista.": {
+    "O app deixa de aparecer no seletor pelo tempo escolhido.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The app stops appearing in the switcher until you remove it from the list."
+            "value": "The app stops appearing in the switcher for the time you choose."
           }
         }
       }
@@ -914,6 +934,16 @@
         }
       }
     },
+    "Por quanto tempo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For how long"
+          }
+        }
+      }
+    },
     "Procurar agora": {
       "localizations": {
         "en": {
@@ -1044,6 +1074,16 @@
         }
       }
     },
+    "Sempre": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always"
+          }
+        }
+      }
+    },
     "Só esta janela some. As outras do mesmo app continuam no seletor.": {
       "localizations": {
         "en": {
@@ -1104,12 +1144,12 @@
         }
       }
     },
-    "Um app nesta lista some por completo do seletor, em todas as janelas. É o caminho principal para esconder, por exemplo, 1 app entre 5 abertos.": {
+    "Um app nesta lista some por completo do seletor, em todas as janelas. No seletor, ⌫ esconde o app destacado e ⇧⌫ esconde por 1 hora.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "An app on this list disappears from the switcher entirely, across all its windows. It’s the main way to hide, say, 1 app out of 5 open."
+            "value": "An app on this list disappears from the switcher entirely, across all its windows. In the switcher, ⌫ hides the highlighted app and ⇧⌫ hides it for 1 hour."
           }
         }
       }
@@ -1130,6 +1170,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Version %@"
+          }
+        }
+      }
+    },
+    "Volta em %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back in %@"
           }
         }
       }

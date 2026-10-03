@@ -95,6 +95,10 @@ final class AppModel: ObservableObject {
                 }
                 ScreenCapturePermission.restoreAccessoryIfTrusted()
                 self.refreshLaunchAtLogin()
+                if self.exclusions.removeExpired() {
+                    self.persistExclusions()
+                    if self.isSwitcherVisible { self.refreshWindows() }
+                }
                 if !self.isSwitcherVisible {
                     self.recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
                 }
@@ -302,6 +306,15 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
+    /// ⇧⌫: esconde o app destacado por uma hora (#7).
+    func snoozeSelectedApp() {
+        guard windows.indices.contains(selectedIndex) else { return }
+        let window = windows[selectedIndex]
+        exclusions.addApp(bundleID: window.bundleID, name: window.appName, until: HideDuration.oneHour.until())
+        persistExclusions()
+        refreshWindows()
+    }
+
     func excludeSelectedWindow() {
         guard windows.indices.contains(selectedIndex) else { return }
         let window = windows[selectedIndex]
@@ -310,8 +323,8 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
-    func excludeApp(bundleID: String, name: String) {
-        exclusions.addApp(bundleID: bundleID, name: name)
+    func excludeApp(bundleID: String, name: String, duration: HideDuration = .always) {
+        exclusions.addApp(bundleID: bundleID, name: name, until: duration.until())
         persistExclusions()
         refreshWindows()
     }
@@ -477,6 +490,8 @@ final class AppModel: ObservableObject {
                 deleteFromFilter()
             } else if event.modifierFlags.contains(.option) {
                 excludeSelectedWindow()
+            } else if event.modifierFlags.contains(.shift) {
+                snoozeSelectedApp()
             } else {
                 excludeSelectedApp()
             }

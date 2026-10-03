@@ -4,6 +4,32 @@ struct AppExclusion: Codable, Identifiable, Hashable {
     var id: String { bundleID }
     var bundleID: String
     var displayName: String
+    /// Soneca (#7): oculto só até esta data. nil = até a pessoa remover.
+    var until: Date? = nil
+
+    func isActive(at now: Date) -> Bool {
+        until.map { $0 > now } ?? true
+    }
+}
+
+/// Por quanto tempo esconder um app.
+enum HideDuration: String, CaseIterable, Identifiable {
+    case always, oneHour, untilTomorrow
+
+    var id: String { rawValue }
+
+    /// "Até amanhã" = amanhã às 6h, para o app voltar antes do dia começar.
+    func until(from now: Date = Date(), calendar: Calendar = .current) -> Date? {
+        switch self {
+        case .always:
+            return nil
+        case .oneHour:
+            return now.addingTimeInterval(60 * 60)
+        case .untilTomorrow:
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: now)) ?? now
+            return calendar.date(bySettingHour: 6, minute: 0, second: 0, of: tomorrow)
+        }
+    }
 }
 
 struct WindowExclusion: Codable, Identifiable, Hashable {
@@ -68,8 +94,8 @@ struct PersistedExclusions: Codable, Equatable {
         titleRules = try container.decodeIfPresent([TitleRule].self, forKey: .titleRules) ?? []
     }
 
-    func hides(bundleID: String, title: String) -> Bool {
-        if apps.contains(where: { $0.bundleID == bundleID }) {
+    func hides(bundleID: String, title: String, now: Date = Date()) -> Bool {
+        if apps.contains(where: { $0.bundleID == bundleID && $0.isActive(at: now) }) {
             return true
         }
         if windows.contains(where: { $0.bundleID == bundleID && $0.title == title }) {
@@ -87,11 +113,24 @@ struct PersistedExclusions: Codable, Equatable {
         titleRules.removeAll { $0.id == rule.id }
     }
 
-    mutating func addApp(bundleID: String, name: String) {
+    mutating func addApp(bundleID: String, name: String, until: Date? = nil) {
         windows.removeAll { $0.bundleID == bundleID }
-        guard !apps.contains(where: { $0.bundleID == bundleID }) else { return }
-        apps.append(AppExclusion(bundleID: bundleID, displayName: name))
+        if let index = apps.firstIndex(where: { $0.bundleID == bundleID }) {
+            // Já oculto para sempre continua para sempre; uma soneca nova substitui a anterior.
+            if apps[index].until != nil {
+                apps[index].until = until
+            }
+            return
+        }
+        apps.append(AppExclusion(bundleID: bundleID, displayName: name, until: until))
         apps.sort { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedAscending }
+    }
+
+    /// Tira as sonecas vencidas. Devolve true se algo mudou.
+    mutating func removeExpired(now: Date = Date()) -> Bool {
+        let before = apps.count
+        apps.removeAll { !$0.isActive(at: now) }
+        return apps.count != before
     }
 
     mutating func addWindow(bundleID: String, title: String, appName: String) {

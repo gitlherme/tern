@@ -170,10 +170,16 @@ struct ExclusionsSettingsView: View {
                                 .frame(width: 24, height: 24)
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(app.displayName)
-                                Text(app.bundleID)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .textSelection(.enabled)
+                                if let until = app.until {
+                                    Text("Volta em \(until, style: .relative)")
+                                        .font(.caption)
+                                        .foregroundStyle(.orange)
+                                } else {
+                                    Text(app.bundleID)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                        .textSelection(.enabled)
+                                }
                             }
                             Spacer()
                             Button(role: .destructive) {
@@ -191,7 +197,7 @@ struct ExclusionsSettingsView: View {
             } header: {
                 Text("Apps ocultos")
             } footer: {
-                Text("Um app nesta lista some por completo do seletor, em todas as janelas. É o caminho principal para esconder, por exemplo, 1 app entre 5 abertos.")
+                Text("Um app nesta lista some por completo do seletor, em todas as janelas. No seletor, ⌫ esconde o app destacado e ⇧⌫ esconde por 1 hora.")
             }
 
             Section {
@@ -297,6 +303,7 @@ struct ExclusionsSettingsView: View {
 struct RunningAppsPicker: View {
     @EnvironmentObject private var model: AppModel
     @Binding var isPresented: Bool
+    @State private var duration: HideDuration = .always
 
     private var candidates: [RunningAppInfo] {
         model.runningApps.filter { app in
@@ -308,8 +315,14 @@ struct RunningAppsPicker: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Ocultar app")
                 .font(.title2.weight(.semibold))
-            Text("O app deixa de aparecer no seletor até você removê-lo da lista.")
+            Text("O app deixa de aparecer no seletor pelo tempo escolhido.")
                 .foregroundStyle(.secondary)
+            Picker("Por quanto tempo", selection: $duration) {
+                Text("Sempre").tag(HideDuration.always)
+                Text("1 hora").tag(HideDuration.oneHour)
+                Text("Até amanhã").tag(HideDuration.untilTomorrow)
+            }
+            .pickerStyle(.segmented)
             if candidates.isEmpty {
                 ContentUnavailableHint(
                     title: "Nada para adicionar",
@@ -318,7 +331,7 @@ struct RunningAppsPicker: View {
             } else {
                 List(candidates) { app in
                     Button {
-                        model.excludeApp(bundleID: app.bundleID, name: app.name)
+                        model.excludeApp(bundleID: app.bundleID, name: app.name, duration: duration)
                         isPresented = false
                     } label: {
                         HStack(spacing: 10) {
