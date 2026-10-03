@@ -359,6 +359,45 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
+    // MARK: Modos (#6)
+
+    @discardableResult
+    func createMode() -> UUID {
+        let id = exclusions.addMode(named: String(localized: "Novo modo"))
+        persistExclusions()
+        return id
+    }
+
+    func renameMode(_ id: UUID, to name: String) {
+        exclusions.renameMode(id, to: name)
+        persistExclusions()
+    }
+
+    func deleteMode(_ id: UUID) {
+        exclusions.removeMode(id)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func addAppToMode(_ id: UUID, bundleID: String, name: String) {
+        exclusions.addApp(toMode: id, bundleID: bundleID, name: name)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func removeAppFromMode(_ id: UUID, bundleID: String) {
+        exclusions.removeApp(fromMode: id, bundleID: bundleID)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    /// Pelo menu, pelos Ajustes ou por um Filtro de Foco. nil desliga o modo.
+    func setActiveMode(_ id: UUID?) {
+        exclusions.setActiveMode(id)
+        persistExclusions()
+        refreshWindows()
+    }
+
     func setLaunchAtLogin(_ enabled: Bool) {
         LaunchAtLogin.set(enabled)
         refreshLaunchAtLogin()

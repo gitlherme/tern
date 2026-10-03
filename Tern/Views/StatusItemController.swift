@@ -20,6 +20,14 @@ final class StatusItemController: NSObject {
                 self?.rebuildMenu()
             }
             .store(in: &cancellables)
+        model.$exclusions
+            .map { [$0.activeModeID?.uuidString ?? ""] + $0.modes.map { "\($0.id)\($0.name)" } }
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.rebuildMenu()
+            }
+            .store(in: &cancellables)
         model.$hotkey
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
@@ -48,6 +56,25 @@ final class StatusItemController: NSObject {
         )
         open.target = self
         menu.addItem(open)
+
+        if !model.exclusions.modes.isEmpty {
+            let modeItem = NSMenuItem(title: String(localized: "Modo"), action: nil, keyEquivalent: "")
+            let modeMenu = NSMenu()
+            let none = NSMenuItem(title: String(localized: "Nenhum"), action: #selector(selectMode(_:)), keyEquivalent: "")
+            none.target = self
+            none.state = model.exclusions.activeModeID == nil ? .on : .off
+            modeMenu.addItem(none)
+            modeMenu.addItem(.separator())
+            for mode in model.exclusions.modes {
+                let item = NSMenuItem(title: mode.name, action: #selector(selectMode(_:)), keyEquivalent: "")
+                item.target = self
+                item.representedObject = mode.id
+                item.state = model.exclusions.activeModeID == mode.id ? .on : .off
+                modeMenu.addItem(item)
+            }
+            modeItem.submenu = modeMenu
+            menu.addItem(modeItem)
+        }
 
         let settings = NSMenuItem(title: String(localized: "Ajustes…"), action: #selector(openSettings), keyEquivalent: ",")
         settings.target = self
@@ -80,6 +107,10 @@ final class StatusItemController: NSObject {
 
     @objc private func openSwitcher() {
         model.openSwitcherFromMenu()
+    }
+
+    @objc private func selectMode(_ sender: NSMenuItem) {
+        model.setActiveMode(sender.representedObject as? UUID)
     }
 
     @objc private func openSettings() {

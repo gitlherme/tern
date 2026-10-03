@@ -31,6 +31,13 @@ struct SwitcherView: View {
                 FilterPill(text: model.filterText)
             }
             Spacer()
+            if let mode = model.exclusions.activeMode {
+                Label(mode.name, systemImage: "moon.fill")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .labelStyle(.titleAndIcon)
+                    .help(Text("Modo ativo: os apps dele estão escondidos."))
+            }
             if model.isTrusted && !model.windows.isEmpty {
                 Text("\(model.windows.count) janelas")
                     .font(.caption)

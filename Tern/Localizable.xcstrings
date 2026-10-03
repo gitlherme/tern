@@ -1,6 +1,9 @@
 {
   "sourceLanguage": "pt-BR",
   "strings": {
+    "%@": {
+      "shouldTranslate": false
+    },
     "%@, %@": {
       "shouldTranslate": false
     },
@@ -54,12 +57,12 @@
         }
       }
     },
-    "A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.": {
+    "A exclusão de janela usa o título exato: se ele mudar, a janela volta. Para isso, use uma regra por título. No seletor, ⌥⌫ oculta só a janela destacada.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window exclusions match bundle id + title. If the title changes, the window shows up again. In the switcher, ⌫ hides the app; ⌥⌫ hides just that window."
+            "value": "Window exclusions use the exact title: if it changes, the window comes back. For that, use a title rule. In the switcher, ⌥⌫ hides just the highlighted window."
           }
         }
       }
@@ -120,6 +123,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Open Input Monitoring"
+          }
+        }
+      }
+    },
+    "Abrir ajustes de Foco": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Focus settings"
           }
         }
       }
@@ -194,12 +207,32 @@
         }
       }
     },
+    "Adicionar app ao modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add app to mode"
+          }
+        }
+      }
+    },
     "Adicionar app em execução…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Add running app…"
+          }
+        }
+      }
+    },
+    "Adicionar app…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add app…"
           }
         }
       }
@@ -250,6 +283,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Settings…"
+          }
+        }
+      }
+    },
+    "Apagar modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete mode"
           }
         }
       }
@@ -444,6 +487,36 @@
         }
       }
     },
+    "Em Ajustes do Sistema › Foco, escolha um Foco (como Trabalho) e vá em Filtros de Foco › Adicionar Filtro › Tern. Escolha o modo: quando o Foco ligar, o modo liga junto; quando desligar, o Tern volta para nenhum modo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In System Settings › Focus, pick a Focus (like Work) and go to Focus Filters › Add Filter › Tern. Choose the mode: when the Focus turns on, the mode turns on with it; when it turns off, Tern goes back to no mode."
+          }
+        }
+      }
+    },
+    "Enquanto este Foco estiver ligado, o Tern esconde do seletor os apps do modo escolhido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While this Focus is on, Tern hides the chosen mode’s apps from the switcher."
+          }
+        }
+      }
+    },
+    "Enquanto o modo estiver ativo, o app some do seletor.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While the mode is on, the app disappears from the switcher."
+          }
+        }
+      }
+    },
     "Escolha o atalho e experimente": {
       "localizations": {
         "en": {
@@ -594,12 +667,72 @@
         }
       }
     },
+    "Ligar a um Foco do macOS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link to a macOS Focus"
+          }
+        }
+      }
+    },
     "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Turn on Screen Recording in Settings to see previews.  ⌫ hide app   ⌥⌫ just this window"
+          }
+        }
+      }
+    },
+    "Modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
+          }
+        }
+      }
+    },
+    "Modo ativo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active mode"
+          }
+        }
+      }
+    },
+    "Modo ativo: os apps dele estão escondidos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active mode: its apps are hidden."
+          }
+        }
+      }
+    },
+    "Modo do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern mode"
+          }
+        }
+      }
+    },
+    "Modos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modes"
           }
         }
       }
@@ -654,12 +787,42 @@
         }
       }
     },
+    "Nenhum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "Nenhum app neste modo ainda.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No apps in this mode yet."
+          }
+        }
+      }
+    },
     "Nenhum app oculto": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No hidden apps"
+          }
+        }
+      }
+    },
+    "Nenhum modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No mode"
           }
         }
       }
@@ -724,12 +887,32 @@
         }
       }
     },
+    "Nome": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
     "Nova regra por título": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "New title rule"
+          }
+        }
+      }
+    },
+    "Novo modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New mode"
           }
         }
       }
@@ -1124,6 +1307,16 @@
         }
       }
     },
+    "Todos os apps em execução já estão neste modo, ou não há apps abertos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every running app is already in this mode, or no apps are open."
+          }
+        }
+      }
+    },
     "Todos os apps regulares em execução já estão ocultos, ou não há apps abertos.": {
       "localizations": {
         "en": {
@@ -1154,6 +1347,16 @@
         }
       }
     },
+    "Um modo esconde apps a mais enquanto está ativo, além dos apps ocultos de sempre. Troque pelo menu do Tern ou deixe um Foco do macOS trocar sozinho.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mode hides extra apps while it’s on, on top of your always-hidden apps. Switch from Tern’s menu, or let a macOS Focus switch it for you."
+          }
+        }
+      }
+    },
     "Ver passo a passo": {
       "localizations": {
         "en": {
@@ -1174,12 +1377,22 @@
         }
       }
     },
-    "Volta em %@": {
+    "Volta amanhã às %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Back in %@"
+            "value": "Back tomorrow at %@"
+          }
+        }
+      }
+    },
+    "Volta às %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back at %@"
           }
         }
       }

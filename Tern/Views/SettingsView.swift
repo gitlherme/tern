@@ -10,6 +10,8 @@ struct SettingsView: View {
                 .tabItem { Label("Geral", systemImage: "keyboard") }
             ExclusionsSettingsView()
                 .tabItem { Label("Exclusões", systemImage: "eye.slash") }
+            ModesSettingsView()
+                .tabItem { Label("Modos", systemImage: "moon") }
         }
         .frame(minWidth: 560, minHeight: 460)
         .onAppear {
@@ -171,9 +173,15 @@ struct ExclusionsSettingsView: View {
                             VStack(alignment: .leading, spacing: 1) {
                                 Text(app.displayName)
                                 if let until = app.until {
-                                    Text("Volta em \(until, style: .relative)")
-                                        .font(.caption)
-                                        .foregroundStyle(.orange)
+                                    Group {
+                                        if Calendar.current.isDateInToday(until) {
+                                            Text("Volta às \(until, style: .time)")
+                                        } else {
+                                            Text("Volta amanhã às \(until, style: .time)")
+                                        }
+                                    }
+                                    .font(.caption)
+                                    .foregroundStyle(.orange)
                                 } else {
                                     Text(app.bundleID)
                                         .font(.caption)
@@ -233,7 +241,7 @@ struct ExclusionsSettingsView: View {
             } header: {
                 Text("Janelas ocultas")
             } footer: {
-                Text("A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.")
+                Text("A exclusão de janela usa o título exato: se ele mudar, a janela volta. Para isso, use uma regra por título. No seletor, ⌥⌫ oculta só a janela destacada.")
             }
 
             Section {
@@ -269,7 +277,8 @@ struct ExclusionsSettingsView: View {
             } header: {
                 Text("Regras por título")
             } footer: {
-                Text("Sem *, esconde as janelas cujo título contém o texto. Com *, o padrão cobre o título todo: Picture* esconde “Picture in Picture”. Maiúsculas e acentos não importam, e a regra continua valendo quando o título muda.")
+                // String já traduzida: o Text com chave leria os * como itálico do Markdown.
+                Text(String(localized: "Sem *, esconde as janelas cujo título contém o texto. Com *, o padrão cobre o título todo: Picture* esconde “Picture in Picture”. Maiúsculas e acentos não importam, e a regra continua valendo quando o título muda."))
             }
         }
         .formStyle(.grouped)
@@ -297,6 +306,147 @@ struct ExclusionsSettingsView: View {
                 .foregroundStyle(.secondary)
         }
         .padding(.vertical, 6)
+    }
+}
+
+struct ModesSettingsView: View {
+    @EnvironmentObject private var model: AppModel
+    @State private var pickingForMode: UUID?
+
+    private var activeBinding: Binding<UUID?> {
+        Binding(get: { model.exclusions.activeModeID }, set: { model.setActiveMode($0) })
+    }
+
+    var body: some View {
+        Form {
+            Section {
+                Picker("Modo ativo", selection: activeBinding) {
+                    Text("Nenhum").tag(UUID?.none)
+                    ForEach(model.exclusions.modes) { mode in
+                        Text(verbatim: mode.name).tag(UUID?.some(mode.id))
+                    }
+                }
+            } footer: {
+                Text("Um modo esconde apps a mais enquanto está ativo, além dos apps ocultos de sempre. Troque pelo menu do Tern ou deixe um Foco do macOS trocar sozinho.")
+            }
+
+            ForEach(model.exclusions.modes) { mode in
+                Section {
+                    TextField("Nome", text: Binding(
+                        get: { mode.name },
+                        set: { model.renameMode(mode.id, to: $0) }
+                    ))
+                    if mode.apps.isEmpty {
+                        Text("Nenhum app neste modo ainda.")
+                            .foregroundStyle(.secondary)
+                    }
+                    ForEach(mode.apps) { app in
+                        HStack(spacing: 10) {
+                            Image(nsImage: AppIcon.image(bundleID: app.bundleID, pid: 0))
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                            Text(app.displayName)
+                            Spacer()
+                            Button(role: .destructive) {
+                                model.removeAppFromMode(mode.id, bundleID: app.bundleID)
+                            } label: {
+                                Text("Remover")
+                            }
+                        }
+                    }
+                    HStack {
+                        Button("Adicionar app…") {
+                            model.refreshRunningApps()
+                            pickingForMode = mode.id
+                        }
+                        Spacer()
+                        Button("Apagar modo", role: .destructive) {
+                            model.deleteMode(mode.id)
+                        }
+                    }
+                } header: {
+                    Text(verbatim: mode.name)
+                }
+            }
+
+            Section {
+                Button("Novo modo") {
+                    model.createMode()
+                }
+            }
+
+            Section {
+                Text("Em Ajustes do Sistema › Foco, escolha um Foco (como Trabalho) e vá em Filtros de Foco › Adicionar Filtro › Tern. Escolha o modo: quando o Foco ligar, o modo liga junto; quando desligar, o Tern volta para nenhum modo.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Button("Abrir ajustes de Foco") {
+                    if let url = URL(string: "x-apple.systempreferences:com.apple.Focus-Settings.extension") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+            } header: {
+                Text("Ligar a um Foco do macOS")
+            }
+        }
+        .formStyle(.grouped)
+        .padding(8)
+        .sheet(isPresented: Binding(get: { pickingForMode != nil }, set: { if !$0 { pickingForMode = nil } })) {
+            if let modeID = pickingForMode {
+                ModeAppPicker(modeID: modeID, isPresented: Binding(get: { pickingForMode != nil }, set: { if !$0 { pickingForMode = nil } }))
+                    .environmentObject(model)
+            }
+        }
+    }
+}
+
+struct ModeAppPicker: View {
+    @EnvironmentObject private var model: AppModel
+    let modeID: UUID
+    @Binding var isPresented: Bool
+
+    private var candidates: [RunningAppInfo] {
+        let inMode = Set(model.exclusions.modes.first { $0.id == modeID }?.apps.map(\.bundleID) ?? [])
+        return model.runningApps.filter { !inMode.contains($0.bundleID) }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Adicionar app ao modo")
+                .font(.title2.weight(.semibold))
+            Text("Enquanto o modo estiver ativo, o app some do seletor.")
+                .foregroundStyle(.secondary)
+            if candidates.isEmpty {
+                ContentUnavailableHint(
+                    title: "Nada para adicionar",
+                    detail: "Todos os apps em execução já estão neste modo, ou não há apps abertos."
+                )
+            } else {
+                List(candidates) { app in
+                    Button {
+                        model.addAppToMode(modeID, bundleID: app.bundleID, name: app.name)
+                        isPresented = false
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(nsImage: app.icon)
+                                .resizable()
+                                .frame(width: 28, height: 28)
+                            Text(app.name)
+                                .foregroundStyle(.primary)
+                            Spacer()
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            HStack {
+                Spacer()
+                Button("Cancelar") { isPresented = false }
+                    .keyboardShortcut(.cancelAction)
+            }
+        }
+        .padding(20)
+        .frame(width: 440, height: 420)
     }
 }
 

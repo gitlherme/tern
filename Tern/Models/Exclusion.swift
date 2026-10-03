@@ -73,17 +73,33 @@ struct TitleRule: Codable, Identifiable, Hashable {
     }
 }
 
+/// Modo (#6): apps escondidos a mais enquanto o modo está ativo, por cima das exclusões
+/// de sempre. Liga pelo menu do Tern ou por um Filtro de Foco do macOS.
+struct ExclusionMode: Codable, Identifiable, Hashable {
+    var id = UUID()
+    var name: String
+    var apps: [AppExclusion] = []
+}
+
 struct PersistedExclusions: Codable, Equatable {
     var apps: [AppExclusion]
     var windows: [WindowExclusion]
     var titleRules: [TitleRule]
+    var modes: [ExclusionMode]
+    var activeModeID: UUID?
 
-    static let empty = PersistedExclusions(apps: [], windows: [], titleRules: [])
+    static let empty = PersistedExclusions(apps: [], windows: [], titleRules: [], modes: [], activeModeID: nil)
 
-    init(apps: [AppExclusion], windows: [WindowExclusion], titleRules: [TitleRule]) {
+    init(apps: [AppExclusion], windows: [WindowExclusion], titleRules: [TitleRule], modes: [ExclusionMode], activeModeID: UUID?) {
         self.apps = apps
         self.windows = windows
         self.titleRules = titleRules
+        self.modes = modes
+        self.activeModeID = activeModeID
+    }
+
+    var activeMode: ExclusionMode? {
+        activeModeID.flatMap { id in modes.first { $0.id == id } }
     }
 
     /// Campos novos são opcionais na leitura: quem atualiza mantém as exclusões salvas.
@@ -92,6 +108,8 @@ struct PersistedExclusions: Codable, Equatable {
         apps = try container.decodeIfPresent([AppExclusion].self, forKey: .apps) ?? []
         windows = try container.decodeIfPresent([WindowExclusion].self, forKey: .windows) ?? []
         titleRules = try container.decodeIfPresent([TitleRule].self, forKey: .titleRules) ?? []
+        modes = try container.decodeIfPresent([ExclusionMode].self, forKey: .modes) ?? []
+        activeModeID = try container.decodeIfPresent(UUID.self, forKey: .activeModeID)
     }
 
     func hides(bundleID: String, title: String, now: Date = Date()) -> Bool {
@@ -101,7 +119,53 @@ struct PersistedExclusions: Codable, Equatable {
         if windows.contains(where: { $0.bundleID == bundleID && $0.title == title }) {
             return true
         }
+        if activeMode?.apps.contains(where: { $0.bundleID == bundleID }) == true {
+            return true
+        }
         return titleRules.contains { $0.matches(bundleID: bundleID, title: title) }
+    }
+
+    // MARK: Modos
+
+    /// Cria um modo com nome único ("Novo modo", "Novo modo 2"…) e devolve o id.
+    @discardableResult
+    mutating func addMode(named base: String) -> UUID {
+        var name = base
+        var counter = 2
+        while modes.contains(where: { $0.name == name }) {
+            name = "\(base) \(counter)"
+            counter += 1
+        }
+        let mode = ExclusionMode(name: name)
+        modes.append(mode)
+        return mode.id
+    }
+
+    mutating func renameMode(_ id: UUID, to name: String) {
+        guard let index = modes.firstIndex(where: { $0.id == id }) else { return }
+        modes[index].name = name
+    }
+
+    mutating func removeMode(_ id: UUID) {
+        modes.removeAll { $0.id == id }
+        if activeModeID == id { activeModeID = nil }
+    }
+
+    mutating func addApp(toMode id: UUID, bundleID: String, name: String) {
+        guard let index = modes.firstIndex(where: { $0.id == id }),
+              !modes[index].apps.contains(where: { $0.bundleID == bundleID }) else { return }
+        modes[index].apps.append(AppExclusion(bundleID: bundleID, displayName: name))
+        modes[index].apps.sort { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedAscending }
+    }
+
+    mutating func removeApp(fromMode id: UUID, bundleID: String) {
+        guard let index = modes.firstIndex(where: { $0.id == id }) else { return }
+        modes[index].apps.removeAll { $0.bundleID == bundleID }
+    }
+
+    /// nil desliga; um id que não existe também desliga, em vez de ficar num modo fantasma.
+    mutating func setActiveMode(_ id: UUID?) {
+        activeModeID = id.flatMap { id in modes.contains { $0.id == id } ? id : nil }
     }
 
     mutating func addTitleRule(_ rule: TitleRule) {
