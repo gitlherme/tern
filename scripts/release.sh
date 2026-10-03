@@ -24,7 +24,22 @@ xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Release \
   CODE_SIGN_IDENTITY="-" CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="" \
   -quiet build
 
-ditto "$DD/Build/Products/Release/Tern.app" "$OUT/dmg-root/Tern.app"
+APP="$DD/Build/Products/Release/Tern.app"
+
+# Abre o app por alguns segundos: se o dyld ou o macOS recusarem algo (como na 1.1.0,
+# que fechava ao abrir por validação de biblioteca), a release para aqui.
+echo "==> Testando se o app abre"
+"$APP/Contents/MacOS/Tern" >/dev/null 2>&1 &
+SMOKE_PID=$!
+sleep 4
+if ! kill -0 "$SMOKE_PID" 2>/dev/null; then
+  echo "ERRO: o Tern fechou sozinho ao abrir. Veja ~/Library/Logs/DiagnosticReports/Tern-*.ips" >&2
+  exit 1
+fi
+kill "$SMOKE_PID"
+wait "$SMOKE_PID" 2>/dev/null || true
+
+ditto "$APP" "$OUT/dmg-root/Tern.app"
 ln -s /Applications "$OUT/dmg-root/Applications"
 DMG="$OUT/updates/Tern-$VERSION.dmg"
 hdiutil create -volname Tern -srcfolder "$OUT/dmg-root" -ov -format UDZO "$DMG" >/dev/null
