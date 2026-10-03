@@ -224,6 +224,16 @@
         }
       }
     },
+    "Apague com ⌫ ou limpe a busca com esc.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete with ⌫ or clear the search with esc."
+          }
+        }
+      }
+    },
     "Apps e janelas ocultos não aparecem no seletor. Adicione um app em execução para experimentá-lo: com 5 apps abertos e um oculto, o atalho mostra só os outros 4.": {
       "localizations": {
         "en": {
@@ -294,6 +304,16 @@
         }
       }
     },
+    "Busca: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search: %@"
+          }
+        }
+      }
+    },
     "Cancelar": {
       "localizations": {
         "en": {
@@ -340,6 +360,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Grant Accessibility…"
+          }
+        }
+      }
+    },
+    "Digite para buscar   ⇥ próximo   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   esc fechar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type to search   ⇥ next   ⏎ open   ⌫ hide app   ⌥⌫ just this window   esc close"
           }
         }
       }
@@ -520,6 +550,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No hidden apps"
+          }
+        }
+      }
+    },
+    "Nenhuma janela com “%@”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No windows matching “%@”"
           }
         }
       }
@@ -944,22 +984,22 @@
         }
       }
     },
-    "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "⇥ next   ⇧⇥ previous   ⌫ hide app   ⌥⌫ just this window   ⏎ open   esc close"
-          }
-        }
-      }
-    },
     "⌘⇥ é do seletor de apps do macOS. Escolha outro atalho, como ⌥⇥.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "⌘⇥ belongs to the macOS app switcher. Pick another shortcut, like ⌥⇥."
+          }
+        }
+      }
+    },
+    "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ open   ⇥ next   ⌫ delete   esc clear search"
           }
         }
       }

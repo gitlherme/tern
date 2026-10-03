@@ -117,7 +117,9 @@ final class KeyboardInterceptor {
                 if type == .keyDown {
                     return model.handleSwitcherEvent(nsEvent)
                 }
-                if type == .keyUp && Self.isConsumedWhileSwitcherOpen(nsEvent, chord: model.hotkey) {
+                // Com o seletor aberto, toda tecla é dele (inclusive as letras da busca):
+                // o keyUp correspondente também não vaza para o app da frente.
+                if type == .keyUp {
                     return true
                 }
             }
@@ -128,17 +130,5 @@ final class KeyboardInterceptor {
             return model.handleSwitcherEvent(nsEvent)
         }
         return false
-    }
-
-    private static func isConsumedWhileSwitcherOpen(_ event: NSEvent, chord: HotkeyChord) -> Bool {
-        if chord.matchesKeyEvent(event) { return true }
-        switch Int(event.keyCode) {
-        case kVK_Escape, kVK_Return, kVK_ANSI_KeypadEnter,
-             kVK_LeftArrow, kVK_RightArrow, kVK_UpArrow, kVK_DownArrow,
-             kVK_Delete, kVK_ForwardDelete, kVK_Tab:
-            return true
-        default:
-            return false
-        }
     }
 }

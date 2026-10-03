@@ -24,8 +24,12 @@ struct SwitcherView: View {
         HStack {
             Image("MenuBarIcon")
                 .foregroundStyle(.tint)
-            Text(verbatim: "Tern")
-                .font(.headline)
+            if model.filterText.isEmpty {
+                Text(verbatim: "Tern")
+                    .font(.headline)
+            } else {
+                FilterPill(text: model.filterText)
+            }
             Spacer()
             if model.isTrusted && !model.windows.isEmpty {
                 Text("\(model.windows.count) janelas")
@@ -39,6 +43,8 @@ struct SwitcherView: View {
     private var content: some View {
         if !model.isTrusted {
             PermissionCard()
+        } else if model.windows.isEmpty && !model.filterText.isEmpty {
+            NoMatchesCard(query: model.filterText)
         } else if model.windows.isEmpty {
             EmptyWindowsCard()
         } else {
@@ -89,13 +95,16 @@ struct SwitcherView: View {
         if !model.isTrusted {
             return String(localized: "O seletor só lista e troca janelas depois da permissão de Acessibilidade.")
         }
+        if !model.filterText.isEmpty {
+            return String(localized: "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca")
+        }
         if model.windows.isEmpty {
             return String(localized: "Abra um app ou confira as exclusões em Ajustes.")
         }
         if !model.canCaptureScreen {
             return String(localized: "Ligue Gravação da tela nos Ajustes para ver a prévia.  ⌫ oculta o app   ⌥⌫ só esta janela")
         }
-        return String(localized: "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar")
+        return String(localized: "Digite para buscar   ⇥ próximo   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   esc fechar")
     }
 }
 
@@ -205,6 +214,50 @@ struct PermissionCard: View {
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(Color.orange.opacity(0.14))
+        )
+    }
+}
+
+/// A busca digitada, no lugar do título do seletor.
+struct FilterPill: View {
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(.secondary)
+            Text(verbatim: text)
+                .font(.headline)
+                .lineLimit(1)
+            Rectangle()
+                .fill(Color.accentColor)
+                .frame(width: 2, height: 16)
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(Capsule().fill(Color.primary.opacity(0.08)))
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("Busca: \(text)"))
+    }
+}
+
+struct NoMatchesCard: View {
+    let query: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label("Nenhuma janela com “\(query)”", systemImage: "magnifyingglass")
+                .font(.headline)
+            Text("Apague com ⌫ ou limpe a busca com esc.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+        }
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(Color.primary.opacity(0.06))
         )
     }
 }

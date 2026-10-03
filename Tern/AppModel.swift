@@ -11,7 +11,10 @@ final class AppModel: ObservableObject {
     @Published var isTrusted = false
     @Published var canCaptureScreen = false
     @Published var isSwitcherVisible = false
+    /// Janelas visíveis no seletor: todas, ou só as que combinam com a busca.
     @Published var windows: [WindowInfo] = []
+    /// Texto digitado com o seletor aberto (#10).
+    @Published var filterText = ""
     @Published var thumbnails: [CGWindowID: NSImage] = [:]
     @Published var selectedIndex = 0
     @Published var confirmOnModifierRelease = false
@@ -28,6 +31,8 @@ final class AppModel: ObservableObject {
     let keyboardInterceptor = KeyboardInterceptor()
 
     private var recency = WindowRecency()
+    /// Todas as janelas em ordem de recência, antes da busca.
+    private var allWindows: [WindowInfo] = []
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
     private var welcomeWindow: NSWindow?
@@ -124,6 +129,7 @@ final class AppModel: ObservableObject {
             return
         }
 
+        filterText = ""
         refreshWindows()
         if reverse, windows.count > 1 {
             selectedIndex = windows.lastIndex(where: { !$0.isMinimized }) ?? (windows.count - 1)
@@ -148,6 +154,7 @@ final class AppModel: ObservableObject {
             panel.show()
             return
         }
+        filterText = ""
         refreshWindows()
         selectedIndex = 0
         confirmOnModifierRelease = false
@@ -163,7 +170,14 @@ final class AppModel: ObservableObject {
         if !isSwitcherVisible {
             recency.recordFrontmost(from: raw)
         }
-        windows = recency.ordered(raw)
+        allWindows = recency.ordered(raw)
+        applyFilter()
+        refreshThumbnails()
+    }
+
+    /// Recalcula `windows` a partir de `allWindows` e da busca, mantendo a seleção válida.
+    private func applyFilter() {
+        windows = WindowFilter.apply(allWindows, query: filterText)
         if windows.isEmpty {
             selectedIndex = 0
         } else if selectedIndex >= windows.count {
@@ -172,7 +186,28 @@ final class AppModel: ObservableObject {
         if isSwitcherVisible {
             panel.updateFrameIfVisible()
         }
-        refreshThumbnails()
+    }
+
+    /// Ao digitar, o seletor deixa de confirmar quando o modificador é solto: ninguém
+    /// digita segurando ⌥. A partir daí, ⏎ abre e esc fecha.
+    func appendToFilter(_ text: String) {
+        filterText += text
+        confirmOnModifierRelease = false
+        selectedIndex = 0
+        applyFilter()
+    }
+
+    func deleteFromFilter() {
+        guard !filterText.isEmpty else { return }
+        filterText.removeLast()
+        selectedIndex = 0
+        applyFilter()
+    }
+
+    func clearFilter() {
+        filterText = ""
+        selectedIndex = allWindows.count > 1 ? 1 : 0
+        applyFilter()
     }
 
     func refreshThumbnails() {
@@ -217,6 +252,7 @@ final class AppModel: ObservableObject {
 
     func dismissSwitcher() {
         isSwitcherVisible = false
+        filterText = ""
         confirmOnModifierRelease = false
         consumeOpeningKey = false
         panel.hide()
@@ -372,7 +408,11 @@ final class AppModel: ObservableObject {
 
         switch Int(event.keyCode) {
         case kVK_Escape:
-            dismissSwitcher()
+            if filterText.isEmpty {
+                dismissSwitcher()
+            } else {
+                clearFilter()
+            }
             return true
         case kVK_Return, kVK_ANSI_KeypadEnter:
             confirm()
@@ -384,15 +424,35 @@ final class AppModel: ObservableObject {
             selectNext()
             return true
         case kVK_Delete, kVK_ForwardDelete:
-            if event.modifierFlags.contains(.option) {
+            // Com busca ativa, ⌫ edita a busca; esconder app só com a busca vazia,
+            // para ninguém esconder um app sem querer enquanto digita.
+            if !filterText.isEmpty {
+                deleteFromFilter()
+            } else if event.modifierFlags.contains(.option) {
                 excludeSelectedWindow()
             } else {
                 excludeSelectedApp()
             }
             return true
         default:
-            return false
+            break
         }
+
+        if let typed = Self.filterCharacters(from: event) {
+            appendToFilter(typed)
+            return true
+        }
+        return false
+    }
+
+    /// Caracteres que entram na busca: letras, números, espaço e pontuação, sem ⌘ ou ⌃.
+    /// Usa as teclas sem modificadores, porque o ⌥ do atalho pode estar pressionado.
+    private static func filterCharacters(from event: NSEvent) -> String? {
+        if !event.modifierFlags.intersection([.command, .control]).isEmpty { return nil }
+        guard let characters = event.charactersIgnoringModifiers, !characters.isEmpty else { return nil }
+        let allowed = CharacterSet.alphanumerics.union(.punctuationCharacters).union(.symbols).union(CharacterSet(charactersIn: " "))
+        guard characters.unicodeScalars.allSatisfy({ allowed.contains($0) }) else { return nil }
+        return characters
     }
 
     private func persistExclusions() {
