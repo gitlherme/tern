@@ -17,12 +17,15 @@ enum ScreenCapturePermission {
             .appendingPathComponent("Tern.app")
     }
 
-    /// Pedido vindo dos Ajustes: o macOS 15+ quase nunca cria a linha sozinho
-    /// para app accessory assinado localmente. Mantém o Tern no Dock, registra
-    /// no Launch Services, abre a lista e o Finder no .app certo para o +.
+    /// Pedido explícito (boas-vindas ou Ajustes). Instalado: o diálogo do macOS e, se a
+    /// permissão não vier, o painel dos Ajustes. Rodando pelo Xcode, o macOS quase nunca
+    /// põe o app na lista sozinho, então também mostra o Dock, o Finder no .app e um alerta.
     @MainActor
     static func request(completion: (() -> Void)? = nil) {
-        presentAsRegularApp()
+        let fromBuildFolder = isRunningFromBuildFolder
+        if fromBuildFolder {
+            presentAsRegularApp()
+        }
         registerWithLaunchServices()
         _ = CGRequestScreenCaptureAccess()
         triggerCaptureForTCC()
@@ -31,22 +34,12 @@ enum ScreenCapturePermission {
             await requestShareableContent()
             if !isTrusted {
                 openSystemSettings()
-                revealInFinder()
-                showAddAppAlert()
+                if fromBuildFolder {
+                    revealInFinder()
+                    showAddAppAlert()
+                }
             }
             completion?()
-        }
-    }
-
-    /// Primeiro uso do seletor: tenta o diálogo sem abrir o Finder.
-    @MainActor
-    static func nudgePrompt() {
-        presentAsRegularApp()
-        registerWithLaunchServices()
-        _ = CGRequestScreenCaptureAccess()
-        triggerCaptureForTCC()
-        Task { @MainActor in
-            await requestShareableContent()
         }
     }
 

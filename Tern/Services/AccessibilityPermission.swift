@@ -12,6 +12,19 @@ enum AccessibilityPermission {
         _ = AXIsProcessTrustedWithOptions(options)
     }
 
+    private static let didPromptKey = "TernDidPromptAccessibility"
+
+    /// Uma coisa por vez: na primeira vez, só o diálogo do macOS (que também põe o Tern
+    /// na lista e tem o botão para os Ajustes); depois, só o painel dos Ajustes.
+    static func request() {
+        if UserDefaults.standard.bool(forKey: didPromptKey) {
+            openSystemSettings()
+        } else {
+            UserDefaults.standard.set(true, forKey: didPromptKey)
+            promptIfNeeded()
+        }
+    }
+
     static func openSystemSettings() {
         let candidates = [
             "x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension?Privacy_Accessibility",

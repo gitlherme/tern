@@ -96,8 +96,10 @@ struct GeneralSettingsView: View {
                                     }
                                 }
                             }
-                            Button("Mostrar Tern.app no Finder") {
-                                ScreenCapturePermission.revealInFinder()
+                            if ScreenCapturePermission.isRunningFromBuildFolder {
+                                Button("Mostrar Tern.app no Finder") {
+                                    ScreenCapturePermission.revealInFinder()
+                                }
                             }
                         }
                         Button("Abrir Ajustes do Sistema") {
@@ -105,7 +107,7 @@ struct GeneralSettingsView: View {
                         }
                     }
                 }
-                Text("Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern (Mostrar no Finder deixa ele selecionado) e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.")
+                Text("Se o Tern não aparecer em Gravação da Tela, clique no + embaixo da lista, escolha o Tern em Aplicativos e ligue a chave. Depois saia do Tern pela barra de menus e abra de novo.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
             } header: {
