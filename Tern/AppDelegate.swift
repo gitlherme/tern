@@ -14,6 +14,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    func application(_ application: NSApplication, open urls: [URL]) {
+        for url in urls {
+            URLCommands.handle(url)
+        }
+    }
+
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
         false
     }

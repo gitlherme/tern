@@ -11,7 +11,10 @@ final class AppModel: ObservableObject {
     @Published var isTrusted = false
     @Published var canCaptureScreen = false
     @Published var isSwitcherVisible = false
+    /// Janelas visíveis no seletor: todas, ou só as que combinam com a busca.
     @Published var windows: [WindowInfo] = []
+    /// Texto digitado com o seletor aberto (#10).
+    @Published var filterText = ""
     @Published var thumbnails: [CGWindowID: NSImage] = [:]
     @Published var selectedIndex = 0
     @Published var confirmOnModifierRelease = false
@@ -28,6 +31,8 @@ final class AppModel: ObservableObject {
     let keyboardInterceptor = KeyboardInterceptor()
 
     private var recency = WindowRecency()
+    /// Todas as janelas em ordem de recência, antes da busca.
+    private var allWindows: [WindowInfo] = []
     private var pollTimer: Timer?
     private var settingsWindow: NSWindow?
     private var welcomeWindow: NSWindow?
@@ -90,6 +95,10 @@ final class AppModel: ObservableObject {
                 }
                 ScreenCapturePermission.restoreAccessoryIfTrusted()
                 self.refreshLaunchAtLogin()
+                if self.exclusions.removeExpired() {
+                    self.persistExclusions()
+                    if self.isSwitcherVisible { self.refreshWindows() }
+                }
                 if !self.isSwitcherVisible {
                     self.recency.recordCurrentFront(ignoringBundleID: Bundle.main.bundleIdentifier)
                 }
@@ -124,6 +133,7 @@ final class AppModel: ObservableObject {
             return
         }
 
+        filterText = ""
         refreshWindows()
         if reverse, windows.count > 1 {
             selectedIndex = windows.lastIndex(where: { !$0.isMinimized }) ?? (windows.count - 1)
@@ -148,6 +158,7 @@ final class AppModel: ObservableObject {
             panel.show()
             return
         }
+        filterText = ""
         refreshWindows()
         selectedIndex = 0
         confirmOnModifierRelease = false
@@ -163,7 +174,14 @@ final class AppModel: ObservableObject {
         if !isSwitcherVisible {
             recency.recordFrontmost(from: raw)
         }
-        windows = recency.ordered(raw)
+        allWindows = recency.ordered(raw)
+        applyFilter()
+        refreshThumbnails()
+    }
+
+    /// Recalcula `windows` a partir de `allWindows` e da busca, mantendo a seleção válida.
+    private func applyFilter() {
+        windows = WindowFilter.apply(allWindows, query: filterText)
         if windows.isEmpty {
             selectedIndex = 0
         } else if selectedIndex >= windows.count {
@@ -172,7 +190,28 @@ final class AppModel: ObservableObject {
         if isSwitcherVisible {
             panel.updateFrameIfVisible()
         }
-        refreshThumbnails()
+    }
+
+    /// Ao digitar, o seletor deixa de confirmar quando o modificador é solto: ninguém
+    /// digita segurando ⌥. A partir daí, ⏎ abre e esc fecha.
+    func appendToFilter(_ text: String) {
+        filterText += text
+        confirmOnModifierRelease = false
+        selectedIndex = 0
+        applyFilter()
+    }
+
+    func deleteFromFilter() {
+        guard !filterText.isEmpty else { return }
+        filterText.removeLast()
+        selectedIndex = 0
+        applyFilter()
+    }
+
+    func clearFilter() {
+        filterText = ""
+        selectedIndex = allWindows.count > 1 ? 1 : 0
+        applyFilter()
     }
 
     func refreshThumbnails() {
@@ -215,8 +254,44 @@ final class AppModel: ObservableObject {
         }
     }
 
+    // MARK: Ações na janela selecionada (#12)
+
+    func closeSelectedWindow() {
+        guard let window = selectedWindow else { return }
+        activator.close(window)
+        refreshAfterAction(delays: [0.15, 0.6])
+    }
+
+    func minimizeSelectedWindow() {
+        guard let window = selectedWindow else { return }
+        activator.minimize(window)
+        refreshAfterAction(delays: [0.3])
+    }
+
+    func quitSelectedApp() {
+        guard let window = selectedWindow else { return }
+        activator.quitApp(of: window)
+        refreshAfterAction(delays: [0.6, 1.5])
+    }
+
+    private var selectedWindow: WindowInfo? {
+        windows.indices.contains(selectedIndex) ? windows[selectedIndex] : nil
+    }
+
+    /// O app leva um instante para fechar ou minimizar; se ele abrir um "salvar alterações?",
+    /// a janela continua na lista e a pessoa pode ir até ela.
+    private func refreshAfterAction(delays: [TimeInterval]) {
+        for delay in delays {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+                guard let self, self.isSwitcherVisible else { return }
+                self.refreshWindows()
+            }
+        }
+    }
+
     func dismissSwitcher() {
         isSwitcherVisible = false
+        filterText = ""
         confirmOnModifierRelease = false
         consumeOpeningKey = false
         panel.hide()
@@ -231,6 +306,15 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
+    /// ⇧⌫: esconde o app destacado por uma hora (#7).
+    func snoozeSelectedApp() {
+        guard windows.indices.contains(selectedIndex) else { return }
+        let window = windows[selectedIndex]
+        exclusions.addApp(bundleID: window.bundleID, name: window.appName, until: HideDuration.oneHour.until())
+        persistExclusions()
+        refreshWindows()
+    }
+
     func excludeSelectedWindow() {
         guard windows.indices.contains(selectedIndex) else { return }
         let window = windows[selectedIndex]
@@ -239,8 +323,8 @@ final class AppModel: ObservableObject {
         refreshWindows()
     }
 
-    func excludeApp(bundleID: String, name: String) {
-        exclusions.addApp(bundleID: bundleID, name: name)
+    func excludeApp(bundleID: String, name: String, duration: HideDuration = .always) {
+        exclusions.addApp(bundleID: bundleID, name: name, until: duration.until())
         persistExclusions()
         refreshWindows()
     }
@@ -259,6 +343,57 @@ final class AppModel: ObservableObject {
 
     func removeWindowExclusion(_ item: WindowExclusion) {
         exclusions.removeWindow(item)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func addTitleRule(pattern: String, bundleID: String?, appName: String?) {
+        exclusions.addTitleRule(TitleRule(pattern: pattern, bundleID: bundleID, appName: appName))
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func removeTitleRule(_ rule: TitleRule) {
+        exclusions.removeTitleRule(rule)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    // MARK: Modos (#6)
+
+    @discardableResult
+    func createMode() -> UUID {
+        let id = exclusions.addMode(named: String(localized: "Novo modo"))
+        persistExclusions()
+        return id
+    }
+
+    func renameMode(_ id: UUID, to name: String) {
+        exclusions.renameMode(id, to: name)
+        persistExclusions()
+    }
+
+    func deleteMode(_ id: UUID) {
+        exclusions.removeMode(id)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func addAppToMode(_ id: UUID, bundleID: String, name: String) {
+        exclusions.addApp(toMode: id, bundleID: bundleID, name: name)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    func removeAppFromMode(_ id: UUID, bundleID: String) {
+        exclusions.removeApp(fromMode: id, bundleID: bundleID)
+        persistExclusions()
+        refreshWindows()
+    }
+
+    /// Pelo menu, pelos Ajustes ou por um Filtro de Foco. nil desliga o modo.
+    func setActiveMode(_ id: UUID?) {
+        exclusions.setActiveMode(id)
         persistExclusions()
         refreshWindows()
     }
@@ -372,7 +507,11 @@ final class AppModel: ObservableObject {
 
         switch Int(event.keyCode) {
         case kVK_Escape:
-            dismissSwitcher()
+            if filterText.isEmpty {
+                dismissSwitcher()
+            } else {
+                clearFilter()
+            }
             return true
         case kVK_Return, kVK_ANSI_KeypadEnter:
             confirm()
@@ -384,15 +523,53 @@ final class AppModel: ObservableObject {
             selectNext()
             return true
         case kVK_Delete, kVK_ForwardDelete:
-            if event.modifierFlags.contains(.option) {
+            // Com busca ativa, ⌫ edita a busca; esconder app só com a busca vazia,
+            // para ninguém esconder um app sem querer enquanto digita.
+            if !filterText.isEmpty {
+                deleteFromFilter()
+            } else if event.modifierFlags.contains(.option) {
                 excludeSelectedWindow()
+            } else if event.modifierFlags.contains(.shift) {
+                snoozeSelectedApp()
             } else {
                 excludeSelectedApp()
             }
             return true
         default:
-            return false
+            break
         }
+
+        if event.modifierFlags.contains(.command), !event.modifierFlags.contains(.control) {
+            switch Int(event.keyCode) {
+            case kVK_ANSI_W:
+                closeSelectedWindow()
+                return true
+            case kVK_ANSI_M:
+                minimizeSelectedWindow()
+                return true
+            case kVK_ANSI_Q:
+                quitSelectedApp()
+                return true
+            default:
+                break
+            }
+        }
+
+        if let typed = Self.filterCharacters(from: event) {
+            appendToFilter(typed)
+            return true
+        }
+        return false
+    }
+
+    /// Caracteres que entram na busca: letras, números, espaço e pontuação, sem ⌘ ou ⌃.
+    /// Usa as teclas sem modificadores, porque o ⌥ do atalho pode estar pressionado.
+    private static func filterCharacters(from event: NSEvent) -> String? {
+        if !event.modifierFlags.intersection([.command, .control]).isEmpty { return nil }
+        guard let characters = event.charactersIgnoringModifiers, !characters.isEmpty else { return nil }
+        let allowed = CharacterSet.alphanumerics.union(.punctuationCharacters).union(.symbols).union(CharacterSet(charactersIn: " "))
+        guard characters.unicodeScalars.allSatisfy({ allowed.contains($0) }) else { return nil }
+        return characters
     }
 
     private func persistExclusions() {

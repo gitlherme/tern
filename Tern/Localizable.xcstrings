@@ -1,6 +1,9 @@
 {
   "sourceLanguage": "pt-BR",
   "strings": {
+    "%@": {
+      "shouldTranslate": false
+    },
     "%@, %@": {
       "shouldTranslate": false
     },
@@ -44,12 +47,22 @@
         }
       }
     },
-    "A exclusão de janela usa o bundle id + título. Se o título mudar, a janela volta a aparecer. No seletor, ⌫ oculta o app; ⌥⌫ oculta só a janela.": {
+    "1 hora": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Window exclusions match bundle id + title. If the title changes, the window shows up again. In the switcher, ⌫ hides the app; ⌥⌫ hides just that window."
+            "value": "1 hour"
+          }
+        }
+      }
+    },
+    "A exclusão de janela usa o título exato: se ele mudar, a janela volta. Para isso, use uma regra por título. No seletor, ⌥⌫ oculta só a janela destacada.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Window exclusions use the exact title: if it changes, the window comes back. For that, use a title rule. In the switcher, ⌥⌫ hides just the highlighted window."
           }
         }
       }
@@ -114,12 +127,32 @@
         }
       }
     },
+    "Abrir ajustes de Foco": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Focus settings"
+          }
+        }
+      }
+    },
     "Abrir o Tern ao iniciar sessão": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Open Tern at login"
+          }
+        }
+      }
+    },
+    "Abrir o seletor do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Tern switcher"
           }
         }
       }
@@ -174,6 +207,26 @@
         }
       }
     },
+    "Adicionar": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "Adicionar app ao modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add app to mode"
+          }
+        }
+      }
+    },
     "Adicionar app em execução…": {
       "localizations": {
         "en": {
@@ -184,12 +237,32 @@
         }
       }
     },
+    "Adicionar app…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add app…"
+          }
+        }
+      }
+    },
     "Adicionar janela aberta…": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Add open window…"
+          }
+        }
+      }
+    },
+    "Adicionar regra…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add rule…"
           }
         }
       }
@@ -220,6 +293,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Settings…"
+          }
+        }
+      }
+    },
+    "Apagar modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete mode"
+          }
+        }
+      }
+    },
+    "Apague com ⌫ ou limpe a busca com esc.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete with ⌫ or clear the search with esc."
+          }
+        }
+      }
+    },
+    "App": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App"
           }
         }
       }
@@ -274,6 +377,16 @@
         }
       }
     },
+    "Até amanhã": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Until tomorrow"
+          }
+        }
+      }
+    },
     "Barra de menus": {
       "localizations": {
         "en": {
@@ -290,6 +403,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Welcome to Tern"
+          }
+        }
+      }
+    },
+    "Busca: %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search: %@"
           }
         }
       }
@@ -344,6 +467,46 @@
         }
       }
     },
+    "Devolve ao seletor um app que estava escondido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brings a hidden app back to the switcher."
+          }
+        }
+      }
+    },
+    "Digite para buscar   ⏎ abrir   ⌫ ocultar app   ⌥⌫ só esta janela   ⌘W fechar janela   ⌘M minimizar   ⌘Q encerrar app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type to search   ⏎ open   ⌫ hide app   ⌥⌫ just this window   ⌘W close window   ⌘M minimize   ⌘Q quit app"
+          }
+        }
+      }
+    },
+    "Digite um texto para ver quais janelas abertas a regra esconde.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type some text to see which open windows the rule hides."
+          }
+        }
+      }
+    },
+    "Duração": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        }
+      }
+    },
     "Ele não aparece no Dock. Procure o ícone de duas janelas no canto superior direito da tela.": {
       "localizations": {
         "en": {
@@ -354,12 +517,102 @@
         }
       }
     },
+    "Em Ajustes do Sistema › Foco, escolha um Foco (como Trabalho) e vá em Filtros de Foco › Adicionar Filtro › Tern. Escolha o modo: quando o Foco ligar, o modo liga junto; quando desligar, o Tern volta para nenhum modo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In System Settings › Focus, pick a Focus (like Work) and go to Focus Filters › Add Filter › Tern. Choose the mode: when the Focus turns on, the mode turns on with it; when it turns off, Tern goes back to no mode."
+          }
+        }
+      }
+    },
+    "Enquanto este Foco estiver ligado, o Tern esconde do seletor os apps do modo escolhido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While this Focus is on, Tern hides the chosen mode’s apps from the switcher."
+          }
+        }
+      }
+    },
+    "Enquanto o modo estiver ativo, o app some do seletor.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "While the mode is on, the app disappears from the switcher."
+          }
+        }
+      }
+    },
     "Escolha o atalho e experimente": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Pick your shortcut and try it"
+          }
+        }
+      }
+    },
+    "Esconde agora: %lld janelas": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Hides right now: %lld window"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Hides right now: %lld windows"
+                }
+              }
+            }
+          }
+        },
+        "pt-BR": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Esconde agora: %lld janela"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Esconde agora: %lld janelas"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Esconder ${app} no Tern por ${duration}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide ${app} in Tern for ${duration}"
+          }
+        }
+      }
+    },
+    "Esconder app no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hide app in Tern"
           }
         }
       }
@@ -444,12 +697,42 @@
         }
       }
     },
+    "Janelas cujo título combina com a regra somem do seletor, mesmo que o título mude depois.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Windows whose title matches the rule disappear from the switcher, even if the title changes later."
+          }
+        }
+      }
+    },
     "Janelas ocultas": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Hidden windows"
+          }
+        }
+      }
+    },
+    "Liga um modo do Tern, ou desliga se nenhum for escolhido.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turns on a Tern mode, or turns it off if none is chosen."
+          }
+        }
+      }
+    },
+    "Ligar a um Foco do macOS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link to a macOS Focus"
           }
         }
       }
@@ -464,12 +747,82 @@
         }
       }
     },
+    "Modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode"
+          }
+        }
+      }
+    },
+    "Modo ativo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active mode"
+          }
+        }
+      }
+    },
+    "Modo ativo: os apps dele estão escondidos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active mode: its apps are hidden."
+          }
+        }
+      }
+    },
+    "Modo do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tern mode"
+          }
+        }
+      }
+    },
+    "Modos": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modes"
+          }
+        }
+      }
+    },
     "Monitoramento de entrada não é necessário se a Acessibilidade estiver ligada: o Tern intercepta o atalho na origem para ele não disparar também no browser. Sem essa interceptação, ⌥⇥ vaza para o app da frente.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Input Monitoring isn’t needed when Accessibility is on: Tern intercepts the shortcut at the source so it doesn’t also fire in your browser. Without that, ⌥⇥ leaks through to the frontmost app."
+          }
+        }
+      }
+    },
+    "Mostra o seletor de janelas, como o atalho de teclado.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows the window switcher, like the keyboard shortcut."
+          }
+        }
+      }
+    },
+    "Mostrar ${app} no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show ${app} in Tern"
           }
         }
       }
@@ -494,12 +847,42 @@
         }
       }
     },
+    "Mostrar app no Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show app in Tern"
+          }
+        }
+      }
+    },
     "Mostrar boas-vindas": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Show welcome"
+          }
+        }
+      }
+    },
+    "Mudar o modo do Tern": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Tern mode"
+          }
+        }
+      }
+    },
+    "Mudar o modo do Tern para ${mode}": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Tern mode to ${mode}"
           }
         }
       }
@@ -514,12 +897,62 @@
         }
       }
     },
+    "Nenhum": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "Nenhum app neste modo ainda.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No apps in this mode yet."
+          }
+        }
+      }
+    },
     "Nenhum app oculto": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No hidden apps"
+          }
+        }
+      }
+    },
+    "Nenhum modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No mode"
+          }
+        }
+      }
+    },
+    "Nenhuma janela aberta agora combina com a regra.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No open window matches the rule right now."
+          }
+        }
+      }
+    },
+    "Nenhuma janela com “%@”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No windows matching “%@”"
           }
         }
       }
@@ -550,6 +983,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "No windows to switch to"
+          }
+        }
+      }
+    },
+    "Nenhuma regra. Use para esconder janelas pelo título, como Picture in Picture ou as barras flutuantes do Zoom.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rules. Use them to hide windows by title, like Picture in Picture or Zoom’s floating toolbars."
+          }
+        }
+      }
+    },
+    "Nome": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Name"
+          }
+        }
+      }
+    },
+    "Nova regra por título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New title rule"
+          }
+        }
+      }
+    },
+    "Novo modo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New mode"
           }
         }
       }
@@ -604,12 +1077,12 @@
         }
       }
     },
-    "O app deixa de aparecer no seletor até você removê-lo da lista.": {
+    "O app deixa de aparecer no seletor pelo tempo escolhido.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "The app stops appearing in the switcher until you remove it from the list."
+            "value": "The app stops appearing in the switcher for the time you choose."
           }
         }
       }
@@ -754,6 +1227,16 @@
         }
       }
     },
+    "Por quanto tempo": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "For how long"
+          }
+        }
+      }
+    },
     "Procurar agora": {
       "localizations": {
         "en": {
@@ -780,6 +1263,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check for Updates…"
+          }
+        }
+      }
+    },
+    "Qualquer app": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Any app"
+          }
+        }
+      }
+    },
+    "Regras por título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title rules"
           }
         }
       }
@@ -824,6 +1327,16 @@
         }
       }
     },
+    "Sem *, esconde as janelas cujo título contém o texto. Com *, o padrão cobre o título todo: Picture* esconde “Picture in Picture”. Maiúsculas e acentos não importam, e a regra continua valendo quando o título muda.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without *, hides windows whose title contains the text. With *, the pattern covers the whole title: Picture* hides “Picture in Picture”. Case and accents don’t matter, and the rule keeps working when the title changes."
+          }
+        }
+      }
+    },
     "Sem esta permissão o atalho abre só o aviso, sem trocar de janela.": {
       "localizations": {
         "en": {
@@ -850,6 +1363,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No preview"
+          }
+        }
+      }
+    },
+    "Sempre": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Always"
           }
         }
       }
@@ -884,6 +1407,36 @@
         }
       }
     },
+    "Texto do título": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Title text"
+          }
+        }
+      }
+    },
+    "Tira um app do seletor de janelas, para sempre ou por um tempo.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Removes an app from the window switcher, for good or for a while."
+          }
+        }
+      }
+    },
+    "Todos os apps em execução já estão neste modo, ou não há apps abertos.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every running app is already in this mode, or no apps are open."
+          }
+        }
+      }
+    },
     "Todos os apps regulares em execução já estão ocultos, ou não há apps abertos.": {
       "localizations": {
         "en": {
@@ -904,12 +1457,22 @@
         }
       }
     },
-    "Um app nesta lista some por completo do seletor, em todas as janelas. É o caminho principal para esconder, por exemplo, 1 app entre 5 abertos.": {
+    "Um app nesta lista some por completo do seletor, em todas as janelas. No seletor, ⌫ esconde o app destacado e ⇧⌫ esconde por 1 hora.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "An app on this list disappears from the switcher entirely, across all its windows. It’s the main way to hide, say, 1 app out of 5 open."
+            "value": "An app on this list disappears from the switcher entirely, across all its windows. In the switcher, ⌫ hides the highlighted app and ⇧⌫ hides it for 1 hour."
+          }
+        }
+      }
+    },
+    "Um modo esconde apps a mais enquanto está ativo, além dos apps ocultos de sempre. Troque pelo menu do Tern ou deixe um Foco do macOS trocar sozinho.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A mode hides extra apps while it’s on, on top of your always-hidden apps. Switch from Tern’s menu, or let a macOS Focus switch it for you."
           }
         }
       }
@@ -934,6 +1497,26 @@
         }
       }
     },
+    "Volta amanhã às %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back tomorrow at %@"
+          }
+        }
+      }
+    },
+    "Volta às %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back at %@"
+          }
+        }
+      }
+    },
     "minimizada": {
       "localizations": {
         "en": {
@@ -944,22 +1527,22 @@
         }
       }
     },
-    "⇥ próximo   ⇧⇥ anterior   ⌫ ocultar app   ⌥⌫ só esta janela   ⏎ abrir   esc fechar": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "⇥ next   ⇧⇥ previous   ⌫ hide app   ⌥⌫ just this window   ⏎ open   esc close"
-          }
-        }
-      }
-    },
     "⌘⇥ é do seletor de apps do macOS. Escolha outro atalho, como ⌥⇥.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "⌘⇥ belongs to the macOS app switcher. Pick another shortcut, like ⌥⇥."
+          }
+        }
+      }
+    },
+    "⏎ abrir   ⇥ próximo   ⌫ apagar   esc limpar busca   ⌘W fechar janela": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⏎ open   ⇥ next   ⌫ delete   esc clear search   ⌘W close window"
           }
         }
       }

@@ -40,13 +40,18 @@ Depois conceda Acessibilidade quando o Tern pedir e aperte **⌥⇥**.
 
 - App de barra de menus (`LSUIElement`), Swift + SwiftUI/AppKit.
 - Atalho global configurável (padrão **⌥⇥**). O HUD sobrepõe o app da frente e o atalho **não** dispara também no browser. Segure o modificador e toque a tecla outra vez para avançar; solte o modificador para focar a janela. **⇧⇥** volta. Clique, **⏎** e **esc** também funcionam.
-- Exclusão por **bundle id** (caminho principal) e exclusão por janela (bundle id + título).
+- **Busca:** com o seletor aberto, digite para filtrar pelo nome do app e pelo título ("vsc" acha Visual Studio Code).
+- **Ações na janela:** **⌘W** fecha a janela destacada, **⌘M** minimiza e **⌘Q** encerra o app.
+- Exclusão por **bundle id** (caminho principal), por janela (bundle id + título) e por **regra de título** (texto ou padrão com `*`, num app ou em qualquer app).
+- **Soneca:** **⇧⌫** esconde um app por 1 hora; nos Ajustes, esconda por 1 hora, até amanhã ou sempre.
+- **Modos:** listas de apps escondidos a mais (Trabalho, Pessoal…), trocadas pela barra de menus ou automaticamente por um **Foco do macOS** via Filtro de Foco.
+- **Automação:** ações no app Atalhos e o esquema de URL `tern://` (veja abaixo).
 - Prévia de cada janela nos cards (com permissão de Gravação da tela).
 - Interface em **português e inglês** (segue o idioma do macOS; outros idiomas caem no inglês).
 - Persistência das exclusões e do atalho em `UserDefaults`.
 - Ajustes para gravar o atalho, conceder Acessibilidade e adicionar/remover exclusões.
 
-No seletor: **⌫** oculta o app da janela destacada; **⌥⌫** oculta só aquela janela.
+No seletor: **⌫** oculta o app da janela destacada, **⇧⌫** oculta por 1 hora, **⌥⌫** oculta só aquela janela. Durante uma busca, **⌫** apaga a busca.
 
 ## Requisitos
 
@@ -127,16 +132,33 @@ Com "Sign to Run Locally" (assinatura `adhoc`) cada rebuild muda o `cdhash` e o 
 1. Conceda Acessibilidade. Para ver a prévia, conceda também Gravação da tela.
 2. **⌥⇥** abre o seletor com a janela atual no índice 0 e a anterior no 1. Solte ⌥ para ir à anterior; ⇥ avança na recência. Minimizadas ficam no fim e restauram ao focar.
 3. Continue com ⇥ / setas, solte ⌥ para focar, ou clique no card.
-4. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor.
-5. Para ocultar só uma janela: **Adicionar janela aberta…** ou **⌥⌫**.
-6. Menu da barra: Abrir seletor, Ajustes, Sair.
+4. Comece a digitar para buscar. Depois de digitar, soltar o ⌥ não confirma mais: **⏎** abre e **esc** limpa a busca.
+5. Para ocultar um app: Ajustes → Exclusões → **Adicionar app em execução…**, ou **⌫** no seletor (**⇧⌫** por 1 hora).
+6. Para ocultar só uma janela: **Adicionar janela aberta…** ou **⌥⌫**. Para janelas cujo título muda, crie uma **regra por título**.
+7. Modos: Ajustes → Modos. Para ligar um modo a um Foco, vá em Ajustes do Sistema › Foco › (um Foco) › Filtros de Foco › Adicionar Filtro › Tern.
+8. Menu da barra: Abrir seletor, Modo, Ajustes, Procurar atualizações, Sair.
+
+### Automação
+
+Ações no app Atalhos: **Abrir o seletor do Tern**, **Esconder app no Tern** (sempre, 1 hora, até amanhã), **Mostrar app no Tern** e **Mudar o modo do Tern**.
+
+Esquema de URL, para scripts, Raycast ou qualquer coisa que abra links:
+
+| URL | Faz |
+|---|---|
+| `tern://open` | Abre o seletor |
+| `tern://hide?app=com.spotify.client` | Esconde um app (acrescente `&for=1h` ou `&for=tomorrow` para soneca) |
+| `tern://unhide?app=com.spotify.client` | Mostra de novo |
+| `tern://mode?name=Trabalho` | Liga um modo; `tern://mode` desliga |
+
+Qualquer página pode abrir um link `tern://`, então as URLs só fazem coisas inofensivas: nada fecha janelas nem encerra apps.
 
 Não grave **⌘⇥**: o macOS reserva esse atalho para o seletor de aplicativos.
 
 ## Limitações conhecidas desta fatia
 
 - A ordem é recência: janela atual → a anterior → demais usadas → minimizadas no fim.
-- Exclusão de janela depende do título: se o título mudar, a janela volta a aparecer.
+- Exclusão de janela usa o título exato: se ele mudar, a janela volta. As regras por título cobrem esse caso.
 - Não substitui o ⌘⇥ do sistema.
 - Não há sandbox: utilitários deste tipo precisam falar com as janelas dos outros apps.
 
