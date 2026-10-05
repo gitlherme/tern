@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novidades — Tern</title>
+<meta name="description" content="O que mudou em cada versão do Tern, da 1.2 para trás: busca, ações na janela, soneca, modos e o que veio antes.">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="pt-BR" href="./">
+<link rel="alternate" hreflang="en" href="../en/changelog/">
+<link rel="alternate" hreflang="x-default" href="../en/changelog/">
+<link rel="canonical" href="https://tern.gitlher.me/changelog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-en="../en/changelog/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Início</a>
+    <a href="./" aria-current="page">Novidades</a>
+    <a class="hide-sm" href="https://github.com/gitlherme/tern">GitHub</a>
+    <a class="lang" href="../en/changelog/" hreflang="en" lang="en" data-lang="en">English</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <header class="page-head">
+    <h1>Novidades</h1>
+    <p class="lede">Da mais nova para a mais antiga. Quem já tem o Tern recebe a atualização pelo próprio app, em Procurar atualizações no menu.</p>
+  </header>
+
+  <article class="release" id="1.2.0">
+    <div class="release-head">
+      <h2>1.2.0</h2>
+      <time datetime="2026-10-04">4 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.2.0">notas</a>
+    </div>
+    <ul>
+      <li><b>Busca.</b> Com o seletor aberto, digite para filtrar as janelas pelo nome do app e pelo título.</li>
+      <li><b>Ações.</b> <kbd>⌘</kbd> <kbd>W</kbd> fecha a janela, <kbd>⌘</kbd> <kbd>M</kbd> minimiza, <kbd>⌘</kbd> <kbd>Q</kbd> encerra o app.</li>
+      <li><b>Regras por título</b> para esconder janelas como Picture in Picture, mesmo quando o nome muda.</li>
+      <li><b>Soneca.</b> <kbd>⇧</kbd> <kbd>⌫</kbd> esconde um app por 1 hora. Nos Ajustes, também até amanhã.</li>
+      <li><b>Modos</b> que escondem um conjunto de apps e podem ligar junto com um Foco do macOS.</li>
+      <li><b>Automação.</b> Ações no app Atalhos e links <code>tern://</code> para abrir o seletor, esconder um app ou trocar o modo.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.1.4">
+    <div class="release-head">
+      <h2>1.1.4</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.1.4">notas</a>
+    </div>
+    <ul>
+      <li>Pedir permissões abre uma coisa por vez, sem janelas extras.</li>
+      <li>A Gravação da Tela deixa de ser pedida sozinha: as prévias são opcionais, e o seletor funciona sem elas.</li>
+      <li>Dá para escolher o atalho direto na janela de boas-vindas.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.1.3">
+    <div class="release-head">
+      <h2>1.1.3</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.1.3">notas</a>
+    </div>
+    <ul>
+      <li>O Tern passa a ter uma assinatura fixa. Depois desta atualização, as versões seguintes não pedem a permissão de Acessibilidade de novo.</li>
+      <li>Esta atualização ainda pede uma última vez. Se o seletor não abrir, remova o Tern em Ajustes do Sistema › Privacidade e Segurança › Acessibilidade e adicione de novo.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.1.2">
+    <div class="release-head">
+      <h2>1.1.2</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.1.2">notas</a>
+    </div>
+    <ul>
+      <li>A borda de destaque do card selecionado não é mais cortada nas laterais do seletor.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.1.1">
+    <div class="release-head">
+      <h2>1.1.1</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.1.1">notas</a>
+    </div>
+    <ul>
+      <li>Corrige a 1.1.0, que fechava logo ao abrir. A partir daqui as atualizações automáticas funcionam.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.1.0">
+    <div class="release-head">
+      <h2>1.1.0</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.1.0">notas</a>
+    </div>
+    <ul>
+      <li><b>Boas-vindas.</b> Na primeira abertura, uma janela guia as permissões.</li>
+      <li><b>Abrir ao iniciar sessão,</b> na boas-vindas e nos Ajustes.</li>
+      <li><b>Atualizações automáticas.</b> O Tern avisa quando sai uma versão nova.</li>
+      <li>Esta build fechava ao abrir. A correção saiu na <a href="#1.1.1">1.1.1</a>.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.0.1">
+    <div class="release-head">
+      <h2>1.0.1</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.0.1">notas</a>
+    </div>
+    <ul>
+      <li>O botão de pedir Gravação da Tela não cria mais uma segunda cópia do Tern. Ele só mostra no Finder o app que você instalou.</li>
+      <li>Os avisos pedem para sair e abrir o Tern de novo, sem instrução técnica no meio.</li>
+    </ul>
+  </article>
+
+  <article class="release" id="1.0.0">
+    <div class="release-head">
+      <h2>1.0.0</h2>
+      <time datetime="2026-10-02">2 de outubro de 2026</time>
+      <a href="https://github.com/gitlherme/tern/releases/tag/v1.0.0">notas</a>
+    </div>
+    <ul>
+      <li>Primeira versão. Seletor de janelas na barra de menus, na ordem em que você usou.</li>
+      <li><kbd>⌫</kbd> esconde um app e <kbd>⌥</kbd> <kbd>⌫</kbd> esconde só uma janela.</li>
+      <li>Atalho configurável, prévia das janelas e interface em português e inglês.</li>
+    </ul>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="../">Início</a>
+      <a href="https://github.com/gitlherme/tern/releases">Releases</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-lang]').forEach(a => a.addEventListener('click', () => {
+    try { localStorage.setItem('tern-lang', a.dataset.lang); } catch (e) {}
+  }));
+  (() => {
+    let saved = null;
+    try { saved = localStorage.getItem('tern-lang'); } catch (e) {}
+    const en = document.body.dataset.en;
+    if (en && document.documentElement.lang === 'pt-BR' && !saved && !/^pt/i.test(navigator.language || '')) {
+      location.replace(en);
+    }
+  })();
+</script>
+</body>
+</html>
