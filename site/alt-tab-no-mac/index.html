@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como fazer Alt+Tab no Mac — Tern</title>
+<meta name="description" content="O Mac não tem Alt+Tab: o ⌘⇥ alterna apps, não janelas. Como o macOS troca de janela hoje, e como fazer Alt+Tab no Mac com o Tern.">
+<link rel="canonical" href="https://tern.gitlher.me/alt-tab-no-mac/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alt-tab-no-mac/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://tern.gitlher.me/alt-tab-no-mac/">
+<meta property="og:title" content="Como fazer Alt+Tab no Mac — Tern">
+<meta property="og:description" content="O Mac não tem Alt+Tab: o ⌘⇥ alterna apps, não janelas. Como fazer Alt+Tab no Mac com o Tern.">
+<meta property="og:image" content="https://tern.gitlher.me/og/pt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-en="../en/alt-tab-on-mac/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Início</a>
+    <a href="../ajuda/">Ajuda</a>
+    <a href="../changelog/">Novidades</a>
+    <a class="lang" href="../en/alt-tab-on-mac/" hreflang="en" lang="en" data-lang="en">English</a>
+  </nav>
+</header>
+
+<main class="wrap prose">
+  <header class="page-head">
+    <h1>Como fazer Alt+Tab no Mac</h1>
+    <p class="lede">O Mac não tem Alt+Tab. O <kbd>⌘</kbd> <kbd>⇥</kbd> alterna aplicativos, não janelas. O Tern usa <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar janela por janela.</p>
+    <p class="updated">Atualizado em <time datetime="2026-10-05">5 de outubro de 2026</time></p>
+  </header>
+
+  <h2>O que o macOS já oferece</h2>
+  <p>O atalho nativo mais próximo do Alt+Tab do Windows é o <kbd>⌘</kbd> <kbd>⇥</kbd> (Command-Tab). Ele percorre os apps em execução e mostra um ícone por aplicativo. Soltar o <kbd>⌘</kbd> traz à frente a janela mais recente daquele app.</p>
+  <p><kbd>⌘</kbd> e o acento grave (a tecla acima do Tab, no teclado americano) percorrem as janelas do app que já está na frente. Mission Control espalha as janelas na tela para você clicar. Stage Manager agrupa janelas e esconde o resto.</p>
+
+  <h2>Onde isso falha</h2>
+  <p>O <kbd>⌘</kbd> <kbd>⇥</kbd> não lista janelas. Três janelas do Safari continuam sendo um único Safari. O acento grave só cobre o app da frente, no Space atual, e por padrão ignora janelas minimizadas. Mission Control é uma vista para o mouse, não um ciclo de teclado.</p>
+  <p>Se você veio do Windows, a memória muscular do Alt+Tab espera uma fila de janelas. O Mac não entrega isso sem um app.</p>
+
+  <h2>Como fazer com o Tern</h2>
+  <ol>
+    <li>Baixe o <a href="https://github.com/gitlherme/tern/releases/latest">Tern-x.y.z.dmg</a> e arraste o app para Aplicativos. Na primeira abertura, o macOS pede para <a href="../ajuda/#instalar">abrir mesmo assim</a>.</li>
+    <li>Conceda Acessibilidade quando o Tern pedir. Sem ela, o atalho não troca de janela.</li>
+    <li>Aperte <kbd>⌥</kbd> <kbd>⇥</kbd>. Segure o <kbd>⌥</kbd> e toque em <kbd>⇥</kbd> para avançar. Solte para focar a janela destacada.</li>
+    <li>Com o seletor aberto, digite para filtrar pelo nome do app ou pelo título. A busca é grátis.</li>
+    <li>Se um app só atrapalha, <kbd>⌫</kbd> tira ele da lista. <a href="../esconder-apps-do-alternador/">Como esconder apps</a>.</li>
+  </ol>
+  <p>O atalho padrão é <kbd>⌥</kbd> <kbd>⇥</kbd> para não brigar com o <kbd>⌘</kbd> <kbd>⇥</kbd> do sistema. Nos Ajustes do Tern dá para gravar outro. Não grave <kbd>⌘</kbd> <kbd>⇥</kbd>: o macOS reserva esse atalho.</p>
+  <p>O Tern é um alternador de janelas nativo (Swift), grátis, licença MIT, para macOS 13 ou posterior. Há um <a href="../alternativas-ao-alttab/">comparativo com o AltTab e outros</a>.</p>
+
+  <ul class="more">
+    <li><a href="../ajuda/">Instalação, permissões e problemas</a></li>
+    <li><a href="../alternativas-ao-alttab/">Tern, AltTab, Contexts, Witch e o nativo</a></li>
+    <li><a href="../">Início</a></li>
+  </ul>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="./" aria-current="page">Como fazer Alt+Tab</a>
+      <a href="../alternativas-ao-alttab/">Alternativas</a>
+      <a href="../esconder-apps-do-alternador/">Esconder apps</a>
+      <a href="../ajuda/">Ajuda</a>
+      <a href="../changelog/">Novidades</a>
+    </nav>
+  </div>
+</footer>
+<script src="../site.js"></script>
+</body>
+</html>

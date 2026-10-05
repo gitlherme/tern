@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <strong>A window switcher for Mac that lets you hide what gets in the way.</strong><br>
-  <kbd>⌥</kbd> <kbd>⇥</kbd> to switch windows · <kbd>⌫</kbd> to hide an app
+  <strong>Free, open-source Alt-Tab for Mac: a window switcher that lets you hide the apps you don't need.</strong><br>
+  <kbd>⌥</kbd> <kbd>⇥</kbd> to switch windows · type to search · <kbd>⌫</kbd> to hide an app
 </p>
 
 <p align="center">
@@ -20,9 +20,21 @@
 
 ---
 
-Tern is a native macOS window switcher that lives in the menu bar, with no Dock icon. A global shortcut opens a HUD to cycle through and focus open windows — in the spirit of [alt-tab.app](https://alt-tab.app), with one twist: you can **hide an app (or a single window)** and it stays out of the switcher until you take it off the list.
+Tern is a free, native macOS window switcher (an Alt-Tab for Mac) that lives in the menu bar, with no Dock icon. A global shortcut opens a HUD to cycle through and focus open windows — in the spirit of [alt-tab.app](https://alt-tab.app), with one twist: you can **hide an app (or a single window)** and it stays out of the switcher until you take it off the list.
 
-Example: five apps open, one on the exclusion list, and the shortcut shows only the other four.
+Type-to-search is included, not a paid add-on. Example: five apps open, one on the exclusion list, and the shortcut shows only the other four.
+
+## Tern vs AltTab
+
+Both are open-source window switchers for Mac. [AltTab](https://alt-tab.app) is the established one: notarized, Space badges, full-size previews. Its type-to-search is a Pro feature. Tern ships search for free and is built around hiding apps, windows, title rules, snooze, and Focus modes. Tern is not notarized yet, so the first launch needs **Open Anyway**. A longer comparison is on the [site](https://tern.gitlher.me/en/alttab-alternatives/).
+
+## FAQ
+
+**Does the Mac have Alt-Tab?** No. ⌘⇥ switches apps, not windows. Tern uses ⌥⇥ to switch window by window.
+
+**Why Accessibility?** macOS only lets an app read window titles and bring a window forward with Accessibility on. Tern does not read window contents.
+
+**Why the first-launch warning?** The app is signed with its own certificate, not Apple notarization. Grant **Open Anyway** once; later updates do not ask again. Step-by-step: [Help](https://tern.gitlher.me/en/help/).
 
 ## Download
 

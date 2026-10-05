@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Alt-Tab on Mac — Tern</title>
+<meta name="description" content="The Mac has no Alt-Tab: ⌘⇥ switches apps, not windows. What macOS already does, where it falls short, and how to Alt-Tab on Mac with Tern.">
+<link rel="canonical" href="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alt-tab-no-mac/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<link rel="icon" href="../../icon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:url" content="https://tern.gitlher.me/en/alt-tab-on-mac/">
+<meta property="og:title" content="How to Alt-Tab on Mac — Tern">
+<meta property="og:description" content="The Mac has no Alt-Tab. ⌘⇥ switches apps, not windows. How to Alt-Tab on Mac with Tern.">
+<meta property="og:image" content="https://tern.gitlher.me/og/en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-pt="../../alt-tab-no-mac/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Home</a>
+    <a href="../help/">Help</a>
+    <a href="../changelog/">Changelog</a>
+    <a class="lang" href="../../alt-tab-no-mac/" hreflang="pt-BR" lang="pt-BR" data-lang="pt">Português</a>
+  </nav>
+</header>
+
+<main class="wrap prose">
+  <header class="page-head">
+    <h1>How to Alt-Tab on Mac</h1>
+    <p class="lede">The Mac has no Alt-Tab. <kbd>⌘</kbd> <kbd>⇥</kbd> switches apps, not windows. Tern uses <kbd>⌥</kbd> <kbd>⇥</kbd> to switch window by window.</p>
+    <p class="updated">Updated <time datetime="2026-10-05">October 5, 2026</time></p>
+  </header>
+
+  <h2>What macOS already offers</h2>
+  <p>The closest built-in shortcut to Windows Alt-Tab is <kbd>⌘</kbd> <kbd>⇥</kbd> (Command-Tab). It cycles running apps and shows one icon per application. Releasing <kbd>⌘</kbd> brings that app’s most recent window forward.</p>
+  <p><kbd>⌘</kbd> and the grave accent (the key above Tab on a US keyboard) cycle windows of the frontmost app. Mission Control spreads windows on screen for you to click. Stage Manager groups windows and tucks the rest aside.</p>
+
+  <h2>Where that falls short</h2>
+  <p><kbd>⌘</kbd> <kbd>⇥</kbd> does not list windows. Three Safari windows are still one Safari. Grave accent only covers the frontmost app, on the current Space, and by default skips minimized windows. Mission Control is a mouse view, not a keyboard queue.</p>
+  <p>If you came from Windows, Alt-Tab muscle memory expects a row of windows. The Mac does not do that without an app.</p>
+
+  <h2>How to do it with Tern</h2>
+  <ol>
+    <li>Download <a href="https://github.com/gitlherme/tern/releases/latest">Tern-x.y.z.dmg</a> and drag the app into Applications. On first launch, macOS asks you to <a href="../help/#install">Open Anyway</a>.</li>
+    <li>Grant Accessibility when Tern asks. Without it, the shortcut cannot switch windows.</li>
+    <li>Press <kbd>⌥</kbd> <kbd>⇥</kbd>. Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move forward. Release to focus the highlighted window.</li>
+    <li>With the switcher open, type to filter by app name or window title. Search is free.</li>
+    <li>If an app just gets in the way, <kbd>⌫</kbd> takes it off the list. <a href="../hide-apps-from-window-switcher/">How to hide apps</a>.</li>
+  </ol>
+  <p>The default shortcut is <kbd>⌥</kbd> <kbd>⇥</kbd> so it does not fight system <kbd>⌘</kbd> <kbd>⇥</kbd>. Record a different one in Tern Settings. Do not record <kbd>⌘</kbd> <kbd>⇥</kbd>: macOS reserves it.</p>
+  <p>Tern is a native window switcher (Swift), free, MIT licensed, for macOS 13 or later. There is a <a href="../alttab-alternatives/">comparison with AltTab and others</a>.</p>
+
+  <ul class="more">
+    <li><a href="../help/">Install, permissions, and troubleshooting</a></li>
+    <li><a href="../alttab-alternatives/">Tern, AltTab, Contexts, Witch, and native</a></li>
+    <li><a href="../">Home</a></li>
+  </ul>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · made by <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="./" aria-current="page">How to Alt-Tab</a>
+      <a href="../alttab-alternatives/">Alternatives</a>
+      <a href="../hide-apps-from-window-switcher/">Hide apps</a>
+      <a href="../help/">Help</a>
+      <a href="../changelog/">Changelog</a>
+    </nav>
+  </div>
+</footer>
+<script src="../../site.js"></script>
+</body>
+</html>
