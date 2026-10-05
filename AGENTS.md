@@ -19,6 +19,20 @@ scripts/                 release.sh and per-version release notes for Sparkle
 site/                    static landing page: pt-BR at /, English at /en/
 ```
 
+## Site
+
+`site/` is static HTML, served by Vercel with `site/` as the root (`trailingSlash: true`). Portuguese is `/`, English is `/en/`. Do not auto-redirect by `navigator.language`; a banner is enough, and an explicit language choice in `localStorage` still wins.
+
+New pages:
+
+- Ship in Portuguese and English, linked by absolute `canonical` and `hreflang` (`https://tern.gitlher.me/...`).
+- Add both URLs to `site/sitemap.xml` with `xhtml:link` alternates and `lastmod`.
+- Show a visible “Atualizado em …” / “Updated …” date.
+- Link from the footer (or the header).
+- Titles, H1s and meta descriptions use “alternador de janelas” / “window switcher”. Body copy may say “seletor” to match the app.
+
+Each release updates JSON-LD `softwareVersion` / `dateModified` and the home `lastmod` via `scripts/release.sh`.
+
 ## Build
 
 ```bash
@@ -53,6 +67,7 @@ xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Release -destinat
 2. Optionally add `scripts/release-notes/X.Y.Z.html`; it gets embedded in the update dialog.
 3. Run `scripts/release.sh`.
 4. Publish the GitHub release `vX.Y.Z` with that exact `.dmg` **before** pushing the new `site/appcast.xml` to `main`; the app reads the appcast from `raw.githubusercontent.com/gitlherme/tern/main/site/appcast.xml`.
-5. Release notes are bilingual (Portuguese first, then English) and include the step-by-step install guide written for non-technical users, including how to allow the first launch of a non-notarized app Updates from 1.1.3 on keep Accessibility; only a change of signing certificate (for example, moving to a Developer ID) makes users grant it again once.
+5. Release notes are bilingual (Portuguese first, then English) and include the step-by-step install guide written for non-technical users, including how to allow the first launch of a non-notarized app. Updates from 1.1.3 on keep Accessibility; only a change of signing certificate (for example, moving to a Developer ID) makes users grant it again once.
+6. `release.sh` also updates `softwareVersion` and `dateModified` in the homepages’ JSON-LD, the visible version line, and `lastmod` for `/` and `/en/` in `site/sitemap.xml`.
 
 The site's download buttons point to `releases/latest`, so they don't need updating per release.

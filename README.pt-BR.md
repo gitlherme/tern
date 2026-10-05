@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <strong>Seletor de janelas para Mac, com o poder de esconder o que atrapalha.</strong><br>
-  <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela · <kbd>⌫</kbd> para ocultar um app
+  <strong>Alt+Tab grátis para Mac: um alternador de janelas que deixa esconder os apps que não precisa.</strong><br>
+  <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela · digite para buscar · <kbd>⌫</kbd> para ocultar um app
 </p>
 
 <p align="center">
@@ -20,9 +20,21 @@
 
 ---
 
-Tern é um seletor de janelas nativo para macOS que vive só na barra de menus, sem ícone no Dock. O atalho global abre um HUD para ciclar e focar janelas abertas — no espírito do [alt-tab.app](https://alt-tab.app), com um diferencial: você **oculta um app (ou uma janela)** e ele deixa de aparecer no seletor até você tirá-lo da lista.
+Tern é um alternador de janelas nativo e grátis para macOS (um Alt+Tab para Mac) que vive só na barra de menus, sem ícone no Dock. O atalho global abre um HUD para ciclar e focar janelas abertas — no espírito do [alt-tab.app](https://alt-tab.app), com um diferencial: você **oculta um app (ou uma janela)** e ele deixa de aparecer no seletor até você tirá-lo da lista.
 
-Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os outros quatro.
+A busca por digitação entra no download, não é extra pago. Exemplo: cinco apps abertos, um na lista de exclusões, o atalho mostra só os outros quatro.
+
+## Tern vs AltTab
+
+Os dois são alternadores de janelas de código aberto para Mac. O [AltTab](https://alt-tab.app) é o estabelecido: notarizado, selo de Space, prévia em tamanho real. A busca por digitação dele é um recurso Pro. O Tern traz a busca grátis e é construído em torno de esconder apps, janelas, regras por título, soneca e modos ligados ao Foco. O Tern ainda não é notarizado, então a primeira abertura pede **Abrir Mesmo Assim**. Comparativo mais longo no [site](https://tern.gitlher.me/alternativas-ao-alttab/).
+
+## FAQ
+
+**O Mac tem Alt+Tab?** Não. O ⌘⇥ alterna apps, não janelas. O Tern usa ⌥⇥ para alternar janela por janela.
+
+**Por que Acessibilidade?** O macOS só deixa um app listar títulos de janela e trazer uma janela à frente com Acessibilidade ligada. O Tern não lê o conteúdo das janelas.
+
+**Por que o aviso na primeira abertura?** O app é assinado com um certificado próprio, sem notarização da Apple. Conceda **Abrir Mesmo Assim** uma vez; as atualizações seguintes não pedem de novo. Passo a passo: [Ajuda](https://tern.gitlher.me/ajuda/).
 
 ## Baixar
 

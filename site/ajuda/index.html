@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajuda — instalar o Tern, permissões e problemas</title>
+<meta name="description" content="Como instalar o Tern no Mac, passar pelo Abrir Mesmo Assim, conceder Acessibilidade e corrigir o atalho que não abre ou dispara no app da frente.">
+<link rel="canonical" href="https://tern.gitlher.me/ajuda/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/ajuda/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/help/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/help/">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://tern.gitlher.me/ajuda/">
+<meta property="og:title" content="Ajuda — instalar o Tern, permissões e problemas">
+<meta property="og:description" content="Instalação, Abrir Mesmo Assim, Acessibilidade, Gravação da Tela e o que fazer se o ⌥⇥ não abrir.">
+<meta property="og:image" content="https://tern.gitlher.me/og/pt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-en="../en/help/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Início</a>
+    <a href="./" aria-current="page">Ajuda</a>
+    <a href="../changelog/">Novidades</a>
+    <a class="lang" href="../en/help/" hreflang="en" lang="en" data-lang="en">English</a>
+  </nav>
+</header>
+
+<main class="wrap prose">
+  <header class="page-head">
+    <h1>Ajuda</h1>
+    <p class="lede">Como instalar o Tern, passar pelo aviso da primeira abertura, conceder permissões e corrigir o atalho. O Tern ainda não é notarizado pela Apple.</p>
+    <p class="updated">Atualizado em <time datetime="2026-10-05">5 de outubro de 2026</time></p>
+  </header>
+
+  <h2 id="instalar">Instalação</h2>
+  <ol>
+    <li>Baixe o arquivo <b>Tern-x.y.z.dmg</b> na <a href="https://github.com/gitlherme/tern/releases/latest">última release</a>.</li>
+    <li>Abra o .dmg. Arraste o Tern para a pasta <b>Aplicativos</b>.</li>
+    <li>Abra o Tern em Aplicativos. O macOS mostra um aviso de que o app não pode ser aberto porque o desenvolvedor não pode ser verificado (o texto varia um pouco conforme a versão do sistema). Feche o aviso.</li>
+    <li>Abra <b>Ajustes do Sistema</b> › <b>Privacidade e segurança</b>. Role até a seção Segurança. Clique em <b>Abrir Mesmo Assim</b> ao lado da menção ao Tern. Confirme.</li>
+    <li>Se o botão não aparecer, no Finder clique com o botão direito em Tern › <b>Abrir</b> › <b>Abrir</b>.</li>
+    <li>O Tern não vai para o Dock. Procure o ícone de duas janelas na barra de menus, no canto superior direito.</li>
+  </ol>
+  <p>O aviso só aparece na primeira abertura. As atualizações seguintes, pelo próprio app, não pedem isso de novo. O Tern é assinado com um certificado próprio; o código está no <a href="https://github.com/gitlherme/tern">GitHub</a>, licença MIT.</p>
+
+  <h2 id="permissoes">Permissões</h2>
+  <h3>Acessibilidade (obrigatória)</h3>
+  <p>O macOS só deixa o Tern listar títulos de janela e trazer a janela escolhida à frente com Acessibilidade ligada. O Tern não lê o conteúdo das janelas.</p>
+  <ol>
+    <li>Ao usar <kbd>⌥</kbd> <kbd>⇥</kbd> pela primeira vez, o Tern pede a permissão. Clique para abrir os Ajustes.</li>
+    <li>Ajustes do Sistema › Privacidade e segurança › <b>Acessibilidade</b>.</li>
+    <li>Ligue a chave do Tern. Se ele não estiver na lista, use o + e escolha Tern em Aplicativos.</li>
+    <li>Volte ao Tern e aperte o atalho de novo.</li>
+  </ol>
+
+  <h3>Gravação da Tela (opcional)</h3>
+  <p>Só as miniaturas nos cards. Sem essa permissão, o seletor continua trocando de janela; o card mostra o ícone. O Tern não grava a tela.</p>
+  <p>Nos Ajustes do Tern, peça a permissão. Depois: Ajustes do Sistema › Privacidade e segurança › Gravação de Tela e do Áudio do Sistema. O Tern pode não entrar sozinho na lista: use o + e escolha o app. Saia do Tern pela barra de menus e abra de novo.</p>
+
+  <h3>Monitoramento de entrada (só se o atalho vazar)</h3>
+  <p>Com Acessibilidade, o Tern engole o atalho para ele não disparar também no app da frente. Na maioria dos macOS isso basta. Se o browser ainda reagir ao <kbd>⌥</kbd> <kbd>⇥</kbd>, ligue <b>Monitoramento de entrada</b> para o Tern em Ajustes do Sistema › Privacidade e segurança.</p>
+
+  <h2 id="problemas">Solução de problemas</h2>
+  <h3>O atalho não abre o seletor</h3>
+  <p>Confirme que o Tern está na barra de menus. Sem Acessibilidade, o HUD pede a permissão em vez de listar janelas. Nos Ajustes do Tern, veja se o atalho gravado é o que você está apertando. Outro app pode ter pego o mesmo atalho.</p>
+
+  <h3>O ⌥⇥ dispara também no app da frente</h3>
+  <p>Ligue Monitoramento de entrada, como acima. O Tern intercepta o atalho de propósito; se o sistema não deixar o event tap engolir a tecla, o app da frente ainda vê o Tab.</p>
+
+  <h3>A Acessibilidade depois de atualizar</h3>
+  <p>A partir da <a href="../changelog/#1.1.3">1.1.3</a>, as versões seguintes não pedem Acessibilidade de novo: a assinatura do app permanece. Se o seletor parar de abrir depois de uma atualização, remova o Tern em Acessibilidade e adicione de novo. Só uma troca de certificado (por exemplo, passar a um Developer ID) faz todo mundo conceder outra vez.</p>
+
+  <h2 id="automacao">Automação</h2>
+  <p>No app Atalhos: abrir o seletor, esconder um app, mostrar de novo, mudar o modo. Por URL:</p>
+  <ul>
+    <li><code>tern://open</code> abre o seletor</li>
+    <li><code>tern://hide?app=com.spotify.client&amp;for=1h</code> esconde o Spotify por uma hora</li>
+    <li><code>tern://unhide?app=com.spotify.client</code> mostra de novo</li>
+    <li><code>tern://mode?name=Trabalho</code> liga o modo; <code>tern://mode</code> desliga</li>
+  </ul>
+  <p>Esses links não fecham janela nem encerram app.</p>
+  <p><a href="https://github.com/gitlherme/tern/releases/latest">Baixar o Tern</a> · <a href="../changelog/">Novidades</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="../alt-tab-no-mac/">Como fazer Alt+Tab</a>
+      <a href="../alternativas-ao-alttab/">Alternativas</a>
+      <a href="../esconder-apps-do-alternador/">Esconder apps</a>
+      <a href="./" aria-current="page">Ajuda</a>
+    </nav>
+  </div>
+</footer>
+<script src="../site.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esconder apps do alternador de janelas no Mac — Tern</title>
+<meta name="description" content="O ⌘⇥ do Mac não deixa esconder um app. No Tern, ⌫ esconde o app, ⌥⌫ esconde uma janela, e dá para filtrar Picture in Picture pelo título, soneca e Foco.">
+<link rel="canonical" href="https://tern.gitlher.me/esconder-apps-do-alternador/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/esconder-apps-do-alternador/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://tern.gitlher.me/esconder-apps-do-alternador/">
+<meta property="og:title" content="Esconder apps do alternador de janelas no Mac — Tern">
+<meta property="og:description" content="O ⌘⇥ não deixa esconder um app. No Tern, esconda o app, uma janela, Picture in Picture, por uma hora ou com um Foco.">
+<meta property="og:image" content="https://tern.gitlher.me/og/pt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-en="../en/hide-apps-from-window-switcher/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Início</a>
+    <a href="../ajuda/">Ajuda</a>
+    <a href="../changelog/">Novidades</a>
+    <a class="lang" href="../en/hide-apps-from-window-switcher/" hreflang="en" lang="en" data-lang="en">English</a>
+  </nav>
+</header>
+
+<main class="wrap prose">
+  <header class="page-head">
+    <h1>Esconder apps do alternador</h1>
+    <p class="lede">O <kbd>⌘</kbd> <kbd>⇥</kbd> do Mac não deixa tirar um app da lista. No Tern, <kbd>⌫</kbd> esconde o app, <kbd>⌥</kbd> <kbd>⌫</kbd> esconde uma janela, e dá para filtrar pelo título, por um tempo ou com um Foco.</p>
+    <p class="updated">Atualizado em <time datetime="2026-10-05">5 de outubro de 2026</time></p>
+  </header>
+
+  <h2>O que o sistema não faz</h2>
+  <p>O alternador de aplicativos do macOS mostra todo app em execução. Não há uma lista de exclusão. <kbd>⌘</kbd> <kbd>H</kbd> esconde o app na tela, mas ele continua no <kbd>⌘</kbd> <kbd>⇥</kbd>.</p>
+
+  <h2>O app inteiro</h2>
+  <p>Com o seletor do Tern aberto, destaque uma janela e aperte <kbd>⌫</kbd>. Aquele app some da lista até você devolvê-lo nos Ajustes, no menu da barra, ou com um link <code>tern://unhide</code>. Nos Ajustes também dá para adicionar um app em execução.</p>
+
+  <h2>Só uma janela</h2>
+  <p><kbd>⌥</kbd> <kbd>⌫</kbd> esconde pelo título exato. O resto do app continua no seletor. Se o título mudar, a janela volta; nesse caso use uma regra.</p>
+
+  <h2>Pelo título</h2>
+  <p>Uma regra com um texto, ou um padrão com <code>*</code>, esconde janelas como Picture in Picture mesmo quando o nome muda. Vale para um app ou para qualquer app. É o caminho para player flutuante, inspeção e outras janelas que só atrapalham a fila.</p>
+
+  <h2>Por um tempo</h2>
+  <p><kbd>⇧</kbd> <kbd>⌫</kbd> esconde o app por uma hora (soneca). Nos Ajustes: uma hora, até amanhã, ou sempre. Quando o prazo acaba, o app volta sozinho à lista.</p>
+
+  <h2>Por modo e Foco</h2>
+  <p>Um modo (Trabalho, Pessoal) é um conjunto a mais de apps escondidos. Troque na barra de menus. Para ligar automaticamente, Ajustes do Sistema › Foco › um Foco › Filtros de Foco › Adicionar Filtro › Tern.</p>
+
+  <h2>Atalhos e links</h2>
+  <p>No app Atalhos: esconder um app (sempre, 1 hora, até amanhã), mostrar de novo, mudar o modo. O mesmo por URL, por exemplo <code>tern://hide?app=com.spotify.client&amp;for=1h</code>. Esses links não fecham janela nem encerram app.</p>
+  <p><a href="https://github.com/gitlherme/tern/releases/latest">Baixar o Tern</a> · <a href="../ajuda/">Ajuda</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="../alt-tab-no-mac/">Como fazer Alt+Tab</a>
+      <a href="../alternativas-ao-alttab/">Alternativas</a>
+      <a href="./" aria-current="page">Esconder apps</a>
+      <a href="../ajuda/">Ajuda</a>
+    </nav>
+  </div>
+</footer>
+<script src="../site.js"></script>
+</body>
+</html>

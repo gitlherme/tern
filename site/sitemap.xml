@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- release:home-pt -->
+  <url>
+    <loc>https://tern.gitlher.me/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/"/>
+  </url>
+  <!-- release:home-en -->
+  <url>
+    <loc>https://tern.gitlher.me/en/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/changelog/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/changelog/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/en/changelog/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/changelog/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/alt-tab-no-mac/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alt-tab-no-mac/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alt-tab-on-mac/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alt-tab-on-mac/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/en/alt-tab-on-mac/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alt-tab-no-mac/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alt-tab-on-mac/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alt-tab-on-mac/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/alternativas-ao-alttab/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alternativas-ao-alttab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alttab-alternatives/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alttab-alternatives/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/en/alttab-alternatives/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/alternativas-ao-alttab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/alttab-alternatives/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/alttab-alternatives/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/esconder-apps-do-alternador/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/esconder-apps-do-alternador/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/en/hide-apps-from-window-switcher/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/esconder-apps-do-alternador/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/hide-apps-from-window-switcher/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/ajuda/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/ajuda/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/help/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/help/"/>
+  </url>
+  <url>
+    <loc>https://tern.gitlher.me/en/help/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/ajuda/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/help/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/help/"/>
+  </url>
+</urlset>

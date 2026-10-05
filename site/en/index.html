@@ -3,19 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tern — window switcher for Mac</title>
-<meta name="description" content="Tern is a menu bar window switcher for macOS. ⌥⇥ to switch, type to filter, ⌫ to hide what gets in the way.">
+<title>Tern — Alt-Tab for Mac: free, open-source window switcher</title>
+<meta name="description" content="Tern is a free Alt-Tab for Mac. ⌥⇥ switches window by window, type to search, hide apps from the switcher. Open source, macOS 13 or later.">
+<link rel="canonical" href="https://tern.gitlher.me/en/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/">
 <link rel="icon" href="../icon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="pt-BR" href="../">
-<link rel="alternate" hreflang="en" href="./">
-<link rel="alternate" hreflang="x-default" href="./">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:url" content="https://tern.gitlher.me/en/">
+<meta property="og:title" content="Tern — Alt-Tab for Mac: free, open-source window switcher">
+<meta property="og:description" content="⌥⇥ switches window by window, type to search, hide apps from the switcher. Free, open source, macOS 13+.">
+<meta property="og:image" content="https://tern.gitlher.me/og/en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tern, a free window switcher for Mac">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tern — Alt-Tab for Mac: free, open-source window switcher">
+<meta name="twitter:description" content="⌥⇥ switches window by window, type to search, hide apps from the switcher. Free, open source, macOS 13+.">
+<meta name="twitter:image" content="https://tern.gitlher.me/og/en.png">
 <link rel="stylesheet" href="../site.css">
-<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede,.slogan{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.gitlher.me/en/","description":"Free window switcher for macOS. ⌥⇥ switches window by window, type to search, hide apps from the switcher.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.0","dateModified":"2026-10-04","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"en","screenshot":"https://tern.gitlher.me/media/tern-demo-en.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Does the Mac have Alt-Tab?","acceptedAnswer":{"@type":"Answer","text":"macOS does not have Alt-Tab. ⌘⇥ switches apps, not windows. To move between windows of the same app, the shortcut is ⌘ and the grave accent. Tern uses ⌥⇥ to switch window by window."}},
+    {"@type":"Question","name":"How is Tern different from ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"macOS ⌘⇥ shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do."}},
+    {"@type":"Question","name":"Is Tern free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier."}},
+    {"@type":"Question","name":"Why does Tern ask for Accessibility?","acceptedAnswer":{"@type":"Answer","text":"macOS only lets an app read window titles and bring a window forward with Accessibility turned on. Tern does not read window contents. Without that permission, the shortcut cannot switch windows."}},
+    {"@type":"Question","name":"Why does macOS warn on first launch?","acceptedAnswer":{"@type":"Answer","text":"Tern is not notarized by Apple yet. It is signed with its own certificate, and the source is on GitHub. On first launch, go to System Settings › Privacy & Security › Open Anyway. The help page has the steps."}},
+    {"@type":"Question","name":"Can I hide an app from the switcher?","acceptedAnswer":{"@type":"Answer","text":"Yes. In the switcher, ⌫ hides the whole app and ⌥⌫ hides just that window. You can also hide by title, for an hour, or tie a mode to a macOS Focus."}},
+    {"@type":"Question","name":"How is Tern different from AltTab?","acceptedAnswer":{"@type":"Answer","text":"Both are open-source window switchers for Mac. In AltTab, type-to-search is a Pro feature. In Tern, search is free. Tern is built around hiding apps and windows; AltTab is more mature, is notarized, and badges windows on other Spaces."}},
+    {"@type":"Question","name":"Do I need Screen Recording?","acceptedAnswer":{"@type":"Answer","text":"No. Screen Recording is optional and only used for card thumbnails. Without it, Tern still switches windows."}}
+  ]}
+]}
+</script>
 </head>
-<body>
+<body data-pt="../">
 
 <header class="wrap top">
   <a class="brand" href="./" aria-label="Tern">
@@ -24,6 +52,7 @@
   </a>
   <nav>
     <a class="hide-sm" href="#features">Features</a>
+    <a href="help/">Help</a>
     <a href="changelog/">Changelog</a>
     <a href="https://github.com/gitlherme/tern">GitHub</a>
     <a class="lang" href="../" hreflang="pt-BR" lang="pt-BR" data-lang="pt">Português</a>
@@ -33,8 +62,9 @@
 <main>
   <section class="wrap hero">
     <img class="icon" src="../icon.svg" alt="Tern icon: two overlapping windows">
-    <h1>Your turn, <span>right window.</span></h1>
-    <p class="lede">Tern is a window switcher for Mac that lives in your menu bar. Press <kbd>⌥</kbd> <kbd>⇥</kbd> to switch, type to find the window, and hide the apps that just get in the way.</p>
+    <h1>Alt-Tab for Mac, <span>one window at a time.</span></h1>
+    <p class="slogan">Your turn, right window.</p>
+    <p class="lede">Tern is a free window switcher for Mac. Press <kbd>⌥</kbd> <kbd>⇥</kbd> to switch, type to find the window, and hide the apps that just get in the way. Open source, macOS 13 or later.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
@@ -43,9 +73,23 @@
       <a class="btn btn-ghost" href="#features">How it works</a>
     </div>
     <p class="note">macOS 13 Ventura or later · Apple silicon and Intel · English and Portuguese</p>
-    <p class="note">Not notarized by Apple yet: on first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>.</p>
+    <p class="note">Not notarized by Apple yet: on first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>. <a href="help/#install">Step-by-step in Help</a>.</p>
 
-    <div class="stage" aria-label="Tern switcher demo">
+    <dl class="facts">
+      <div><dt>Price</dt><dd>Free</dd></div>
+      <div><dt>License</dt><dd>MIT</dd></div>
+      <div><dt>System</dt><dd>macOS 13+</dd></div>
+      <div><dt>Architecture</dt><dd>Apple silicon and Intel</dd></div>
+      <div><dt>Version</dt><dd><span data-release="version">1.2.0</span> · <time datetime="2026-10-04" data-release="date-en">October 4, 2026</time></dd></div>
+      <div><dt>Account and tracking</dt><dd>None</dd></div>
+    </dl>
+
+    <video class="demo-video" poster="../media/tern-demo-en.jpg" controls playsinline preload="metadata" width="1200" height="675">
+      <source src="../media/tern-demo-en.mp4" type="video/mp4">
+    </video>
+    <p class="stage-caption">The Tern switcher: <kbd>⌥</kbd> <kbd>⇥</kbd> to move, type to filter, <kbd>⌫</kbd> to hide an app.</p>
+
+    <div class="stage" aria-label="Animated demo of the Tern switcher">
       <div class="hud" id="hud">
         <div class="hud-head">
           <div class="left">
@@ -77,7 +121,7 @@
       </div>
       <div class="feat">
         <h3><span class="mark">abc</span> <span>Type to find it</span></h3>
-        <p>With the switcher open, start typing. “vsc” finds Visual Studio Code by the app name or the window title.</p>
+        <p>With the switcher open, start typing. “vsc” finds Visual Studio Code by the app name or the window title. Search is free.</p>
       </div>
       <div class="feat">
         <h3><span class="mark">⌘W</span> <span>Act without leaving</span></h3>
@@ -99,6 +143,7 @@
       <li><b>For a while</b> <kbd>⇧</kbd> <kbd>⌫</kbd> hides an app for an hour. In Settings, until tomorrow too.</li>
       <li><b>By mode</b> Work, Personal: an extra set of apps. Switch it from the menu bar, or tie the mode to a macOS Focus.</li>
     </ul>
+    <p class="aside"><a href="hide-apps-from-window-switcher/">How to hide apps from the switcher →</a></p>
   </section>
 
   <section class="wrap keys">
@@ -131,6 +176,44 @@
     </ul>
   </section>
 
+  <section class="wrap block" id="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details>
+        <summary>Does the Mac have Alt-Tab?</summary>
+        <p>macOS does not have Alt-Tab. <kbd>⌘</kbd> <kbd>⇥</kbd> switches apps, not windows. To move between windows of the same app, the shortcut is <kbd>⌘</kbd> and the grave accent. Tern uses <kbd>⌥</kbd> <kbd>⇥</kbd> to switch window by window.</p>
+      </details>
+      <details>
+        <summary>How is Tern different from ⌘⇥?</summary>
+        <p>macOS <kbd>⌘</kbd> <kbd>⇥</kbd> shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do.</p>
+      </details>
+      <details>
+        <summary>Is Tern free?</summary>
+        <p>Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier.</p>
+      </details>
+      <details>
+        <summary>Why does Tern ask for Accessibility?</summary>
+        <p>macOS only lets an app read window titles and bring a window forward with Accessibility turned on. Tern does not read window contents. Without that permission, the shortcut cannot switch windows.</p>
+      </details>
+      <details>
+        <summary>Why does macOS warn on first launch?</summary>
+        <p>Tern is not notarized by Apple yet. It is signed with its own certificate, and the source is on GitHub. On first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>. The <a href="help/#install">help page has the steps</a>.</p>
+      </details>
+      <details>
+        <summary>Can I hide an app from the switcher?</summary>
+        <p>Yes. In the switcher, <kbd>⌫</kbd> hides the whole app and <kbd>⌥</kbd> <kbd>⌫</kbd> hides just that window. You can also hide by title, for an hour, or tie a mode to a macOS Focus.</p>
+      </details>
+      <details>
+        <summary>How is Tern different from AltTab?</summary>
+        <p>Both are open-source window switchers for Mac. In AltTab, type-to-search is a Pro feature. In Tern, search is free. Tern is built around hiding apps and windows; AltTab is more mature, is notarized, and badges windows on other Spaces. There is a <a href="alttab-alternatives/">comparison</a>.</p>
+      </details>
+      <details>
+        <summary>Do I need Screen Recording?</summary>
+        <p>No. Screen Recording is optional and only used for card thumbnails. Without it, Tern still switches windows.</p>
+      </details>
+    </div>
+  </section>
+
   <section class="wrap final">
     <h2>Switch windows without thinking.</h2>
     <p>Download Tern, grant Accessibility, and press <kbd>⌥</kbd> <kbd>⇥</kbd>. If you already have it, the app installs <a href="changelog/#1.2.0">1.2</a> on its own.</p>
@@ -142,59 +225,25 @@
   <div class="wrap">
     <span>Tern · made by <a href="https://gitlher.me">gitlherme</a></span>
     <nav>
+      <a href="alt-tab-on-mac/">How to Alt-Tab</a>
+      <a href="alttab-alternatives/">Alternatives</a>
+      <a href="hide-apps-from-window-switcher/">Hide apps</a>
+      <a href="help/">Help</a>
       <a href="changelog/">Changelog</a>
       <a href="https://github.com/gitlherme/tern">Source on GitHub</a>
     </nav>
   </div>
 </footer>
 
+<script src="../site.js"></script>
 <script>
-  document.querySelectorAll('[data-lang]').forEach(a => a.addEventListener('click', () => {
-    try { localStorage.setItem('tern-lang', a.dataset.lang); } catch (e) {}
-  }));
-  (() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const cards = [...document.querySelectorAll('#cards .card')];
-    const hud = document.getElementById('hud');
-    const q = document.getElementById('q');
-    const count = document.getElementById('count');
-    const caption = document.getElementById('caption');
-    const word = 'xco';
-    let i = 1;
-    let phase = 'browse';
-    let ticks = 0;
-    const browseCaption = 'Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move. Let go to focus.';
-    const searchCaption = 'Type to filter. <kbd>xco</kbd> finds Xcode.';
-    setInterval(() => {
-      if (phase === 'browse') {
-        hud.classList.remove('searching');
-        cards.forEach(c => c.classList.remove('dim'));
-        cards[i].classList.remove('on');
-        i = (i + 1) % cards.length;
-        cards[i].classList.add('on');
-        count.textContent = '4 windows';
-        caption.innerHTML = browseCaption;
-        if (++ticks >= 3) { phase = 'type'; ticks = 0; q.textContent = ''; }
-      } else if (phase === 'type') {
-        hud.classList.add('searching');
-        q.textContent = word.slice(0, ticks + 1);
-        if (++ticks >= word.length) {
-          cards.forEach(c => {
-            const hit = c.hasAttribute('data-hit');
-            c.classList.toggle('dim', !hit);
-            c.classList.toggle('on', hit);
-          });
-          count.textContent = '1 window';
-          caption.innerHTML = searchCaption;
-          phase = 'hold';
-          ticks = 0;
-        }
-      } else if (++ticks >= 3) {
-        phase = 'browse';
-        ticks = 0;
-      }
-    }, 900);
-  })();
+  ternDemo({
+    word: "xco",
+    countAll: "4 windows",
+    countOne: "1 window",
+    browseCaption: "Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move. Let go to focus.",
+    searchCaption: "Type to filter. <kbd>xco</kbd> finds Xcode."
+  });
 </script>
 </body>
 </html>
