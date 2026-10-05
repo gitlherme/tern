@@ -81,7 +81,8 @@ final class SwitcherPanelController {
     private func resize(_ panel: NSPanel, model: AppModel) {
         let count = max(model.windows.count, 1)
         let width = min(CGFloat(count) * 240 + 68, 1100)
-        let height: CGFloat = model.isTrusted ? 380 : 280
+        // Sem janelas (ou busca sem resultado) só há um aviso: o painel encolhe.
+        let height: CGFloat = model.isTrusted && !model.windows.isEmpty ? 380 : 280
         panel.setContentSize(NSSize(width: width, height: height))
     }
 
