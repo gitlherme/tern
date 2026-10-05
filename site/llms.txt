@@ -1,0 +1,25 @@
+# Tern
+
+> Free, open-source Alt-Tab for Mac: a native window switcher that lets you hide the apps you don't need.
+
+Tern is a menu bar app for macOS 13 or later (Apple silicon and Intel). Press Option-Tab (⌥⇥) to cycle open windows by recency, type to search, and hide an app or a single window from the switcher. MIT license, no account, no tracking. Not the Stencil Mac terminal also named Tern.
+
+## Site
+
+- [Tern (português)](https://tern.gitlher.me/): home
+- [Tern (English)](https://tern.gitlher.me/en/): home
+- [Como fazer Alt+Tab no Mac](https://tern.gitlher.me/alt-tab-no-mac/)
+- [How to Alt-Tab on Mac](https://tern.gitlher.me/en/alt-tab-on-mac/)
+- [Alternativas ao AltTab](https://tern.gitlher.me/alternativas-ao-alttab/)
+- [AltTab alternatives](https://tern.gitlher.me/en/alttab-alternatives/)
+- [Esconder apps do alternador](https://tern.gitlher.me/esconder-apps-do-alternador/)
+- [Hide apps from the window switcher](https://tern.gitlher.me/en/hide-apps-from-window-switcher/)
+- [Ajuda](https://tern.gitlher.me/ajuda/)
+- [Help](https://tern.gitlher.me/en/help/)
+
+## Source and download
+
+- Source: https://github.com/gitlherme/tern
+- Download: https://github.com/gitlherme/tern/releases/latest
+- License: MIT
+- Author: Guilherme Vieira (https://gitlher.me)

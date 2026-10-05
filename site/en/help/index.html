@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help — install Tern, permissions, and troubleshooting</title>
+<meta name="description" content="How to install Tern on a Mac, get past Open Anyway, grant Accessibility, and fix a shortcut that does not open or also fires in the frontmost app.">
+<link rel="canonical" href="https://tern.gitlher.me/en/help/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/ajuda/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/help/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/help/">
+<link rel="icon" href="../../icon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:url" content="https://tern.gitlher.me/en/help/">
+<meta property="og:title" content="Help — install Tern, permissions, and troubleshooting">
+<meta property="og:description" content="Install, Open Anyway, Accessibility, Screen Recording, and what to do if ⌥⇥ does not open.">
+<meta property="og:image" content="https://tern.gitlher.me/og/en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+</head>
+<body data-pt="../../ajuda/">
+
+<header class="wrap top">
+  <a class="brand" href="../" aria-label="Tern">
+    <img src="../../icon.svg" alt="">
+    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+  </a>
+  <nav>
+    <a href="../">Home</a>
+    <a href="./" aria-current="page">Help</a>
+    <a href="../changelog/">Changelog</a>
+    <a class="lang" href="../../ajuda/" hreflang="pt-BR" lang="pt-BR" data-lang="pt">Português</a>
+  </nav>
+</header>
+
+<main class="wrap prose">
+  <header class="page-head">
+    <h1>Help</h1>
+    <p class="lede">How to install Tern, get past the first-launch warning, grant permissions, and fix the shortcut. Tern is not notarized by Apple yet.</p>
+    <p class="updated">Updated <time datetime="2026-10-05">October 5, 2026</time></p>
+  </header>
+
+  <h2 id="install">Install</h2>
+  <ol>
+    <li>Download <b>Tern-x.y.z.dmg</b> from the <a href="https://github.com/gitlherme/tern/releases/latest">latest release</a>.</li>
+    <li>Open the .dmg. Drag Tern into <b>Applications</b>.</li>
+    <li>Open Tern from Applications. macOS shows a warning that the app cannot be opened because the developer cannot be verified (the wording varies by system version). Dismiss it.</li>
+    <li>Open <b>System Settings</b> › <b>Privacy &amp; Security</b>. Scroll to the Security section. Click <b>Open Anyway</b> next to the mention of Tern. Confirm.</li>
+    <li>If the button is missing, in Finder Control-click Tern › <b>Open</b> › <b>Open</b>.</li>
+    <li>Tern does not appear in the Dock. Look for the two-window icon in the menu bar, at the top right.</li>
+  </ol>
+  <p>The warning only appears on first launch. Later updates, from the app itself, do not ask again. Tern is signed with its own certificate; the source is on <a href="https://github.com/gitlherme/tern">GitHub</a>, MIT license.</p>
+
+  <h2 id="permissions">Permissions</h2>
+  <h3>Accessibility (required)</h3>
+  <p>macOS only lets Tern read window titles and bring the chosen window forward with Accessibility on. Tern does not read window contents.</p>
+  <ol>
+    <li>The first time you press <kbd>⌥</kbd> <kbd>⇥</kbd>, Tern asks for the permission. Click to open Settings.</li>
+    <li>System Settings › Privacy &amp; Security › <b>Accessibility</b>.</li>
+    <li>Turn Tern on. If it is not in the list, click + and choose Tern from Applications.</li>
+    <li>Go back to Tern and press the shortcut again.</li>
+  </ol>
+
+  <h3>Screen Recording (optional)</h3>
+  <p>Only the thumbnails on the cards. Without this permission, the switcher still switches windows; the card shows the icon. Tern does not record the screen.</p>
+  <p>In Tern Settings, request the permission. Then: System Settings › Privacy &amp; Security › Screen &amp; System Audio Recording. Tern may not add itself to the list: click + and choose the app. Quit Tern from the menu bar and open it again.</p>
+
+  <h3>Input Monitoring (only if the shortcut leaks)</h3>
+  <p>With Accessibility, Tern swallows the shortcut so it does not also fire in the frontmost app. On most macOS versions that is enough. If the browser still reacts to <kbd>⌥</kbd> <kbd>⇥</kbd>, turn on <b>Input Monitoring</b> for Tern in System Settings › Privacy &amp; Security.</p>
+
+  <h2 id="troubleshooting">Troubleshooting</h2>
+  <h3>The shortcut does not open the switcher</h3>
+  <p>Confirm Tern is in the menu bar. Without Accessibility, the HUD asks for permission instead of listing windows. In Tern Settings, check that the recorded shortcut is the one you are pressing. Another app may have taken the same shortcut.</p>
+
+  <h3>⌥⇥ also fires in the frontmost app</h3>
+  <p>Turn on Input Monitoring, as above. Tern intercepts the shortcut on purpose; if the system will not let the event tap swallow the key, the frontmost app still sees Tab.</p>
+
+  <h3>Accessibility after an update</h3>
+  <p>From <a href="../changelog/#1.1.3">1.1.3</a> on, later versions do not ask for Accessibility again: the app signature stays the same. If the switcher stops opening after an update, remove Tern from Accessibility and add it again. Only a change of signing certificate (for example, moving to a Developer ID) makes everyone grant it once more.</p>
+
+  <h2 id="automation">Automation</h2>
+  <p>In the Shortcuts app: open the switcher, hide an app, show it again, change the mode. From a URL:</p>
+  <ul>
+    <li><code>tern://open</code> opens the switcher</li>
+    <li><code>tern://hide?app=com.spotify.client&amp;for=1h</code> hides Spotify for an hour</li>
+    <li><code>tern://unhide?app=com.spotify.client</code> shows it again</li>
+    <li><code>tern://mode?name=Work</code> turns a mode on; <code>tern://mode</code> turns it off</li>
+  </ul>
+  <p>Those links do not close windows or quit apps.</p>
+  <p><a href="https://github.com/gitlherme/tern/releases/latest">Download Tern</a> · <a href="../changelog/">Changelog</a></p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Tern · made by <a href="https://gitlher.me">gitlherme</a></span>
+    <nav>
+      <a href="../alt-tab-on-mac/">How to Alt-Tab</a>
+      <a href="../alttab-alternatives/">Alternatives</a>
+      <a href="../hide-apps-from-window-switcher/">Hide apps</a>
+      <a href="./" aria-current="page">Help</a>
+    </nav>
+  </div>
+</footer>
+<script src="../../site.js"></script>
+</body>
+</html>

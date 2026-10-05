@@ -85,4 +85,59 @@ fi
 echo "==> DMG:     $DMG"
 echo "==> SHA-256: $(shasum -a 256 "$DMG" | cut -d' ' -f1)"
 echo "==> Appcast: $APPCAST"
+
+TODAY=$(date +%F)
+python3 - "$VERSION" "$TODAY" <<'PY'
+import pathlib, re, sys
+version, today = sys.argv[1], sys.argv[2]
+y, m, d = (int(x) for x in today.split("-"))
+months_pt = (
+    "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+)
+months_en = (
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+)
+date_pt = f"{d} de {months_pt[m - 1]} de {y}"
+date_en = f"{months_en[m - 1]} {d}, {y}"
+
+root = pathlib.Path("site")
+for path in (root / "index.html", root / "en" / "index.html"):
+    text = path.read_text()
+    text = re.sub(r'"softwareVersion": "[^"]+"', f'"softwareVersion": "{version}"', text)
+    text = re.sub(r'"dateModified": "[^"]+"', f'"dateModified": "{today}"', text)
+    text = re.sub(
+        r'(<span data-release="version">)[^<]+',
+        rf"\g<1>{version}",
+        text,
+    )
+    text = re.sub(
+        r'(<time datetime=")[^"]+(" data-release="date-pt">)[^<]+',
+        rf"\g<1>{today}\g<2>{date_pt}",
+        text,
+    )
+    text = re.sub(
+        r'(<time datetime=")[^"]+(" data-release="date-en">)[^<]+',
+        rf"\g<1>{today}\g<2>{date_en}",
+        text,
+    )
+    path.write_text(text)
+
+sitemap = root / "sitemap.xml"
+text = sitemap.read_text()
+text = re.sub(
+    r"(<!-- release:home-pt -->\s*<url>\s*<loc>[^<]+</loc>\s*<lastmod>)[^<]+",
+    rf"\g<1>{today}",
+    text,
+)
+text = re.sub(
+    r"(<!-- release:home-en -->\s*<url>\s*<loc>[^<]+</loc>\s*<lastmod>)[^<]+",
+    rf"\g<1>{today}",
+    text,
+)
+sitemap.write_text(text)
+print(f"==> Site:    JSON-LD e sitemap em {version} / {today}")
+PY
+
 echo "Publique a release v$VERSION com esse .dmg ANTES de enviar o appcast para a main."

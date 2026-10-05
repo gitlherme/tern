@@ -3,17 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tern — seletor de janelas para Mac</title>
-<meta name="description" content="Tern é um seletor de janelas para macOS que fica na barra de menus. ⌥⇥ para trocar, digite para filtrar, ⌫ para esconder o que atrapalha.">
+<title>Tern — Alt+Tab no Mac: alternador de janelas grátis</title>
+<meta name="description" content="Tern é um alternador de janelas grátis para Mac. ⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Código aberto, macOS 13 ou posterior.">
+<link rel="canonical" href="https://tern.gitlher.me/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/">
+<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/">
+<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="alternate" hreflang="pt-BR" href="./">
-<link rel="alternate" hreflang="en" href="en/">
-<link rel="alternate" hreflang="x-default" href="en/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tern">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://tern.gitlher.me/">
+<meta property="og:title" content="Tern — Alt+Tab no Mac: alternador de janelas grátis">
+<meta property="og:description" content="⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Grátis, código aberto, macOS 13+.">
+<meta property="og:image" content="https://tern.gitlher.me/og/pt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tern, alternador de janelas grátis para Mac">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tern — Alt+Tab no Mac: alternador de janelas grátis">
+<meta name="twitter:description" content="⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Grátis, código aberto, macOS 13+.">
+<meta name="twitter:image" content="https://tern.gitlher.me/og/pt.png">
 <link rel="stylesheet" href="site.css">
-<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede,.slogan{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.gitlher.me/","description":"Alternador de janelas grátis para macOS. ⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.0","dateModified":"2026-10-04","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"pt-BR","screenshot":"https://tern.gitlher.me/media/tern-demo-pt.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"O Mac tem Alt+Tab?","acceptedAnswer":{"@type":"Answer","text":"O macOS não tem Alt+Tab. O ⌘⇥ alterna aplicativos, não janelas. Para ir de uma janela a outra do mesmo app, o atalho é ⌘ e o acento grave. O Tern usa ⌥⇥ para alternar janela por janela."}},
+    {"@type":"Question","name":"Qual a diferença entre o Tern e o ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"O ⌘⇥ do Mac mostra um app por ícone. Se o Safari tiver três janelas, o ⌘⇥ trata tudo como um único Safari. O Tern mostra cada janela como um card, na ordem em que você usou. Também dá para buscar digitando e esconder apps do alternador, o que o ⌘⇥ não faz."}},
+    {"@type":"Question","name":"O Tern é grátis?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga."}},
+    {"@type":"Question","name":"Por que o Tern pede Acessibilidade?","acceptedAnswer":{"@type":"Answer","text":"O macOS só deixa um app listar títulos de janela e trazer uma janela à frente com a permissão de Acessibilidade. O Tern não lê o conteúdo das janelas. Sem essa permissão, o atalho não consegue trocar de janela."}},
+    {"@type":"Question","name":"Por que o macOS avisa na primeira abertura?","acceptedAnswer":{"@type":"Answer","text":"O Tern ainda não é notarizado pela Apple. É assinado com um certificado próprio, e o código está no GitHub. Na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › Abrir Mesmo Assim. O passo a passo está na ajuda."}},
+    {"@type":"Question","name":"Dá para esconder um app do alternador?","acceptedAnswer":{"@type":"Answer","text":"Sim. No seletor, ⌫ esconde o app inteiro e ⌥⌫ esconde só a janela. Também dá para esconder pelo título, por uma hora, ou ligar um modo a um Foco do macOS."}},
+    {"@type":"Question","name":"Qual a diferença entre o Tern e o AltTab?","acceptedAnswer":{"@type":"Answer","text":"Os dois são alternadores de janelas de código aberto para Mac. No AltTab, a busca por digitação é um recurso Pro. No Tern a busca é grátis. O Tern é construído em torno de esconder apps e janelas; o AltTab é mais maduro, é notarizado e marca janelas em outros Spaces."}},
+    {"@type":"Question","name":"Precisa de Gravação da Tela?","acceptedAnswer":{"@type":"Answer","text":"Não. A Gravação da Tela é opcional e só serve para as miniaturas nos cards. Sem ela, o Tern continua trocando de janela."}}
+  ]}
+]}
+</script>
 </head>
 <body data-en="en/">
 
@@ -24,6 +52,7 @@
   </a>
   <nav>
     <a class="hide-sm" href="#recursos">Recursos</a>
+    <a href="ajuda/">Ajuda</a>
     <a href="changelog/">Novidades</a>
     <a href="https://github.com/gitlherme/tern">GitHub</a>
     <a class="lang" href="en/" hreflang="en" lang="en" data-lang="en">English</a>
@@ -33,8 +62,9 @@
 <main>
   <section class="wrap hero">
     <img class="icon" src="icon.svg" alt="Ícone do Tern: duas janelas sobrepostas">
-    <h1>Sua vez, <span>janela certa.</span></h1>
-    <p class="lede">Tern é um seletor de janelas para Mac que fica na barra de menus. Aperte <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar, digite para achar a janela e esconda os apps que só atrapalham.</p>
+    <h1>Alt+Tab no Mac, <span>janela por janela.</span></h1>
+    <p class="slogan">Sua vez, janela certa.</p>
+    <p class="lede">Tern é um alternador de janelas grátis para Mac. Aperte <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar, digite para achar a janela e esconda os apps que só atrapalham. Código aberto, macOS 13 ou posterior.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
@@ -43,9 +73,23 @@
       <a class="btn btn-ghost" href="#recursos">Como funciona</a>
     </div>
     <p class="note">macOS 13 Ventura ou posterior · Apple silicon e Intel · Português e inglês</p>
-    <p class="note">Ainda sem notarização da Apple: na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › <b>Abrir Mesmo Assim</b>.</p>
+    <p class="note">Ainda sem notarização da Apple: na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › <b>Abrir Mesmo Assim</b>. O <a href="ajuda/#instalar">passo a passo está na ajuda</a>.</p>
 
-    <div class="stage" aria-label="Demonstração do seletor do Tern">
+    <dl class="facts">
+      <div><dt>Preço</dt><dd>Grátis</dd></div>
+      <div><dt>Licença</dt><dd>MIT</dd></div>
+      <div><dt>Sistema</dt><dd>macOS 13+</dd></div>
+      <div><dt>Arquitetura</dt><dd>Apple silicon e Intel</dd></div>
+      <div><dt>Versão</dt><dd><span data-release="version">1.2.0</span> · <time datetime="2026-10-04" data-release="date-pt">4 de outubro de 2026</time></dd></div>
+      <div><dt>Conta e rastreamento</dt><dd>Nenhum</dd></div>
+    </dl>
+
+    <video class="demo-video" poster="media/tern-demo-pt.jpg" controls playsinline preload="metadata" width="1200" height="675">
+      <source src="media/tern-demo-pt.mp4" type="video/mp4">
+    </video>
+    <p class="stage-caption">O seletor do Tern: <kbd>⌥</kbd> <kbd>⇥</kbd> para avançar, digite para filtrar, <kbd>⌫</kbd> para esconder um app.</p>
+
+    <div class="stage" aria-label="Demonstração animada do seletor do Tern">
       <div class="hud" id="hud">
         <div class="hud-head">
           <div class="left">
@@ -77,7 +121,7 @@
       </div>
       <div class="feat">
         <h3><span class="mark">abc</span> <span>Digite para achar</span></h3>
-        <p>Com o seletor aberto, comece a digitar. “vsc” encontra o Visual Studio Code pelo nome do app ou pelo título da janela.</p>
+        <p>Com o seletor aberto, comece a digitar. “vsc” encontra o Visual Studio Code pelo nome do app ou pelo título da janela. A busca é grátis.</p>
       </div>
       <div class="feat">
         <h3><span class="mark">⌘W</span> <span>Feche sem sair</span></h3>
@@ -99,6 +143,7 @@
       <li><b>Por um tempo</b> <kbd>⇧</kbd> <kbd>⌫</kbd> esconde por uma hora. Nos Ajustes, também até amanhã.</li>
       <li><b>Por modo</b> Trabalho, Pessoal: um conjunto a mais de apps. Troque na barra de menus, ou ligue o modo a um Foco do macOS.</li>
     </ul>
+    <p class="aside"><a href="esconder-apps-do-alternador/">Como esconder apps do alternador →</a></p>
   </section>
 
   <section class="wrap keys">
@@ -131,6 +176,44 @@
     </ul>
   </section>
 
+  <section class="wrap block" id="faq">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq">
+      <details>
+        <summary>O Mac tem Alt+Tab?</summary>
+        <p>O macOS não tem Alt+Tab. O <kbd>⌘</kbd> <kbd>⇥</kbd> alterna aplicativos, não janelas. Para ir de uma janela a outra do mesmo app, o atalho é <kbd>⌘</kbd> e o acento grave. O Tern usa <kbd>⌥</kbd> <kbd>⇥</kbd> para alternar janela por janela.</p>
+      </details>
+      <details>
+        <summary>Qual a diferença entre o Tern e o ⌘⇥?</summary>
+        <p>O <kbd>⌘</kbd> <kbd>⇥</kbd> do Mac mostra um app por ícone. Se o Safari tiver três janelas, o ⌘⇥ trata tudo como um único Safari. O Tern mostra cada janela como um card, na ordem em que você usou. Também dá para buscar digitando e esconder apps do alternador, o que o ⌘⇥ não faz.</p>
+      </details>
+      <details>
+        <summary>O Tern é grátis?</summary>
+        <p>Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga.</p>
+      </details>
+      <details>
+        <summary>Por que o Tern pede Acessibilidade?</summary>
+        <p>O macOS só deixa um app listar títulos de janela e trazer uma janela à frente com a permissão de Acessibilidade. O Tern não lê o conteúdo das janelas. Sem essa permissão, o atalho não consegue trocar de janela.</p>
+      </details>
+      <details>
+        <summary>Por que o macOS avisa na primeira abertura?</summary>
+        <p>O Tern ainda não é notarizado pela Apple. É assinado com um certificado próprio, e o código está no GitHub. Na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › <b>Abrir Mesmo Assim</b>. O <a href="ajuda/#instalar">passo a passo está na ajuda</a>.</p>
+      </details>
+      <details>
+        <summary>Dá para esconder um app do alternador?</summary>
+        <p>Sim. No seletor, <kbd>⌫</kbd> esconde o app inteiro e <kbd>⌥</kbd> <kbd>⌫</kbd> esconde só a janela. Também dá para esconder pelo título, por uma hora, ou ligar um modo a um Foco do macOS.</p>
+      </details>
+      <details>
+        <summary>Qual a diferença entre o Tern e o AltTab?</summary>
+        <p>Os dois são alternadores de janelas de código aberto para Mac. No AltTab, a busca por digitação é um recurso Pro. No Tern a busca é grátis. O Tern é construído em torno de esconder apps e janelas; o AltTab é mais maduro, é notarizado e marca janelas em outros Spaces. Há um <a href="alternativas-ao-alttab/">comparativo</a>.</p>
+      </details>
+      <details>
+        <summary>Precisa de Gravação da Tela?</summary>
+        <p>Não. A Gravação da Tela é opcional e só serve para as miniaturas nos cards. Sem ela, o Tern continua trocando de janela.</p>
+      </details>
+    </div>
+  </section>
+
   <section class="wrap final">
     <h2>Troque de janela sem pensar.</h2>
     <p>Baixe o Tern, conceda Acessibilidade e aperte <kbd>⌥</kbd> <kbd>⇥</kbd>. Quem já instalou recebe a <a href="changelog/#1.2.0">1.2</a> pelo próprio app.</p>
@@ -142,67 +225,25 @@
   <div class="wrap">
     <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
     <nav>
+      <a href="alt-tab-no-mac/">Como fazer Alt+Tab</a>
+      <a href="alternativas-ao-alttab/">Alternativas</a>
+      <a href="esconder-apps-do-alternador/">Esconder apps</a>
+      <a href="ajuda/">Ajuda</a>
       <a href="changelog/">Novidades</a>
       <a href="https://github.com/gitlherme/tern">Código no GitHub</a>
     </nav>
   </div>
 </footer>
 
+<script src="site.js"></script>
 <script>
-  document.querySelectorAll('[data-lang]').forEach(a => a.addEventListener('click', () => {
-    try { localStorage.setItem('tern-lang', a.dataset.lang); } catch (e) {}
-  }));
-  (() => {
-    let saved = null;
-    try { saved = localStorage.getItem('tern-lang'); } catch (e) {}
-    const en = document.body.dataset.en;
-    if (en && document.documentElement.lang === 'pt-BR' && !saved && !/^pt/i.test(navigator.language || '')) {
-      location.replace(en);
-    }
-  })();
-  (() => {
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const cards = [...document.querySelectorAll('#cards .card')];
-    const hud = document.getElementById('hud');
-    const q = document.getElementById('q');
-    const count = document.getElementById('count');
-    const caption = document.getElementById('caption');
-    const word = 'xco';
-    let i = 1;
-    let phase = 'browse';
-    let ticks = 0;
-    const browseCaption = 'Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.';
-    const searchCaption = 'Digite para filtrar. <kbd>xco</kbd> acha o Xcode.';
-    setInterval(() => {
-      if (phase === 'browse') {
-        hud.classList.remove('searching');
-        cards.forEach(c => c.classList.remove('dim'));
-        cards[i].classList.remove('on');
-        i = (i + 1) % cards.length;
-        cards[i].classList.add('on');
-        count.textContent = '4 janelas';
-        caption.innerHTML = browseCaption;
-        if (++ticks >= 3) { phase = 'type'; ticks = 0; q.textContent = ''; }
-      } else if (phase === 'type') {
-        hud.classList.add('searching');
-        q.textContent = word.slice(0, ticks + 1);
-        if (++ticks >= word.length) {
-          cards.forEach(c => {
-            const hit = c.hasAttribute('data-hit');
-            c.classList.toggle('dim', !hit);
-            c.classList.toggle('on', hit);
-          });
-          count.textContent = '1 janela';
-          caption.innerHTML = searchCaption;
-          phase = 'hold';
-          ticks = 0;
-        }
-      } else if (++ticks >= 3) {
-        phase = 'browse';
-        ticks = 0;
-      }
-    }, 900);
-  })();
+  ternDemo({
+    word: "xco",
+    countAll: "4 janelas",
+    countOne: "1 janela",
+    browseCaption: "Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.",
+    searchCaption: "Digite para filtrar. <kbd>xco</kbd> acha o Xcode."
+  });
 </script>
 </body>
 </html>
