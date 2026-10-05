@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tern — seletor de janelas para Mac</title>
-<meta name="description" content="Tern é um seletor de janelas para macOS que fica na barra de menus. ⌥⇥ para trocar de janela, ⌫ para esconder o que você não quer ver.">
+<meta name="description" content="Tern é um seletor de janelas para macOS que fica na barra de menus. ⌥⇥ para trocar, digite para filtrar, ⌫ para esconder o que atrapalha.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="pt-BR" href="./">
 <link rel="alternate" hreflang="en" href="en/">
@@ -12,180 +12,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --night: #1A2133;
-    --night-2: #222B40;
-    --slate: #2E3D5E;
-    --slate-2: #42557F;
-    --sky: #4A8BE8;
-    --mist: #E8EEFC;
-    --coral: #F2705F;
-    --text: #E8EEFC;
-    --text-2: #A3B1CC;
-    --line: rgba(232, 238, 252, 0.1);
-    --radius: 14px;
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--night);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-
-  header.top {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-block: 22px;
-  }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .brand img { width: 30px; height: 30px; }
-  .brand svg { height: 22px; width: auto; }
-  .top nav a {
-    color: var(--text-2); text-decoration: none; font-size: 15px; font-weight: 500;
-  }
-  .top nav a:hover { color: var(--text); }
-  .top nav { display: flex; align-items: center; gap: 22px; }
-  .top nav .lang { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: 13px; }
-
-  .hero { text-align: center; padding-block: 72px 40px; }
-  .hero .icon { width: 128px; height: 128px; display: block; margin: 0 auto 28px; filter: drop-shadow(0 18px 40px rgba(0,0,0,.45)); }
-  h1 {
-    font-size: clamp(38px, 7vw, 64px); line-height: 1.05; letter-spacing: -0.03em;
-    font-weight: 700; margin: 0 auto 18px; max-width: 14ch; text-wrap: balance;
-  }
-  h1 span { color: var(--sky); }
-  .lede { color: var(--text-2); font-size: 19px; max-width: 34em; margin: 0 auto 32px; text-wrap: pretty; }
-  .cta { display: inline-flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 22px; border-radius: 999px; font-weight: 600; font-size: 16px;
-    text-decoration: none; transition: transform .15s ease, background .15s ease;
-  }
-  .btn:active { transform: scale(0.98); }
-  .btn-primary { background: var(--sky); color: #fff; }
-  .btn-primary:hover { background: #5b98ee; }
-  .btn-ghost { border: 1px solid var(--line); color: var(--text); }
-  .btn-ghost:hover { background: var(--night-2); }
-  .note { color: var(--text-2); font-size: 14px; margin-top: 14px; }
-
-  kbd {
-    font-family: inherit; font-weight: 600; font-size: 0.9em;
-    background: var(--night-2); border: 1px solid var(--line); border-bottom-width: 2px;
-    border-radius: 6px; padding: 1px 7px; white-space: nowrap;
-  }
-
-  /* HUD demo */
-  .stage {
-    margin: 56px auto 0; max-width: 860px;
-    background: linear-gradient(180deg, #2a3550 0%, #1f2840 100%);
-    border: 1px solid var(--line); border-radius: 22px;
-    padding: 44px 24px; position: relative; overflow: hidden;
-  }
-  .hud {
-    margin: 0 auto; max-width: 720px;
-    background: rgba(26, 33, 51, 0.82); border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 22px; padding: 16px;
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  }
-  .hud-head {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 14px; font-weight: 600; padding: 0 4px 12px;
-  }
-  .hud-head .left { display: flex; align-items: center; gap: 8px; }
-  .hud-head .left svg { color: var(--sky); }
-  .hud-head .count { color: var(--text-2); font-weight: 500; font-size: 13px; }
-  .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-  .card {
-    border-radius: 12px; padding: 8px; border: 2px solid transparent;
-    background: rgba(255,255,255,0.04); transition: all .25s ease;
-  }
-  .card.on { border-color: var(--sky); background: rgba(74,139,232,0.14); }
-  .thumb {
-    aspect-ratio: 16 / 10; border-radius: 7px; background: var(--mist);
-    overflow: hidden; position: relative;
-  }
-  .thumb::before {
-    content: ""; position: absolute; inset: 0 0 auto 0; height: 16%;
-    background: var(--bar, var(--sky));
-  }
-  .thumb i { position: absolute; left: 9%; height: 8%; border-radius: 3px; background: #b5c9e3; }
-  .thumb i:nth-child(1) { top: 30%; width: 60%; }
-  .thumb i:nth-child(2) { top: 46%; width: 44%; }
-  .card p { margin: 7px 2px 0; font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .card p small { display: block; color: var(--text-2); font-weight: 500; font-size: 11px; }
-  .hidden-row {
-    margin-top: 12px; display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: var(--text-2); padding: 0 4px;
-  }
-  .hidden-row b { color: var(--text); font-weight: 600; }
-  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--coral); position: relative; flex: none; }
-  .dot::after {
-    content: ""; position: absolute; left: 4px; right: 4px; top: 7.5px; height: 3px;
-    background: #fff; border-radius: 2px; transform: rotate(40deg);
-  }
-  .stage-caption { text-align: center; color: var(--text-2); font-size: 14px; margin: 20px 0 0; }
-
-  /* Features */
-  section.features { padding-block: 96px 24px; }
-  .eyebrow { color: var(--sky); font-weight: 600; font-size: 14px; letter-spacing: 0.02em; margin: 0 0 10px; }
-  h2 { font-size: clamp(28px, 4.4vw, 40px); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 40px; max-width: 18ch; font-weight: 700; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-  .feat { background: var(--night-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
-  .feat h3 { margin: 14px 0 6px; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
-  .feat p { margin: 0; color: var(--text-2); font-size: 15.5px; }
-  .feat .glyph {
-    width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center;
-    background: rgba(74,139,232,0.16); color: var(--sky); font-weight: 700;
-  }
-  .feat .glyph.coral { background: rgba(242,112,95,0.16); color: var(--coral); }
-
-  .keys { padding-block: 72px 24px; }
-  .keylist { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 32px; margin: 0; padding: 0; list-style: none; }
-  .keylist li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
-  .keylist li span { color: var(--text-2); }
-
-  .final { text-align: center; padding-block: 96px; }
-  .final h2 { margin: 0 auto 14px; }
-  .final p { color: var(--text-2); margin: 0 auto 28px; max-width: 32em; }
-
-  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--text-2); font-size: 14px; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
-
-  @media (max-width: 640px) {
-    body { font-size: 16px; }
-    .wrap { padding: 0 16px; }
-    .hero { padding-block: 40px 24px; }
-    .hero .icon { width: 96px; height: 96px; }
-    .stage { padding: 24px 12px; border-radius: 18px; }
-    .hud { padding: 12px; }
-    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .top nav .hide-sm { display: none; }
-  }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-</style>
+<link rel="stylesheet" href="site.css">
+<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
 </head>
-<body>
+<body data-en="en/">
 
 <header class="wrap top">
-  <a class="brand" href="#" aria-label="Tern">
+  <a class="brand" href="./" aria-label="Tern">
     <img src="icon.svg" alt="">
     <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
   </a>
-  <nav><a class="hide-sm" href="#recursos">Recursos</a><a href="https://github.com/gitlherme/tern">GitHub</a><a class="lang" href="en/" hreflang="en" lang="en" data-lang="en">English</a></nav>
+  <nav>
+    <a class="hide-sm" href="#recursos">Recursos</a>
+    <a href="changelog/">Novidades</a>
+    <a href="https://github.com/gitlherme/tern">GitHub</a>
+    <a class="lang" href="en/" hreflang="en" lang="en" data-lang="en">English</a>
+  </nav>
 </header>
 
 <main>
   <section class="wrap hero">
     <img class="icon" src="icon.svg" alt="Ícone do Tern: duas janelas sobrepostas">
     <h1>Sua vez, <span>janela certa.</span></h1>
-    <p class="lede">Tern é um seletor de janelas para Mac que fica na barra de menus. Aperte <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar de janela e esconda os apps que só atrapalham a troca.</p>
+    <p class="lede">Tern é um seletor de janelas para Mac que fica na barra de menus. Aperte <kbd>⌥</kbd> <kbd>⇥</kbd> para trocar, digite para achar a janela e esconda os apps que só atrapalham.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
@@ -197,23 +46,24 @@
     <p class="note">Ainda sem notarização da Apple: na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › <b>Abrir Mesmo Assim</b>.</p>
 
     <div class="stage" aria-label="Demonstração do seletor do Tern">
-      <div class="hud">
+      <div class="hud" id="hud">
         <div class="hud-head">
           <div class="left">
             <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 10.5 H3.5 A2 2 0 0 1 1.5 8.5 V4.5 A2 2 0 0 1 3.5 2.5 H9.5 A2 2 0 0 1 11.5 4.5 V5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="6" y="7" width="10.5" height="8.5" rx="2" fill="currentColor"/></svg>
-            Tern
+            <span class="brand-name">Tern</span>
+            <span class="pill" id="pill" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 L13.5 13.5" stroke-linecap="round"/></svg><b id="q"></b><i class="caret"></i></span>
           </div>
-          <span class="count">4 janelas</span>
+          <span class="count" id="count">4 janelas</span>
         </div>
         <div class="cards" id="cards">
           <div class="card"><div class="thumb" style="--bar:#4A8BE8"><i></i><i></i></div><p>Safari<small>Documentação</small></p></div>
-          <div class="card on"><div class="thumb" style="--bar:#2E3D5E"><i></i><i></i></div><p>Xcode<small>Tern.xcodeproj</small></p></div>
+          <div class="card on" data-hit><div class="thumb" style="--bar:#2E3D5E"><i></i><i></i></div><p>Xcode<small>Tern.xcodeproj</small></p></div>
           <div class="card"><div class="thumb" style="--bar:#7F77DD"><i></i><i></i></div><p>Figma<small>Ícones</small></p></div>
           <div class="card"><div class="thumb" style="--bar:#1D9E75"><i></i><i></i></div><p>Notas<small>Ideias</small></p></div>
         </div>
         <div class="hidden-row"><span class="dot" aria-hidden="true"></span><span><b>Mensagens</b> está oculto e não aparece aqui.</span></div>
       </div>
-      <p class="stage-caption">Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.</p>
+      <p class="stage-caption" id="caption">Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.</p>
     </div>
   </section>
 
@@ -222,26 +72,33 @@
     <h2>O seletor que o Mac não tem.</h2>
     <div class="grid">
       <div class="feat">
-        <div class="glyph">⌥⇥</div>
-        <h3>Janelas, não apps</h3>
-        <p>Cada janela vira um card com prévia, na ordem em que você usou. A anterior está sempre a um toque.</p>
+        <h3><span class="mark">⌥⇥</span> <span>Janelas, não apps</span></h3>
+        <p>Cada janela vira um card com prévia, na ordem em que você usou. A anterior está sempre a um toque. Sem Gravação da Tela, o card mostra o ícone e o Tern continua trocando.</p>
       </div>
       <div class="feat">
-        <div class="glyph coral">⌫</div>
-        <h3>Esconda o que atrapalha</h3>
-        <p>Oculte um app inteiro ou só uma janela. O Tern deixa de mostrá-los até você tirar da lista.</p>
+        <h3><span class="mark">abc</span> <span>Digite para achar</span></h3>
+        <p>Com o seletor aberto, comece a digitar. “vsc” encontra o Visual Studio Code pelo nome do app ou pelo título da janela.</p>
       </div>
       <div class="feat">
-        <div class="glyph">⌘</div>
-        <h3>Atalho que é seu</h3>
-        <p>Grave qualquer combinação. O Tern intercepta o atalho para ele não disparar também no app da frente.</p>
+        <h3><span class="mark">⌘W</span> <span>Feche sem sair</span></h3>
+        <p><kbd>⌘</kbd> <kbd>W</kbd> fecha a janela destacada, <kbd>⌘</kbd> <kbd>M</kbd> minimiza e <kbd>⌘</kbd> <kbd>Q</kbd> encerra o app. Tudo dentro do seletor.</p>
       </div>
       <div class="feat">
-        <div class="glyph">◐</div>
-        <h3>Discreto</h3>
-        <p>Vive na barra de menus, sem ícone no Dock. Nativo em Swift, leve e sem conta nem rastreamento.</p>
+        <h3><span class="mark">◐</span> <span>Discreto</span></h3>
+        <p>Vive na barra de menus, sem ícone no Dock. Nativo em Swift, leve, sem conta e sem rastreamento. O atalho dá para gravar de novo nos Ajustes.</p>
       </div>
     </div>
+  </section>
+
+  <section class="wrap block">
+    <h2>Fora do caminho.</h2>
+    <ul class="points">
+      <li><b>O app inteiro</b> <kbd>⌫</kbd> tira ele do seletor até você devolver, nos Ajustes ou por um link.</li>
+      <li><b>Só uma janela</b> <kbd>⌥</kbd> <kbd>⌫</kbd> esconde pelo título exato. O resto do app continua aparecendo.</li>
+      <li><b>Pelo título</b> Um texto, ou um padrão com *, esconde janelas como Picture in Picture mesmo quando o nome muda.</li>
+      <li><b>Por um tempo</b> <kbd>⇧</kbd> <kbd>⌫</kbd> esconde por uma hora. Nos Ajustes, também até amanhã.</li>
+      <li><b>Por modo</b> Trabalho, Pessoal: um conjunto a mais de apps. Troque na barra de menus, ou ligue o modo a um Foco do macOS.</li>
+    </ul>
   </section>
 
   <section class="wrap keys">
@@ -251,15 +108,32 @@
       <li>Abrir e avançar <span><kbd>⌥</kbd> <kbd>⇥</kbd></span></li>
       <li>Voltar <span><kbd>⇧</kbd> <kbd>⇥</kbd></span></li>
       <li>Focar a janela <span><kbd>⏎</kbd></span></li>
+      <li>Buscar <span>digite</span></li>
       <li>Ocultar o app <span><kbd>⌫</kbd></span></li>
+      <li>Soneca de 1 hora <span><kbd>⇧</kbd> <kbd>⌫</kbd></span></li>
       <li>Ocultar só a janela <span><kbd>⌥</kbd> <kbd>⌫</kbd></span></li>
+      <li>Fechar a janela <span><kbd>⌘</kbd> <kbd>W</kbd></span></li>
+      <li>Minimizar <span><kbd>⌘</kbd> <kbd>M</kbd></span></li>
+      <li>Encerrar o app <span><kbd>⌘</kbd> <kbd>Q</kbd></span></li>
       <li>Fechar o seletor <span><kbd>esc</kbd></span></li>
+    </ul>
+    <p class="aside">As setas também movem a seleção. Numa busca, <kbd>⌫</kbd> apaga o texto e <kbd>esc</kbd> limpa a busca: soltar o <kbd>⌥</kbd> só confirma quando você não digitou nada. O <kbd>⌥</kbd> <kbd>⇥</kbd> é o padrão; nos Ajustes, grave outro. O Tern intercepta o atalho para ele não disparar também no app da frente.</p>
+  </section>
+
+  <section class="wrap block">
+    <h2>Abra de qualquer lugar.</h2>
+    <p class="aside flush">No app Atalhos: abrir o seletor, esconder um app, mostrar de novo ou mudar o modo. O mesmo por um link <code>tern://</code>. Esses links não fecham janela nem encerram app.</p>
+    <ul class="url-list">
+      <li><code>tern://open</code> <span>abre o seletor</span></li>
+      <li><code>tern://hide?app=com.spotify.client&amp;for=1h</code> <span>esconde o Spotify por uma hora</span></li>
+      <li><code>tern://unhide?app=com.spotify.client</code> <span>mostra de novo</span></li>
+      <li><code>tern://mode?name=Trabalho</code> <span>liga o modo; sem o nome, desliga</span></li>
     </ul>
   </section>
 
   <section class="wrap final">
     <h2>Troque de janela sem pensar.</h2>
-    <p>Baixe o Tern, conceda Acessibilidade e aperte <kbd>⌥</kbd> <kbd>⇥</kbd>.</p>
+    <p>Baixe o Tern, conceda Acessibilidade e aperte <kbd>⌥</kbd> <kbd>⇥</kbd>. Quem já instalou recebe a <a href="changelog/#1.2.0">1.2</a> pelo próprio app.</p>
     <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">Baixar para macOS</a>
   </section>
 </main>
@@ -267,7 +141,10 @@
 <footer>
   <div class="wrap">
     <span>Tern · feito por <a href="https://gitlher.me">gitlherme</a></span>
-    <a href="https://github.com/gitlherme/tern">Código no GitHub</a>
+    <nav>
+      <a href="changelog/">Novidades</a>
+      <a href="https://github.com/gitlherme/tern">Código no GitHub</a>
+    </nav>
   </div>
 </footer>
 
@@ -278,19 +155,53 @@
   (() => {
     let saved = null;
     try { saved = localStorage.getItem('tern-lang'); } catch (e) {}
-    if (document.documentElement.lang === 'pt-BR' && !saved && !/^pt/i.test(navigator.language || '')) {
-      location.replace('en/');
+    const en = document.body.dataset.en;
+    if (en && document.documentElement.lang === 'pt-BR' && !saved && !/^pt/i.test(navigator.language || '')) {
+      location.replace(en);
     }
   })();
   (() => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const cards = [...document.querySelectorAll('#cards .card')];
+    const hud = document.getElementById('hud');
+    const q = document.getElementById('q');
+    const count = document.getElementById('count');
+    const caption = document.getElementById('caption');
+    const word = 'xco';
     let i = 1;
+    let phase = 'browse';
+    let ticks = 0;
+    const browseCaption = 'Segure <kbd>⌥</kbd> e toque <kbd>⇥</kbd> para avançar. Solte para focar.';
+    const searchCaption = 'Digite para filtrar. <kbd>xco</kbd> acha o Xcode.';
     setInterval(() => {
-      cards[i].classList.remove('on');
-      i = (i + 1) % cards.length;
-      cards[i].classList.add('on');
-    }, 1400);
+      if (phase === 'browse') {
+        hud.classList.remove('searching');
+        cards.forEach(c => c.classList.remove('dim'));
+        cards[i].classList.remove('on');
+        i = (i + 1) % cards.length;
+        cards[i].classList.add('on');
+        count.textContent = '4 janelas';
+        caption.innerHTML = browseCaption;
+        if (++ticks >= 3) { phase = 'type'; ticks = 0; q.textContent = ''; }
+      } else if (phase === 'type') {
+        hud.classList.add('searching');
+        q.textContent = word.slice(0, ticks + 1);
+        if (++ticks >= word.length) {
+          cards.forEach(c => {
+            const hit = c.hasAttribute('data-hit');
+            c.classList.toggle('dim', !hit);
+            c.classList.toggle('on', hit);
+          });
+          count.textContent = '1 janela';
+          caption.innerHTML = searchCaption;
+          phase = 'hold';
+          ticks = 0;
+        }
+      } else if (++ticks >= 3) {
+        phase = 'browse';
+        ticks = 0;
+      }
+    }, 900);
   })();
 </script>
 </body>
