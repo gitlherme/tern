@@ -675,5 +675,12 @@ struct UpdateSettingsRow: View {
                 updates.checkForUpdates()
             }
         }
+        HStack {
+            Button("Apoiar no Ko-fi") {
+                NSWorkspace.shared.open(SupportLink.url)
+            }
+            .buttonStyle(.link)
+            Spacer()
+        }
     }
 }
