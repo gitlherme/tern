@@ -191,6 +191,14 @@ site/                    landing page (static HTML, pt-BR and en/)
 
 Bundle id: `dev.guilhermevieira.Tern`. Deployment target: macOS 13+.
 
+## Supporters
+
+Thanks to everyone who supports Tern on Ko-fi. Supporters who opt in are listed here.
+
+[https://ko-fi.com/gitlherme](https://ko-fi.com/gitlherme)
+
+<!-- Names are only added with the supporter's explicit permission. -->
+
 ## License
 
 [MIT](LICENSE) © Guilherme Vieira. Free and open source: use, modify, and redistribute it as you like.
