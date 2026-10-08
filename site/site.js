@@ -60,10 +60,19 @@ const PIX_KEY = "pix@gitlher.me";
 })();
 
 function copyText(text) {
+  // writeText rejeita fora do gesto do clique. O fallback tem de rodar
+  // neste mesmo turno, senão o Chrome e o Safari ignoram execCommand.
+  let modern = null;
   if (navigator.clipboard && typeof navigator.clipboard.writeText === "function" && window.isSecureContext) {
-    return navigator.clipboard.writeText(text).then(() => true, () => legacyCopy(text));
+    try {
+      modern = navigator.clipboard.writeText(text);
+    } catch (e) {
+      modern = Promise.reject(e);
+    }
   }
-  return Promise.resolve(legacyCopy(text));
+  const legacyOk = legacyCopy(text);
+  if (!modern) return Promise.resolve(legacyOk);
+  return modern.then(() => true, () => legacyOk);
 }
 
 function legacyCopy(text) {
