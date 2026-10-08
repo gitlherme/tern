@@ -317,6 +317,26 @@
         }
       }
     },
+    "Apoiar no Ko-fi": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support on Ko-fi"
+          }
+        }
+      }
+    },
+    "Apoiar o Tern…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support Tern…"
+          }
+        }
+      }
+    },
     "App": {
       "localizations": {
         "en": {
