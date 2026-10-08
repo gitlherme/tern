@@ -1,3 +1,6 @@
+// Chave Pix da página em português. Troque só aqui.
+const PIX_KEY = "pix@gitlher.me";
+
 (() => {
   const KEY = "tern-lang";
   document.querySelectorAll("[data-lang]").forEach((a) => {
@@ -54,6 +57,65 @@
     });
     document.body.insertBefore(bar, document.body.firstChild);
   }
+})();
+
+function copyText(text) {
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === "function" && window.isSecureContext) {
+    return navigator.clipboard.writeText(text).then(() => true, () => legacyCopy(text));
+  }
+  return Promise.resolve(legacyCopy(text));
+}
+
+function legacyCopy(text) {
+  const previouslyFocused = document.activeElement;
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.setAttribute("aria-hidden", "true");
+  area.style.cssText = "position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;";
+  document.body.appendChild(area);
+
+  const selection = document.getSelection();
+  const previous = selection && selection.rangeCount ? selection.getRangeAt(0) : null;
+  area.focus();
+  area.select();
+  try { area.setSelectionRange(0, text.length); } catch (e) {}
+
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+
+  area.remove();
+  if (selection) {
+    selection.removeAllRanges();
+    if (previous) selection.addRange(previous);
+  }
+  if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+  return ok;
+}
+
+(() => {
+  const slot = document.querySelector("[data-pix-key]");
+  if (slot) slot.textContent = PIX_KEY;
+
+  const button = document.querySelector("[data-copy-pix]");
+  if (!button) return;
+
+  const idle = button.textContent.trim();
+  const done = button.getAttribute("data-copied-label") || "Copiado ✓";
+  let timer = 0;
+
+  button.addEventListener("click", () => {
+    copyText(PIX_KEY).then((ok) => {
+      if (!ok) {
+        button.textContent = idle;
+        return;
+      }
+      button.textContent = done;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        button.textContent = idle;
+      }, 2000);
+    });
+  });
 })();
 
 window.ternDemo = function (opts) {

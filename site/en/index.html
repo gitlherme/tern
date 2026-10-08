@@ -33,7 +33,7 @@
   {"@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Does the Mac have Alt-Tab?","acceptedAnswer":{"@type":"Answer","text":"macOS does not have Alt-Tab. ⌘⇥ switches apps, not windows. To move between windows of the same app, the shortcut is ⌘ and the grave accent. Tern uses ⌥⇥ to switch window by window."}},
     {"@type":"Question","name":"How is Tern different from ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"macOS ⌘⇥ shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do."}},
-    {"@type":"Question","name":"Is Tern free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier."}},
+    {"@type":"Question","name":"Is Tern free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier. If it's useful to you, you can support it on Ko-fi."}},
     {"@type":"Question","name":"Why does Tern ask for Accessibility?","acceptedAnswer":{"@type":"Answer","text":"macOS only lets an app read window titles and bring a window forward with Accessibility turned on. Tern does not read window contents. Without that permission, the shortcut cannot switch windows."}},
     {"@type":"Question","name":"Why does macOS warn on first launch?","acceptedAnswer":{"@type":"Answer","text":"Tern is not notarized by Apple yet. It is signed with its own certificate, and the source is on GitHub. On first launch, go to System Settings › Privacy & Security › Open Anyway. The help page has the steps."}},
     {"@type":"Question","name":"Can I hide an app from the switcher?","acceptedAnswer":{"@type":"Answer","text":"Yes. In the switcher, ⌫ hides the whole app and ⌥⌫ hides just that window. You can also hide by title, for an hour, or tie a mode to a macOS Focus."}},
@@ -189,7 +189,7 @@
       </details>
       <details>
         <summary>Is Tern free?</summary>
-        <p>Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier.</p>
+        <p>Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier. <a href="#support">If it's useful to you, you can support it on Ko-fi.</a></p>
       </details>
       <details>
         <summary>Why does Tern ask for Accessibility?</summary>
@@ -218,6 +218,17 @@
     <h2>Switch windows without thinking.</h2>
     <p>Download Tern, grant Accessibility, and press <kbd>⌥</kbd> <kbd>⇥</kbd>. If you already have it, the app installs <a href="changelog/#1.2.0">1.2</a> on its own.</p>
     <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">Download for macOS</a>
+  </section>
+
+  <section class="wrap support" id="support">
+    <p>Tern is free, with no paid tier. If it saves you a few seconds every day, you can buy me a coffee.</p>
+    <div class="support-actions">
+      <a class="btn btn-ghost btn-support" href="https://ko-fi.com/gitlherme" target="_blank" rel="noopener noreferrer">
+        Support on Ko-fi
+        <svg class="ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    </div>
   </section>
 </main>
 

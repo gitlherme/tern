@@ -82,8 +82,14 @@ h1 span { color: var(--sky); }
 .btn:active { transform: scale(0.98); }
 .btn-primary { background: var(--sky); color: var(--night); }
 .btn-primary:hover { background: #5b98ee; }
-.btn-ghost { border: 1px solid var(--line); color: var(--text); }
+.btn-ghost { border: 1px solid var(--line); color: var(--text); background: transparent; }
 .btn-ghost:hover { background: var(--night-2); }
+button.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+}
 .note { color: var(--text-2); font-size: 14px; margin-top: 14px; }
 main p a, .release a {
   color: var(--sky);
@@ -194,9 +200,57 @@ h2 { font-size: 36px; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 40
 }
 .url-list span { color: var(--text-2); }
 
-.final { text-align: center; padding-block: 96px; }
+.final { text-align: center; padding-block: 96px 32px; }
 .final h2 { margin: 0 auto 14px; }
 .final p { color: var(--text-2); margin: 0 auto 28px; max-width: 32em; }
+
+.support {
+  text-align: center;
+  padding: 0 0 88px;
+  scroll-margin-top: 24px;
+}
+.support p {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 auto 14px;
+  max-width: 36em;
+}
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 14px;
+}
+.btn-support {
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-support .ext { flex: none; }
+.pix-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.pix-key {
+  font-size: 14px;
+  color: var(--text-2);
+  user-select: all;
+  -webkit-user-select: all;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .page-head { padding-block: 48px 8px; }
 .page-head h1 { margin-left: 0; margin-right: 0; max-width: 16ch; }
@@ -229,6 +283,10 @@ footer a:hover { color: var(--text); }
   .points, .keylist, .grid { grid-template-columns: 1fr; }
   .url-list li { grid-template-columns: 1fr; gap: 2px; }
   .top nav .hide-sm { display: none; }
+  .support-actions,
+  .pix-row { flex-direction: column; align-items: stretch; width: 100%; }
+  .support-actions .btn { width: 100%; justify-content: center; }
+  .pix-key { text-align: center; }
 }
 .lang-banner {
   display: none;
