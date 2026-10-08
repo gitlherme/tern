@@ -33,7 +33,7 @@
   {"@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"O Mac tem Alt+Tab?","acceptedAnswer":{"@type":"Answer","text":"O macOS não tem Alt+Tab. O ⌘⇥ alterna aplicativos, não janelas. Para ir de uma janela a outra do mesmo app, o atalho é ⌘ e o acento grave. O Tern usa ⌥⇥ para alternar janela por janela."}},
     {"@type":"Question","name":"Qual a diferença entre o Tern e o ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"O ⌘⇥ do Mac mostra um app por ícone. Se o Safari tiver três janelas, o ⌘⇥ trata tudo como um único Safari. O Tern mostra cada janela como um card, na ordem em que você usou. Também dá para buscar digitando e esconder apps do alternador, o que o ⌘⇥ não faz."}},
-    {"@type":"Question","name":"O Tern é grátis?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga."}},
+    {"@type":"Question","name":"O Tern é grátis?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga. Se ele te ajuda, dá pra apoiar pelo Ko-fi ou via Pix."}},
     {"@type":"Question","name":"Por que o Tern pede Acessibilidade?","acceptedAnswer":{"@type":"Answer","text":"O macOS só deixa um app listar títulos de janela e trazer uma janela à frente com a permissão de Acessibilidade. O Tern não lê o conteúdo das janelas. Sem essa permissão, o atalho não consegue trocar de janela."}},
     {"@type":"Question","name":"Por que o macOS avisa na primeira abertura?","acceptedAnswer":{"@type":"Answer","text":"O Tern ainda não é notarizado pela Apple. É assinado com um certificado próprio, e o código está no GitHub. Na primeira abertura, vá em Ajustes do Sistema › Privacidade e segurança › Abrir Mesmo Assim. O passo a passo está na ajuda."}},
     {"@type":"Question","name":"Dá para esconder um app do alternador?","acceptedAnswer":{"@type":"Answer","text":"Sim. No seletor, ⌫ esconde o app inteiro e ⌥⌫ esconde só a janela. Também dá para esconder pelo título, por uma hora, ou ligar um modo a um Foco do macOS."}},
@@ -189,7 +189,7 @@
       </details>
       <details>
         <summary>O Tern é grátis?</summary>
-        <p>Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga.</p>
+        <p>Sim. O Tern é gratuito e de código aberto, licença MIT. A busca por digitação, as exclusões, a soneca e os modos entram no download, sem conta e sem versão paga. <a href="#support">Se ele te ajuda, dá pra apoiar pelo Ko-fi ou via Pix.</a></p>
       </details>
       <details>
         <summary>Por que o Tern pede Acessibilidade?</summary>
@@ -218,6 +218,22 @@
     <h2>Troque de janela sem pensar.</h2>
     <p>Baixe o Tern, conceda Acessibilidade e aperte <kbd>⌥</kbd> <kbd>⇥</kbd>. Quem já instalou recebe a <a href="changelog/#1.2.0">1.2</a> pelo próprio app.</p>
     <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">Baixar para macOS</a>
+  </section>
+
+  <section class="wrap support" id="support">
+    <p>O Tern é gratuito e não tem versão paga. Se ele te poupa uns segundos todo dia, dá pra me pagar um café.</p>
+    <div class="support-actions">
+      <a class="btn btn-ghost btn-support" href="https://ko-fi.com/gitlherme" target="_blank" rel="noopener noreferrer">
+        Apoiar no Ko-fi
+        <svg class="ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        <span class="sr-only"> (abre em uma nova aba)</span>
+      </a>
+      <div class="pix-row">
+        <button type="button" class="btn btn-ghost btn-support" data-copy-pix data-copied-label="Copiado ✓" aria-live="polite">Copiar chave Pix</button>
+        <!-- A chave visível é preenchida por PIX_KEY em site.js -->
+        <span class="pix-key" data-pix-key></span>
+      </div>
+    </div>
   </section>
 </main>
 
