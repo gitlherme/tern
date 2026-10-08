@@ -99,6 +99,16 @@ final class StatusItemController: NSObject {
         )
         updates.target = UpdateService.shared.controller
         menu.addItem(updates)
+
+        menu.addItem(.separator())
+        let support = NSMenuItem(
+            title: String(localized: "Apoiar o Tern…"),
+            action: #selector(openSupport),
+            keyEquivalent: ""
+        )
+        support.target = self
+        menu.addItem(support)
+
         let quit = NSMenuItem(title: String(localized: "Sair do Tern"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         menu.addItem(quit)
 
@@ -119,5 +129,9 @@ final class StatusItemController: NSObject {
 
     @objc private func openAccessibility() {
         model.openWelcome()
+    }
+
+    @objc private func openSupport() {
+        NSWorkspace.shared.open(SupportLink.url)
     }
 }
