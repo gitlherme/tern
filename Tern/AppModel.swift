@@ -34,6 +34,7 @@ final class AppModel: ObservableObject {
     /// Todas as janelas em ordem de recência, antes da busca.
     private var allWindows: [WindowInfo] = []
     private var pollTimer: Timer?
+    private var thumbnailGeneration = 0
     private var settingsWindow: NSWindow?
     private var welcomeWindow: NSWindow?
     private var welcomeCloseObserver: NSObjectProtocol?
@@ -214,13 +215,38 @@ final class AppModel: ObservableObject {
         applyFilter()
     }
 
+    /// Janelas sem miniatura são capturadas na hora; as que já têm uma são
+    /// recapturadas em segundo plano, para o seletor abrir sem esperar e ainda
+    /// mostrar o conteúdo atual da janela, não o da primeira vez que apareceu.
     func refreshThumbnails() {
         let ids = Set(windows.map(\.windowID))
         thumbnails = thumbnails.filter { ids.contains($0.key) }
         guard canCaptureScreen else { return }
-        for window in windows where thumbnails[window.windowID] == nil {
-            if let image = WindowThumbnail.capture(windowID: window.windowID) {
+        var stale: [CGWindowID] = []
+        for window in windows {
+            if thumbnails[window.windowID] != nil {
+                stale.append(window.windowID)
+            } else if let image = WindowThumbnail.capture(windowID: window.windowID) {
                 thumbnails[window.windowID] = image
+            }
+        }
+        guard !stale.isEmpty else { return }
+        thumbnailGeneration += 1
+        let generation = thumbnailGeneration
+        let pending = stale
+        DispatchQueue.global(qos: .userInitiated).async {
+            let captured = pending.compactMap { id in
+                WindowThumbnail.captureImage(windowID: id).map { (id, $0) }
+            }
+            DispatchQueue.main.async {
+                MainActor.assumeIsolated {
+                    let model = AppModel.shared
+                    // Uma atualização mais nova já está a caminho.
+                    guard generation == model.thumbnailGeneration, model.canCaptureScreen else { return }
+                    for (id, cgImage) in captured where model.thumbnails[id] != nil {
+                        model.thumbnails[id] = WindowThumbnail.image(from: cgImage)
+                    }
+                }
             }
         }
     }
