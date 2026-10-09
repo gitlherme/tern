@@ -3,6 +3,22 @@
     <channel>
         <title>Tern</title>
         <item>
+            <title>1.2.1</title>
+            <pubDate>Fri, 09 Oct 2026 12:15:24 -0300</pubDate>
+            <link>https://tern.gitlher.me</link>
+            <sparkle:fullReleaseNotesLink>https://github.com/gitlherme/tern/releases</sparkle:fullReleaseNotesLink>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Tern 1.2.1</h2>
+<ul>
+  <li><b>Prévias atualizadas:</b> as miniaturas mostram o conteúdo atual de cada janela, não mais o da primeira vez que ela apareceu. / <i>Fresh previews: thumbnails show each window's current content, not how it looked the first time it appeared.</i></li>
+  <li><b>Apoie o Tern:</b> um link para o Ko-fi no menu da barra e nos Ajustes. / <i>Support Tern: a Ko-fi link in the menu bar and in Settings.</i></li>
+</ul>
+]]></description>
+            <enclosure url="https://github.com/gitlherme/tern/releases/download/v1.2.1/Tern-1.2.1.dmg" length="2407839" type="application/octet-stream" sparkle:edSignature="IeQzDj55frCxTIsOIjFbTJAWF0RAdGpGB3PmuWXNPOkeqIN67+VDkjyenzdHTb2zDUjic+olVXhfbZUDYJqYDA=="/>
+        </item>
+        <item>
             <title>1.2.0</title>
             <pubDate>Sun, 04 Oct 2026 23:52:29 -0300</pubDate>
             <link>https://tern.gitlher.me</link>
@@ -38,22 +54,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://github.com/gitlherme/tern/releases/download/v1.1.4/Tern-1.1.4.dmg" length="1979543" type="application/octet-stream" sparkle:edSignature="myP8/s62HAusHH6p0E8vicXEBzp5/RzbMWussweHzWzM1CwBj27g8fmbm5iLQdFU1yYluNXChJXEnAq6yeiGBg=="/>
-        </item>
-        <item>
-            <title>1.1.3</title>
-            <pubDate>Fri, 02 Oct 2026 22:47:25 -0300</pubDate>
-            <link>https://tern.gitlher.me</link>
-            <sparkle:fullReleaseNotesLink>https://github.com/gitlherme/tern/releases</sparkle:fullReleaseNotesLink>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Tern 1.1.3</h2>
-<ul>
-  <li>O Tern passa a ter uma assinatura fixa: depois desta atualização, as próximas versões <b>não pedem mais a permissão de Acessibilidade de novo</b>. / <i>Tern now has a stable signature: after this update, future versions <b>no longer ask for Accessibility again</b>.</i></li>
-</ul>
-<p>Esta atualização ainda pede uma última vez: se o seletor não abrir, remova o Tern em Ajustes do Sistema › Privacidade e Segurança › Acessibilidade e adicione de novo. / <i>This update asks one last time: if the switcher doesn't open, remove Tern from System Settings › Privacy &amp; Security › Accessibility and add it again.</i></p>
-]]></description>
-            <enclosure url="https://github.com/gitlherme/tern/releases/download/v1.1.3/Tern-1.1.3.dmg" length="1980854" type="application/octet-stream" sparkle:edSignature="CcNl84wJx8ViK+yFeWeWJe6sgbXc/NkFRZ3ArdJ0TGtdqalfUULoMW+BsuYqPFhVBWdlekG+pG5RXflywTcOAg=="/>
         </item>
     </channel>
 </rss>
