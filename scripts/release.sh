@@ -105,8 +105,8 @@ date_en = f"{months_en[m - 1]} {d}, {y}"
 root = pathlib.Path("site")
 for path in (root / "index.html", root / "en" / "index.html"):
     text = path.read_text()
-    text = re.sub(r'"softwareVersion": "[^"]+"', f'"softwareVersion": "{version}"', text)
-    text = re.sub(r'"dateModified": "[^"]+"', f'"dateModified": "{today}"', text)
+    text = re.sub(r'("softwareVersion":\s*)"[^"]+"', rf'\g<1>"{version}"', text)
+    text = re.sub(r'("dateModified":\s*)"[^"]+"', rf'\g<1>"{today}"', text)
     text = re.sub(
         r'(<span data-release="version">)[^<]+',
         rf"\g<1>{version}",
