@@ -139,7 +139,9 @@ window.ternDemo = function (opts) {
   let i = 1;
   let phase = "browse";
   let ticks = 0;
-  setInterval(() => {
+  let timer = 0;
+
+  function tick() {
     if (phase === "browse") {
       hud.classList.remove("searching");
       cards.forEach((c) => c.classList.remove("dim"));
@@ -147,11 +149,11 @@ window.ternDemo = function (opts) {
       i = (i + 1) % cards.length;
       cards[i].classList.add("on");
       count.textContent = opts.countAll;
-      caption.innerHTML = opts.browseCaption;
-      if (++ticks >= 3) { phase = "type"; ticks = 0; q.textContent = ""; }
+      if (caption) caption.innerHTML = opts.browseCaption;
+      if (++ticks >= 3) { phase = "type"; ticks = 0; if (q) q.textContent = ""; }
     } else if (phase === "type") {
       hud.classList.add("searching");
-      q.textContent = word.slice(0, ticks + 1);
+      if (q) q.textContent = word.slice(0, ticks + 1);
       if (++ticks >= word.length) {
         cards.forEach((c) => {
           const hit = c.hasAttribute("data-hit");
@@ -159,7 +161,7 @@ window.ternDemo = function (opts) {
           c.classList.toggle("on", hit);
         });
         count.textContent = opts.countOne;
-        caption.innerHTML = opts.searchCaption;
+        if (caption) caption.innerHTML = opts.searchCaption;
         phase = "hold";
         ticks = 0;
       }
@@ -167,5 +169,35 @@ window.ternDemo = function (opts) {
       phase = "browse";
       ticks = 0;
     }
-  }, 900);
+  }
+
+  function start() {
+    if (timer) return;
+    timer = setInterval(tick, 900);
+  }
+  function stop() {
+    clearInterval(timer);
+    timer = 0;
+  }
+
+  if ("IntersectionObserver" in window && hud) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? start() : stop()));
+    }, { threshold: 0.2 });
+    io.observe(hud);
+  } else {
+    start();
+  }
 };
+
+(() => {
+  const hud = document.getElementById("hud");
+  if (!hud || !hud.dataset.demoWord) return;
+  ternDemo({
+    word: hud.dataset.demoWord,
+    countAll: hud.dataset.demoCountAll,
+    countOne: hud.dataset.demoCountOne,
+    browseCaption: hud.dataset.demoBrowse,
+    searchCaption: hud.dataset.demoSearch
+  });
+})();
