@@ -125,8 +125,13 @@ header.top {
 .brand img { width: 34px; height: 34px; }
 .brand .wordmark, .brand svg { height: 22px; width: auto; display: block; }
 .zoltraak {
-  align-self: flex-end;
-  margin: 0 auto 3px -6px;
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.4em;
+  min-height: 44px;
+  padding: 0 6px;
+  margin: 0 auto 0 -12px;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
@@ -134,6 +139,12 @@ header.top {
   color: var(--grafite-2);
   text-decoration: none;
   white-space: nowrap;
+}
+.zoltraak-mark {
+  width: 1.4em;
+  height: 1.4em;
+  flex: none;
+  display: block;
 }
 .zoltraak:hover { color: var(--nanquim); }
 .top nav {
@@ -1093,7 +1104,7 @@ footer .credit {
   flex-wrap: wrap;
   color: var(--grafite);
 }
-footer .zoltraak { margin: 0; align-self: auto; font-size: 12px; }
+footer .zoltraak { margin: 0; padding: 0 4px; align-self: auto; font-size: 12px; }
 footer nav { display: flex; flex-wrap: wrap; gap: 12px 20px; }
 footer a { color: var(--grafite); text-decoration: none; }
 footer a:hover { color: var(--nanquim); }
