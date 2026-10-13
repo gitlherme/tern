@@ -14,7 +14,6 @@
   const easeGlide = "cubic-bezier(0.45, 0, 0.25, 1)";
   const fine = matchMedia("(pointer: fine)").matches;
   const mobile = matchMedia("(max-width: 759px)").matches;
-  const wide = matchMedia("(min-width: 1024px)").matches;
 
   const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
   lenis.on("scroll", () => {
@@ -122,7 +121,7 @@
   }
 
   if (window.ScrollTrigger) {
-    ScrollTrigger.batch(".tile", {
+    ScrollTrigger.batch(".tile, .hide-card", {
       start: "top 80%",
       once: true,
       onEnter: (batch) => {
@@ -133,24 +132,6 @@
           duration: 0.64,
           ease: easeOut,
         });
-      },
-    });
-  }
-
-  const hideSec = document.querySelector(".hide-pin");
-  const hideTrack = document.querySelector(".hide-track");
-  if (hideSec && hideTrack && wide && window.ScrollTrigger && !mobile) {
-    const gutter = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gutter")) || 32;
-    const distance = () => Math.max(0, hideTrack.scrollWidth - window.innerWidth + gutter);
-    gsap.to(hideTrack, {
-      x: () => -distance(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: hideSec,
-        pin: true,
-        scrub: true,
-        anticipatePin: 1,
-        end: () => "+=" + distance(),
       },
     });
   }

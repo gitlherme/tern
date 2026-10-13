@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tern — Alt+Tab no Mac: alternador de janelas grátis</title>
 <meta name="description" content="Tern é um alternador de janelas grátis para Mac. ⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Código aberto, macOS 13 ou posterior.">
-<link rel="canonical" href="https://tern.gitlher.me/">
-<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/">
-<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/">
-<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/">
+<link rel="canonical" href="https://tern.zoltraaklabs.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.zoltraaklabs.com/">
+<link rel="alternate" hreflang="en" href="https://tern.zoltraaklabs.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://tern.zoltraaklabs.com/en/">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tern">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:locale:alternate" content="en_US">
-<meta property="og:url" content="https://tern.gitlher.me/">
+<meta property="og:url" content="https://tern.zoltraaklabs.com/">
 <meta property="og:title" content="Tern — Alt+Tab no Mac: alternador de janelas grátis">
 <meta property="og:description" content="⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Grátis, código aberto, macOS 13+.">
-<meta property="og:image" content="https://tern.gitlher.me/og/pt.png">
+<meta property="og:image" content="https://tern.zoltraaklabs.com/og/pt.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tern, alternador de janelas grátis para Mac">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tern — Alt+Tab no Mac: alternador de janelas grátis">
 <meta name="twitter:description" content="⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor. Grátis, código aberto, macOS 13+.">
-<meta name="twitter:image" content="https://tern.gitlher.me/og/pt.png">
+<meta name="twitter:image" content="https://tern.zoltraaklabs.com/og/pt.png">
 <script>document.documentElement.classList.add("js");</script>
 <link rel="preload" href="fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -37,7 +37,7 @@
 <script defer src="motion.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.gitlher.me/","description":"Alternador de janelas grátis para macOS. ⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.1","dateModified":"2026-10-09","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"pt-BR","screenshot":"https://tern.gitlher.me/media/tern-demo-pt.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
+  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.zoltraaklabs.com/","description":"Alternador de janelas grátis para macOS. ⌥⇥ troca janela por janela, digite para buscar, esconda apps do seletor.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.1","dateModified":"2026-10-09","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"pt-BR","screenshot":"https://tern.zoltraaklabs.com/media/tern-demo-pt.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
   {"@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"O Mac tem Alt+Tab?","acceptedAnswer":{"@type":"Answer","text":"O macOS não tem Alt+Tab. O ⌘⇥ alterna aplicativos, não janelas. Para ir de uma janela a outra do mesmo app, o atalho é ⌘ e o acento grave. O Tern usa ⌥⇥ para alternar janela por janela."}},
     {"@type":"Question","name":"Qual a diferença entre o Tern e o ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"O ⌘⇥ do Mac mostra um app por ícone. Se o Safari tiver três janelas, o ⌘⇥ trata tudo como um único Safari. O Tern mostra cada janela como um card, na ordem em que você usou. Também dá para buscar digitando e esconder apps do alternador, o que o ⌘⇥ não faz."}},
@@ -233,47 +233,81 @@
     </div>
   </section>
 
-  <section class="hide-sec hide-pin" id="esconder">
-    <div class="wrap hide-head">
-      <div>
+  <section class="hide-sec" id="esconder">
+    <div class="wrap">
+      <div class="hide-intro">
         <p class="eyebrow">Fora do caminho</p>
         <h2>Cinco jeitos de esconder.</h2>
       </div>
-      <a href="esconder-apps-do-alternador/">Como esconder apps do alternador →</a>
-    </div>
-    <div class="hide-scroller">
-      <div class="hide-track">
-        <article class="hide-card">
-          <span class="hide-n">01</span>
-          <div class="hide-keys"><kbd class="key">⌫</kbd></div>
-          <h3>O app inteiro</h3>
-          <p>Tira o app do seletor até você devolver, nos Ajustes ou por um link.</p>
+      <div class="hide-bento">
+        <article class="hide-card hide-feat">
+          <div class="hide-viz" aria-hidden="true">
+            <div class="hv-hud">
+              <div class="hv-mini"><i></i><i></i></div>
+              <div class="hv-mini on"><i></i><i></i></div>
+              <div class="hv-mini gone"><span class="hv-minus"></span></div>
+            </div>
+            <span class="key key-l press">⌫</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">01</span>
+            <h3>O app inteiro</h3>
+            <p>Tira o app do seletor até você devolver, nos Ajustes ou por um link.</p>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">02</span>
-          <div class="hide-keys"><kbd class="key">⌥</kbd> <kbd class="key">⌫</kbd></div>
-          <h3>Só uma janela</h3>
-          <p>Esconde pelo título exato. O resto do app continua aparecendo.</p>
+          <div class="hide-viz hv-window" aria-hidden="true">
+            <div class="hv-frame stay"><span></span><span></span></div>
+            <div class="hv-frame hide"><span></span><span class="hv-minus"></span></div>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">02</span>
+            <h3>Só uma janela</h3>
+            <p>Esconde pelo título exato. O resto do app continua aparecendo.</p>
+            <div class="hide-keys"><kbd class="key">⌥</kbd> <kbd class="key">⌫</kbd></div>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">03</span>
-          <div class="hide-keys"><kbd class="key">*</kbd></div>
-          <h3>Pelo título</h3>
-          <p>Um texto ou um padrão com * esconde janelas como Picture in Picture, mesmo quando o nome muda.</p>
+          <div class="hide-viz hv-title" aria-hidden="true">
+            <div class="hv-titlebar">
+              <span class="mac-dot r"></span><span class="mac-dot y"></span><span class="mac-dot g"></span>
+              <span class="hv-t">Safari — <mark>Picture in Picture</mark></span>
+            </div>
+            <span class="hv-pattern">*Picture*</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">03</span>
+            <h3>Pelo título</h3>
+            <p>Um texto ou um padrão com * esconde janelas como Picture in Picture, mesmo quando o nome muda.</p>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">04</span>
-          <div class="hide-keys"><kbd class="key">⇧</kbd> <kbd class="key">⌫</kbd></div>
-          <h3>Por um tempo</h3>
-          <p>Esconde por uma hora. Nos Ajustes, também até amanhã.</p>
+          <div class="hide-viz hv-time" aria-hidden="true">
+            <span class="v-chip on">1 hora</span>
+            <span class="v-chip">até amanhã</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">04</span>
+            <h3>Por um tempo</h3>
+            <p>Esconde por uma hora. Nos Ajustes, também até amanhã.</p>
+            <div class="hide-keys"><kbd class="key">⇧</kbd> <kbd class="key">⌫</kbd></div>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">05</span>
-          <div class="hide-keys"><kbd class="key">◐</kbd></div>
-          <h3>Por modo</h3>
-          <p>Trabalho, Pessoal: um conjunto a mais de apps. Ligue a um Foco do macOS.</p>
+          <div class="hide-viz hv-modes" aria-hidden="true">
+            <div class="v-mode">Trabalho <span class="toggle"><i></i></span></div>
+            <div class="v-mode off">Pessoal <span class="toggle off"><i></i></span></div>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">05</span>
+            <h3>Por modo</h3>
+            <p>Trabalho, Pessoal: um conjunto a mais de apps. Ligue a um Foco do macOS.</p>
+          </div>
         </article>
       </div>
+      <p class="hide-cta">
+        <a class="btn btn-ghost" href="esconder-apps-do-alternador/">Como esconder apps do alternador <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 

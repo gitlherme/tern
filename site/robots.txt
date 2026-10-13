@@ -19,4 +19,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://tern.gitlher.me/sitemap.xml
+Sitemap: https://tern.zoltraaklabs.com/sitemap.xml

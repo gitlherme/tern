@@ -6,16 +6,16 @@ Tern is a menu bar app for macOS 13 or later (Apple silicon and Intel). Press Op
 
 ## Site
 
-- [Tern (português)](https://tern.gitlher.me/): home
-- [Tern (English)](https://tern.gitlher.me/en/): home
-- [Como fazer Alt+Tab no Mac](https://tern.gitlher.me/alt-tab-no-mac/)
-- [How to Alt-Tab on Mac](https://tern.gitlher.me/en/alt-tab-on-mac/)
-- [Alternativas ao AltTab](https://tern.gitlher.me/alternativas-ao-alttab/)
-- [AltTab alternatives](https://tern.gitlher.me/en/alttab-alternatives/)
-- [Esconder apps do alternador](https://tern.gitlher.me/esconder-apps-do-alternador/)
-- [Hide apps from the window switcher](https://tern.gitlher.me/en/hide-apps-from-window-switcher/)
-- [Ajuda](https://tern.gitlher.me/ajuda/)
-- [Help](https://tern.gitlher.me/en/help/)
+- [Tern (português)](https://tern.zoltraaklabs.com/): home
+- [Tern (English)](https://tern.zoltraaklabs.com/en/): home
+- [Como fazer Alt+Tab no Mac](https://tern.zoltraaklabs.com/alt-tab-no-mac/)
+- [How to Alt-Tab on Mac](https://tern.zoltraaklabs.com/en/alt-tab-on-mac/)
+- [Alternativas ao AltTab](https://tern.zoltraaklabs.com/alternativas-ao-alttab/)
+- [AltTab alternatives](https://tern.zoltraaklabs.com/en/alttab-alternatives/)
+- [Esconder apps do alternador](https://tern.zoltraaklabs.com/esconder-apps-do-alternador/)
+- [Hide apps from the window switcher](https://tern.zoltraaklabs.com/en/hide-apps-from-window-switcher/)
+- [Ajuda](https://tern.zoltraaklabs.com/ajuda/)
+- [Help](https://tern.zoltraaklabs.com/en/help/)
 
 ## Source and download
 

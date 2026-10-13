@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tern — Alt-Tab for Mac: free, open-source window switcher</title>
 <meta name="description" content="Tern is a free Alt-Tab for Mac. ⌥⇥ switches window by window, type to search, hide apps from the switcher. Open source, macOS 13 or later.">
-<link rel="canonical" href="https://tern.gitlher.me/en/">
-<link rel="alternate" hreflang="pt-BR" href="https://tern.gitlher.me/">
-<link rel="alternate" hreflang="en" href="https://tern.gitlher.me/en/">
-<link rel="alternate" hreflang="x-default" href="https://tern.gitlher.me/en/">
+<link rel="canonical" href="https://tern.zoltraaklabs.com/en/">
+<link rel="alternate" hreflang="pt-BR" href="https://tern.zoltraaklabs.com/">
+<link rel="alternate" hreflang="en" href="https://tern.zoltraaklabs.com/en/">
+<link rel="alternate" hreflang="x-default" href="https://tern.zoltraaklabs.com/en/">
 <link rel="icon" href="../icon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tern">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="pt_BR">
-<meta property="og:url" content="https://tern.gitlher.me/en/">
+<meta property="og:url" content="https://tern.zoltraaklabs.com/en/">
 <meta property="og:title" content="Tern — Alt-Tab for Mac: free, open-source window switcher">
 <meta property="og:description" content="⌥⇥ switches window by window, type to search, hide apps from the switcher. Free, open source, macOS 13+.">
-<meta property="og:image" content="https://tern.gitlher.me/og/en.png">
+<meta property="og:image" content="https://tern.zoltraaklabs.com/og/en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tern, a free window switcher for Mac">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tern — Alt-Tab for Mac: free, open-source window switcher">
 <meta name="twitter:description" content="⌥⇥ switches window by window, type to search, hide apps from the switcher. Free, open source, macOS 13+.">
-<meta name="twitter:image" content="https://tern.gitlher.me/og/en.png">
+<meta name="twitter:image" content="https://tern.zoltraaklabs.com/og/en.png">
 <script>document.documentElement.classList.add("js");</script>
 <link rel="preload" href="../fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -37,7 +37,7 @@
 <script defer src="../motion.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.gitlher.me/en/","description":"Free window switcher for macOS. ⌥⇥ switches window by window, type to search, hide apps from the switcher.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.1","dateModified":"2026-10-09","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"en","screenshot":"https://tern.gitlher.me/media/tern-demo-en.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
+  {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.zoltraaklabs.com/en/","description":"Free window switcher for macOS. ⌥⇥ switches window by window, type to search, hide apps from the switcher.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.1","dateModified":"2026-10-09","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"en","screenshot":"https://tern.zoltraaklabs.com/media/tern-demo-en.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
   {"@type":"FAQPage","mainEntity":[
     {"@type":"Question","name":"Does the Mac have Alt-Tab?","acceptedAnswer":{"@type":"Answer","text":"macOS does not have Alt-Tab. ⌘⇥ switches apps, not windows. To move between windows of the same app, the shortcut is ⌘ and the grave accent. Tern uses ⌥⇥ to switch window by window."}},
     {"@type":"Question","name":"How is Tern different from ⌘⇥?","acceptedAnswer":{"@type":"Answer","text":"macOS ⌘⇥ shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do."}},
@@ -233,47 +233,81 @@
     </div>
   </section>
 
-  <section class="hide-sec hide-pin" id="hide">
-    <div class="wrap hide-head">
-      <div>
+  <section class="hide-sec" id="hide">
+    <div class="wrap">
+      <div class="hide-intro">
         <p class="eyebrow">Out of the way</p>
         <h2>Five ways to hide.</h2>
       </div>
-      <a href="hide-apps-from-window-switcher/">How to hide apps from the switcher →</a>
-    </div>
-    <div class="hide-scroller">
-      <div class="hide-track">
-        <article class="hide-card">
-          <span class="hide-n">01</span>
-          <div class="hide-keys"><kbd class="key">⌫</kbd></div>
-          <h3>The whole app</h3>
-          <p>Keeps it out until you bring it back, in Settings or with a link.</p>
+      <div class="hide-bento">
+        <article class="hide-card hide-feat">
+          <div class="hide-viz" aria-hidden="true">
+            <div class="hv-hud">
+              <div class="hv-mini"><i></i><i></i></div>
+              <div class="hv-mini on"><i></i><i></i></div>
+              <div class="hv-mini gone"><span class="hv-minus"></span></div>
+            </div>
+            <span class="key key-l press">⌫</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">01</span>
+            <h3>The whole app</h3>
+            <p>Keeps it out until you bring it back, in Settings or with a link.</p>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">02</span>
-          <div class="hide-keys"><kbd class="key">⌥</kbd> <kbd class="key">⌫</kbd></div>
-          <h3>Just one window</h3>
-          <p>Hides it by its exact title. The rest of the app still shows up.</p>
+          <div class="hide-viz hv-window" aria-hidden="true">
+            <div class="hv-frame stay"><span></span><span></span></div>
+            <div class="hv-frame hide"><span></span><span class="hv-minus"></span></div>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">02</span>
+            <h3>Just one window</h3>
+            <p>Hides it by its exact title. The rest of the app still shows up.</p>
+            <div class="hide-keys"><kbd class="key">⌥</kbd> <kbd class="key">⌫</kbd></div>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">03</span>
-          <div class="hide-keys"><kbd class="key">*</kbd></div>
-          <h3>By title</h3>
-          <p>A piece of text, or a * pattern, hides windows like Picture in Picture even when the name changes.</p>
+          <div class="hide-viz hv-title" aria-hidden="true">
+            <div class="hv-titlebar">
+              <span class="mac-dot r"></span><span class="mac-dot y"></span><span class="mac-dot g"></span>
+              <span class="hv-t">Safari — <mark>Picture in Picture</mark></span>
+            </div>
+            <span class="hv-pattern">*Picture*</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">03</span>
+            <h3>By title</h3>
+            <p>A piece of text, or a * pattern, hides windows like Picture in Picture even when the name changes.</p>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">04</span>
-          <div class="hide-keys"><kbd class="key">⇧</kbd> <kbd class="key">⌫</kbd></div>
-          <h3>For a while</h3>
-          <p>Hides an app for an hour. In Settings, until tomorrow too.</p>
+          <div class="hide-viz hv-time" aria-hidden="true">
+            <span class="v-chip on">1 hour</span>
+            <span class="v-chip">until tomorrow</span>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">04</span>
+            <h3>For a while</h3>
+            <p>Hides an app for an hour. In Settings, until tomorrow too.</p>
+            <div class="hide-keys"><kbd class="key">⇧</kbd> <kbd class="key">⌫</kbd></div>
+          </div>
         </article>
         <article class="hide-card">
-          <span class="hide-n">05</span>
-          <div class="hide-keys"><kbd class="key">◐</kbd></div>
-          <h3>By mode</h3>
-          <p>Work, Personal: an extra set of apps. Tie it to a macOS Focus.</p>
+          <div class="hide-viz hv-modes" aria-hidden="true">
+            <div class="v-mode">Work <span class="toggle"><i></i></span></div>
+            <div class="v-mode off">Personal <span class="toggle off"><i></i></span></div>
+          </div>
+          <div class="hide-body">
+            <span class="hide-n">05</span>
+            <h3>By mode</h3>
+            <p>Work, Personal: an extra set of apps. Tie it to a macOS Focus.</p>
+          </div>
         </article>
       </div>
+      <p class="hide-cta">
+        <a class="btn btn-ghost" href="hide-apps-from-window-switcher/">How to hide apps from the switcher <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 

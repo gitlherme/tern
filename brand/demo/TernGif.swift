@@ -363,7 +363,7 @@ struct SceneView: View {
                 HStack(spacing: 10) {
                     Spacer()
                     MenuBarGlyph().frame(width: 22, height: 22).foregroundStyle(sky)
-                    Text(verbatim: "tern.gitlher.me").font(.system(size: 18, weight: .semibold, design: .rounded)).foregroundStyle(.white.opacity(0.85))
+                    Text(verbatim: "tern.zoltraaklabs.com").font(.system(size: 18, weight: .semibold, design: .rounded)).foregroundStyle(.white.opacity(0.85))
                 }
                 .padding(28)
             }

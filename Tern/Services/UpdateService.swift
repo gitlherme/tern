@@ -1,8 +1,9 @@
 import Foundation
 import Sparkle
 
-/// Atualizações pelo Sparkle. O feed (SUFeedURL) e a chave pública (SUPublicEDKey)
-/// ficam no Info.plist; as versões são assinadas com a chave EdDSA da conta `tern`.
+/// Atualizações pelo Sparkle. O feed (SUFeedURL, https://tern.zoltraaklabs.com/appcast.xml)
+/// e a chave pública (SUPublicEDKey) ficam no Info.plist; as versões são assinadas
+/// com a chave EdDSA da conta `tern`.
 @MainActor
 final class UpdateService: ObservableObject {
     static let shared = UpdateService()
