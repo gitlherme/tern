@@ -149,6 +149,10 @@ header.top {
 }
 .top nav a:hover, .top nav a[aria-current="page"] { color: var(--nanquim); }
 .top nav .lang { font-weight: 600; }
+.top nav .btn-primary,
+.top nav .btn-primary:hover {
+  color: var(--papel);
+}
 
 /* Buttons */
 .btn {
@@ -1059,6 +1063,12 @@ table.compare .cmp-tern { color: var(--nanquim); }
   letter-spacing: -0.035em;
 }
 .final-cta p { margin: 0; max-width: 520px; font-size: 18px; }
+.final-cta a:not(.btn) {
+  color: var(--nanquim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.final-cta a:not(.btn):hover { color: var(--nanquim); }
 .cta-bird { width: 120px; height: 60px; }
 
 /* Footer */
@@ -1200,7 +1210,7 @@ footer a:hover { color: var(--nanquim); }
   .free-card, .support-card { padding: 28px 20px; }
   .final-cta { padding: 56px 20px; }
   .faq details { padding: 0 16px; }
-  .hero-bird { animation: none; offset-distance: 38%; opacity: .85; }
+  .hero-bird, .hero-flight { display: none; }
 }
 @media (min-width: 760px) and (max-width: 1023px) {
   .hero-key-opt { left: -72px; }
@@ -1239,8 +1249,6 @@ footer a:hover { color: var(--nanquim); }
   }
   .hero-bird {
     animation: none !important;
-    offset-distance: 38%;
-    opacity: .85;
   }
   .btn:hover, .tile:hover { transform: none; box-shadow: var(--sombra); }
   .card.on { transform: none; }
