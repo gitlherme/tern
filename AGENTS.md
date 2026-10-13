@@ -25,7 +25,7 @@ site/                    static landing page: pt-BR at /, English at /en/
 
 New pages:
 
-- Ship in Portuguese and English, linked by absolute `canonical` and `hreflang` (`https://tern.gitlher.me/...`).
+- Ship in Portuguese and English, linked by absolute `canonical` and `hreflang` (`https://tern.zoltraaklabs.com/...`).
 - Add both URLs to `site/sitemap.xml` with `xhtml:link` alternates and `lastmod`.
 - Show a visible “Atualizado em …” / “Updated …” date.
 - Link from the footer (or the header).
@@ -66,7 +66,7 @@ xcodebuild -project Tern.xcodeproj -scheme Tern -configuration Release -destinat
 1. Bump `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` (the build number must always increase; Sparkle compares it).
 2. Optionally add `scripts/release-notes/X.Y.Z.html`; it gets embedded in the update dialog.
 3. Run `scripts/release.sh`.
-4. Publish the GitHub release `vX.Y.Z` with that exact `.dmg` **before** pushing the new `site/appcast.xml` to `main`; the app reads the appcast from `raw.githubusercontent.com/gitlherme/tern/main/site/appcast.xml`.
+4. Publish the GitHub release `vX.Y.Z` with that exact `.dmg` **before** pushing the new `site/appcast.xml` to `main`; the next build reads the appcast from `https://tern.zoltraaklabs.com/appcast.xml`. Builds 1.1.0–1.2.1 still read `raw.githubusercontent.com/gitlherme/tern/main/site/appcast.xml`.
 5. Release notes are bilingual (Portuguese first, then English) and include the step-by-step install guide written for non-technical users, including how to allow the first launch of a non-notarized app. Updates from 1.1.3 on keep Accessibility; only a change of signing certificate (for example, moving to a Developer ID) makes users grant it again once.
 6. `release.sh` also updates `softwareVersion` and `dateModified` in the homepages’ JSON-LD, the visible version line, and `lastmod` for `/` and `/en/` in `site/sitemap.xml`.
 

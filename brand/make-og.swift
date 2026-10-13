@@ -69,7 +69,7 @@ func render(tagline: String, dest: URL) {
 
     drawText(ctx, "Tern", font: bold, color: srgb(232, 238, 252), centerX: center, baseline: 292)
     drawText(ctx, tagline, font: semi, color: srgb(74, 139, 232), centerX: center, baseline: 232)
-    drawText(ctx, "tern.gitlher.me", font: small, color: srgb(163, 177, 204), centerX: center, baseline: 72)
+    drawText(ctx, "tern.zoltraaklabs.com", font: small, color: srgb(163, 177, 204), centerX: center, baseline: 72)
 
     guard let cgImage = ctx.makeImage() else { exit(1) }
     let rep = NSBitmapImageRep(cgImage: cgImage)
