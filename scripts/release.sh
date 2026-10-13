@@ -79,7 +79,7 @@ fi
 "$SPARKLE_BIN/generate_appcast" --account tern \
   --download-url-prefix "https://github.com/gitlherme/tern/releases/download/v$VERSION/" \
   --full-release-notes-url "https://github.com/gitlherme/tern/releases" \
-  --link "https://tern.gitlher.me" \
+  --link "https://tern.zoltraaklabs.com" \
   "${NOTES[@]}" -o "$APPCAST" "$OUT/updates"
 
 echo "==> DMG:     $DMG"

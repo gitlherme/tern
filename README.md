@@ -26,7 +26,7 @@ Type-to-search is included, not a paid add-on. Example: five apps open, one on t
 
 ## Tern vs AltTab
 
-Both are open-source window switchers for Mac. [AltTab](https://alt-tab.app) is the established one: notarized, Space badges, full-size previews. Its type-to-search is a Pro feature. Tern ships search for free and is built around hiding apps, windows, title rules, snooze, and Focus modes. Tern is not notarized yet, so the first launch needs **Open Anyway**. A longer comparison is on the [site](https://tern.gitlher.me/en/alttab-alternatives/).
+Both are open-source window switchers for Mac. [AltTab](https://alt-tab.app) is the established one: notarized, Space badges, full-size previews. Its type-to-search is a Pro feature. Tern ships search for free and is built around hiding apps, windows, title rules, snooze, and Focus modes. Tern is not notarized yet, so the first launch needs **Open Anyway**. A longer comparison is on the [site](https://tern.zoltraaklabs.com/en/alttab-alternatives/).
 
 ## FAQ
 
@@ -34,7 +34,7 @@ Both are open-source window switchers for Mac. [AltTab](https://alt-tab.app) is 
 
 **Why Accessibility?** macOS only lets an app read window titles and bring a window forward with Accessibility on. Tern does not read window contents.
 
-**Why the first-launch warning?** The app is signed with its own certificate, not Apple notarization. Grant **Open Anyway** once; later updates do not ask again. Step-by-step: [Help](https://tern.gitlher.me/en/help/).
+**Why the first-launch warning?** The app is signed with its own certificate, not Apple notarization. Grant **Open Anyway** once; later updates do not ask again. Step-by-step: [Help](https://tern.zoltraaklabs.com/en/help/).
 
 ## Download
 

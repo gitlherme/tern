@@ -26,7 +26,7 @@ A busca por digitação entra no download, não é extra pago. Exemplo: cinco ap
 
 ## Tern vs AltTab
 
-Os dois são alternadores de janelas de código aberto para Mac. O [AltTab](https://alt-tab.app) é o estabelecido: notarizado, selo de Space, prévia em tamanho real. A busca por digitação dele é um recurso Pro. O Tern traz a busca grátis e é construído em torno de esconder apps, janelas, regras por título, soneca e modos ligados ao Foco. O Tern ainda não é notarizado, então a primeira abertura pede **Abrir Mesmo Assim**. Comparativo mais longo no [site](https://tern.gitlher.me/alternativas-ao-alttab/).
+Os dois são alternadores de janelas de código aberto para Mac. O [AltTab](https://alt-tab.app) é o estabelecido: notarizado, selo de Space, prévia em tamanho real. A busca por digitação dele é um recurso Pro. O Tern traz a busca grátis e é construído em torno de esconder apps, janelas, regras por título, soneca e modos ligados ao Foco. O Tern ainda não é notarizado, então a primeira abertura pede **Abrir Mesmo Assim**. Comparativo mais longo no [site](https://tern.zoltraaklabs.com/alternativas-ao-alttab/).
 
 ## FAQ
 
@@ -34,7 +34,7 @@ Os dois são alternadores de janelas de código aberto para Mac. O [AltTab](http
 
 **Por que Acessibilidade?** O macOS só deixa um app listar títulos de janela e trazer uma janela à frente com Acessibilidade ligada. O Tern não lê o conteúdo das janelas.
 
-**Por que o aviso na primeira abertura?** O app é assinado com um certificado próprio, sem notarização da Apple. Conceda **Abrir Mesmo Assim** uma vez; as atualizações seguintes não pedem de novo. Passo a passo: [Ajuda](https://tern.gitlher.me/ajuda/).
+**Por que o aviso na primeira abertura?** O app é assinado com um certificado próprio, sem notarização da Apple. Conceda **Abrir Mesmo Assim** uma vez; as atualizações seguintes não pedem de novo. Passo a passo: [Ajuda](https://tern.zoltraaklabs.com/ajuda/).
 
 ## Baixar
 
