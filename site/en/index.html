@@ -25,8 +25,16 @@
 <meta name="twitter:title" content="Tern — Alt-Tab for Mac: free, open-source window switcher">
 <meta name="twitter:description" content="⌥⇥ switches window by window, type to search, hide apps from the switcher. Free, open source, macOS 13+.">
 <meta name="twitter:image" content="https://tern.gitlher.me/og/en.png">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="preload" href="../fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../site.css">
-<style>body{font-size:18px}h1{font-size:56px}h2{font-size:36px}h3,.lede,.slogan{font-size:24px}@media(max-width:640px){h1{font-size:44px}h2{font-size:32px}}</style>
+<script defer src="../vendor/lenis.min.js"></script>
+<script defer src="../vendor/gsap.min.js"></script>
+<script defer src="../vendor/ScrollTrigger.min.js"></script>
+<script defer src="../vendor/MotionPathPlugin.min.js"></script>
+<script defer src="../site.js"></script>
+<script defer src="../motion.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
   {"@type":"SoftwareApplication","name":"Tern","alternateName":["Tern window switcher","Tern for Mac"],"url":"https://tern.gitlher.me/en/","description":"Free window switcher for macOS. ⌥⇥ switches window by window, type to search, hide apps from the switcher.","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13 or later","softwareVersion":"1.2.1","dateModified":"2026-10-09","downloadUrl":"https://github.com/gitlherme/tern/releases/latest","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"inLanguage":"en","screenshot":"https://tern.gitlher.me/media/tern-demo-en.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Guilherme Vieira","url":"https://gitlher.me"},"sameAs":["https://github.com/gitlherme/tern"]},
@@ -43,198 +51,412 @@
 ]}
 </script>
 </head>
-<body data-pt="../">
+<body class="home" data-pt="../">
 
 <header class="wrap top">
   <a class="brand" href="./" aria-label="Tern">
-    <img src="../icon.svg" alt="">
-    <svg viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
+    <img src="../icon.svg" width="34" height="34" alt="">
+    <svg class="wordmark" viewBox="-6 18 168 68" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24 V68 Q10 80 22 80 M0 40 H22"/><path d="M32 60 H72 A20 20 0 1 0 66 74"/><path d="M86 80 V40 M86 58 Q86 40 104 40"/><path d="M118 80 V40 M118 60 A18 18 0 0 1 154 60 V80"/></svg>
   </a>
+  <a class="zoltraak" href="https://zoltraaklabs.com" target="_blank" rel="noopener"><svg class="zoltraak-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="13.4" fill="none" stroke="currentColor" stroke-width="2.7"/><path d="M10.6 11.35h10.8L10.6 20.65h10.8" fill="none" stroke="currentColor" stroke-width="2.45" stroke-linecap="round" stroke-linejoin="round"/></svg>by zoltraak labs</a>
   <nav>
     <a class="hide-sm" href="#features">Features</a>
-    <a href="help/">Help</a>
-    <a href="changelog/">Changelog</a>
-    <a href="https://github.com/gitlherme/tern">GitHub</a>
-    <a class="lang" href="../" hreflang="pt-BR" lang="pt-BR" data-lang="pt">Português</a>
+    <a class="hide-sm" href="#shortcuts">Shortcuts</a>
+    <a class="hide-sm" href="help/">Help</a>
+    <a class="hide-sm" href="https://github.com/gitlherme/tern">GitHub</a>
+    <a class="lang" href="../" hreflang="pt-BR" lang="pt-BR" data-lang="pt">PT</a>
+    <a class="btn btn-primary btn-nav" href="https://github.com/gitlherme/tern/releases/latest">Download</a>
   </nav>
 </header>
 
 <main>
-  <section class="wrap hero">
-    <img class="icon" src="../icon.svg" alt="Tern icon: two overlapping windows">
-    <h1>Alt-Tab for Mac, <span>one window at a time.</span></h1>
-    <p class="slogan">Your turn, right window.</p>
-    <p class="lede">Tern is a free window switcher for Mac. Press <kbd>⌥</kbd> <kbd>⇥</kbd> to switch, type to find the window, and hide the apps that just get in the way. Open source, macOS 13 or later.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
-        Download for macOS
-      </a>
-      <a class="btn btn-ghost" href="#features">How it works</a>
+  <section class="hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <svg class="hero-route" aria-hidden="true" width="1440" height="420" viewBox="0 0 1440 420"><path d="M -40 300 C 220 40, 520 40, 720 200 S 1180 380, 1500 80" fill="none" stroke="#F2694F" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round" opacity=".7"/></svg>
+    <div class="hero-flight" aria-hidden="true">
+      <svg class="hero-bird" width="56" height="28" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#121827"/><circle cx="32" cy="22.5" r="2.4" fill="#F2694F"/></svg>
     </div>
-    <p class="note">macOS 13 Ventura or later · Apple silicon and Intel · English and Portuguese</p>
-    <p class="note">Not notarized by Apple yet: on first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>. <a href="help/#install">Step-by-step in Help</a>.</p>
 
-    <dl class="facts">
-      <div><dt>Price</dt><dd>Free</dd></div>
-      <div><dt>License</dt><dd>MIT</dd></div>
-      <div><dt>System</dt><dd>macOS 13+</dd></div>
-      <div><dt>Architecture</dt><dd>Apple silicon and Intel</dd></div>
-      <div><dt>Version</dt><dd><span data-release="version">1.2.1</span> · <time datetime="2026-10-09" data-release="date-en">October 9, 2026</time></dd></div>
-      <div><dt>Account and tracking</dt><dd>None</dd></div>
-    </dl>
+    <div class="wrap hero-inner">
+      <a class="ver-badge" href="changelog/">
+        <span class="ver-num"><span data-release="version">1.2.1</span></span>
+        Free, open source, no account
+      </a>
 
-    <video class="demo-video" poster="../media/tern-demo-en.jpg" controls playsinline preload="metadata" width="1200" height="675">
-      <source src="../media/tern-demo-en.mp4" type="video/mp4">
-    </video>
-    <p class="stage-caption">The Tern switcher: <kbd>⌥</kbd> <kbd>⇥</kbd> to move, type to filter, <kbd>⌫</kbd> to hide an app.</p>
-
-    <div class="stage" aria-label="Animated demo of the Tern switcher">
-      <div class="hud" id="hud">
-        <div class="hud-head">
-          <div class="left">
-            <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 10.5 H3.5 A2 2 0 0 1 1.5 8.5 V4.5 A2 2 0 0 1 3.5 2.5 H9.5 A2 2 0 0 1 11.5 4.5 V5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="6" y="7" width="10.5" height="8.5" rx="2" fill="currentColor"/></svg>
-            <span class="brand-name">Tern</span>
-            <span class="pill" id="pill" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 L13.5 13.5" stroke-linecap="round"/></svg><b id="q"></b><i class="caret"></i></span>
-          </div>
-          <span class="count" id="count">4 windows</span>
-        </div>
-        <div class="cards" id="cards">
-          <div class="card"><div class="thumb" style="--bar:#4A8BE8"><i></i><i></i></div><p>Safari<small>Documentation</small></p></div>
-          <div class="card on" data-hit><div class="thumb" style="--bar:#2E3D5E"><i></i><i></i></div><p>Xcode<small>Tern.xcodeproj</small></p></div>
-          <div class="card"><div class="thumb" style="--bar:#7F77DD"><i></i><i></i></div><p>Figma<small>Icons</small></p></div>
-          <div class="card"><div class="thumb" style="--bar:#1D9E75"><i></i><i></i></div><p>Notes<small>Ideas</small></p></div>
-        </div>
-        <div class="hidden-row"><span class="dot" aria-hidden="true"></span><span><b>Messages</b> is hidden and won’t show up here.</span></div>
+      <div class="hero-title">
+        <div class="hero-key hero-key-opt float" aria-hidden="true"><span class="key key-l press">⌥</span></div>
+        <div class="hero-key hero-key-tab float-b" aria-hidden="true"><span class="key key-l press-2">⇥</span></div>
+        <h1 class="hero-h1"><span class="word">Alt-Tab</span> <span class="word">for</span> <span class="word">Mac,</span> <span class="word nowrap"><span class="sticker">window</span> by</span> <span class="word">window.</span></h1>
       </div>
-      <p class="stage-caption" id="caption">Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move. Let go to focus.</p>
+
+      <p class="lede">Tern is a free window switcher for Mac. Press <kbd class="key key-s">⌥</kbd> <kbd class="key key-s">⇥</kbd> to switch, type to find the window, and hide the apps that just get in the way. Open source, macOS 13 or later.</p>
+      <div class="cta">
+        <a class="btn btn-primary btn-lg" href="https://github.com/gitlherme/tern/releases/latest">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
+          Download for macOS
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#features">How it works</a>
+      </div>
+      <p class="note">macOS 13 Ventura or later · Apple silicon and Intel · English and Portuguese</p>
+      <p class="note">Not notarized by Apple yet: on first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>. <a href="help/#install">Step-by-step in Help</a>.</p>
+    </div>
+
+    <div class="wrap stage-wrap">
+      <div class="stage-persp">
+        <div class="mac">
+          <div class="mac-bar" aria-hidden="true">
+            <span class="mac-dot r"></span><span class="mac-dot y"></span><span class="mac-dot g"></span>
+            <span class="mac-title">tern</span>
+          </div>
+          <div class="mac-body">
+            <div class="ghost-win a" aria-hidden="true"></div>
+            <div class="ghost-win b" aria-hidden="true"></div>
+            <div class="hud" id="hud" role="img" aria-label="Demo of the Tern switcher: Safari, Xcode, Figma and Notes cards; Xcode is highlighted and typing xco filters the list. Messages is hidden." data-demo-word="xco" data-demo-count-all="4 windows" data-demo-count-one="1 window" data-demo-browse="Hold &lt;kbd class=&quot;key key-s&quot;&gt;⌥&lt;/kbd&gt; and tap &lt;kbd class=&quot;key key-s&quot;&gt;⇥&lt;/kbd&gt; to move. Let go to focus." data-demo-search="Type to filter. &lt;kbd class=&quot;key key-s&quot;&gt;xco&lt;/kbd&gt; finds Xcode.">
+              <div aria-hidden="true">
+                <div class="hud-head">
+                  <div class="left">
+                    <span class="brand-name">tern</span>
+                    <span class="pill" id="pill"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 L13.5 13.5" stroke-linecap="round"/></svg><b id="q"></b><i class="caret"></i></span>
+                  </div>
+                  <span class="count" id="count">4 windows</span>
+                </div>
+                <div class="cards" id="cards">
+                  <div class="card"><div class="thumb" style="--bar:#4A8BE8"><i></i><i></i></div><p>Safari<small>Documentation</small></p></div>
+                  <div class="card on" data-hit><div class="thumb" style="--bar:#2E3D5E"><i></i><i></i></div><p>Xcode<small>Tern.xcodeproj</small></p></div>
+                  <div class="card"><div class="thumb" style="--bar:#7F77DD"><i></i><i></i></div><p>Figma<small>Icons</small></p></div>
+                  <div class="card"><div class="thumb" style="--bar:#1D9E75"><i></i><i></i></div><p>Notes<small>Ideas</small></p></div>
+                </div>
+                <div class="hidden-row"><span class="dot"></span><span><b>Messages</b> is hidden and won’t show up here.</span></div>
+              </div>
+            </div>
+            <div class="sticker-float sticker-search float hide-sm" aria-hidden="true">type <span style="font-family:var(--font-mono);color:var(--azul)">xco</span> → Xcode</div>
+            <div class="sticker-float sticker sticker-hide float-b hide-sm" aria-hidden="true"><kbd class="key key-s">⌫</kbd> hides the app</div>
+          </div>
+        </div>
+      </div>
+      <p class="stage-caption" id="caption">Hold <kbd class="key key-s">⌥</kbd> and tap <kbd class="key key-s">⇥</kbd> to move. Let go to focus.</p>
+
+      <figure class="demo-figure" id="demo-video">
+        <video class="demo-video" poster="../media/tern-demo-en.jpg" controls playsinline preload="metadata" width="1200" height="675">
+          <source src="../media/tern-demo-en.mp4" type="video/mp4">
+        </video>
+        <figcaption>The Tern switcher: <kbd class="key key-s">⌥</kbd> <kbd class="key key-s">⇥</kbd> to move, type to filter, <kbd class="key key-s">⌫</kbd> to hide an app.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="marquee" aria-label="Works with any app that opens a window">
+    <div class="marquee-track">
+      <span class="marquee-item">Safari<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Xcode<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Figma<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Notes<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Visual Studio Code<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Terminal<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Slack<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Spotify<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Mail<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Arc<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Finder<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item">Messages<svg width="20" height="10" viewBox="0 0 64 32" aria-hidden="true"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Safari<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Xcode<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Figma<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Notes<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Visual Studio Code<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Terminal<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Slack<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Spotify<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Mail<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Arc<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Finder<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
+      <span class="marquee-item" aria-hidden="true">Messages<svg width="20" height="10" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#F2694F"/></svg></span>
     </div>
   </section>
 
   <section class="wrap features" id="features">
-    <p class="eyebrow">Features</p>
-    <h2>The switcher your Mac is missing.</h2>
-    <div class="grid">
-      <div class="feat">
-        <h3><span class="mark">⌥⇥</span> <span>Windows, not apps</span></h3>
+    <div class="sec-head">
+      <p class="eyebrow">Features</p>
+      <h2>The switcher your Mac is missing.</h2>
+      <p>macOS ⌘⇥ shows one icon per app. Tern shows each window as a card, in the order you used them.</p>
+    </div>
+    <div class="tiles">
+      <article class="tile">
+        <div class="vignette" aria-hidden="true"><div class="v-win"></div><div class="v-win on"></div><div class="v-win"></div></div>
+        <h3>Windows, not apps</h3>
         <p>Every window is a card with a preview, in the order you used them. The previous one is always a tap away. Without Screen Recording, the card shows the icon and Tern still switches.</p>
-      </div>
-      <div class="feat">
-        <h3><span class="mark">abc</span> <span>Type to find it</span></h3>
+      </article>
+      <article class="tile">
+        <div class="vignette vignette-dark" aria-hidden="true">
+          <span class="v-search">vsc<i class="caret" style="background:#E8EEFC"></i></span>
+          <div class="v-hit">Visual Studio Code <span>— site.css</span></div>
+        </div>
+        <h3>Type to find it</h3>
         <p>With the switcher open, start typing. “vsc” finds Visual Studio Code by the app name or the window title. Search is free.</p>
+      </article>
+      <article class="tile tile-coral">
+        <div class="vignette vignette-coral" aria-hidden="true">
+          <div class="v-ghost"></div>
+          <span class="key key-l press" style="width:64px;min-width:64px;height:64px;font-size:26px">⌫</span>
+        </div>
+        <h3>Hide what gets in the way</h3>
+        <p><b>⌫</b> takes the app out of the switcher until you bring it back. <b>⌥⌫</b> hides just that window.</p>
+      </article>
+      <article class="tile">
+        <div class="vignette" aria-hidden="true" style="flex-wrap:wrap;padding:16px;gap:12px">
+          <span class="v-chip on">1 hour</span>
+          <span class="v-chip">until tomorrow</span>
+          <span class="v-chip">always</span>
+        </div>
+        <h3>Snooze</h3>
+        <p><b>⇧⌫</b> hides the app for an hour. In Settings, until tomorrow or forever too.</p>
+      </article>
+      <article class="tile">
+        <div class="vignette vignette-dark" aria-hidden="true" style="background:var(--ceu);gap:10px">
+          <div class="v-mode">Work <span class="toggle"><i></i></span></div>
+          <div class="v-mode off">Personal <span class="toggle off"><i></i></span></div>
+        </div>
+        <h3>Modes and Focus</h3>
+        <p>An extra set of hidden apps. Switch it from the menu bar, or tie the mode to a macOS Focus.</p>
+      </article>
+      <article class="tile">
+        <div class="vignette vignette-dark" aria-hidden="true">
+          <div class="v-urls">
+            <span><span class="scheme">tern://</span>open</span>
+            <span><span class="scheme">tern://</span>hide?app=…&amp;for=1h</span>
+            <span><span class="scheme">tern://</span>mode?name=Work</span>
+          </div>
+        </div>
+        <h3>Shortcuts and links</h3>
+        <p>From the Shortcuts app or a <code>tern://</code> link: open the switcher, hide an app, or change the mode. <kbd class="key key-s">⌘</kbd> <kbd class="key key-s">W</kbd> closes the highlighted window without leaving.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="hide-sec hide-pin" id="hide">
+    <div class="wrap hide-head">
+      <div>
+        <p class="eyebrow">Out of the way</p>
+        <h2>Five ways to hide.</h2>
       </div>
-      <div class="feat">
-        <h3><span class="mark">⌘W</span> <span>Act without leaving</span></h3>
-        <p><kbd>⌘</kbd> <kbd>W</kbd> closes the highlighted window, <kbd>⌘</kbd> <kbd>M</kbd> minimizes it, and <kbd>⌘</kbd> <kbd>Q</kbd> quits the app. All from the switcher.</p>
-      </div>
-      <div class="feat">
-        <h3><span class="mark">◐</span> <span>Out of the way</span></h3>
-        <p>Lives in the menu bar, with no Dock icon. Native Swift, lightweight, no account, no tracking. Record a different shortcut in Settings.</p>
+      <a href="hide-apps-from-window-switcher/">How to hide apps from the switcher →</a>
+    </div>
+    <div class="hide-scroller">
+      <div class="hide-track">
+        <article class="hide-card">
+          <span class="hide-n">01</span>
+          <div class="hide-keys"><kbd class="key">⌫</kbd></div>
+          <h3>The whole app</h3>
+          <p>Keeps it out until you bring it back, in Settings or with a link.</p>
+        </article>
+        <article class="hide-card">
+          <span class="hide-n">02</span>
+          <div class="hide-keys"><kbd class="key">⌥</kbd> <kbd class="key">⌫</kbd></div>
+          <h3>Just one window</h3>
+          <p>Hides it by its exact title. The rest of the app still shows up.</p>
+        </article>
+        <article class="hide-card">
+          <span class="hide-n">03</span>
+          <div class="hide-keys"><kbd class="key">*</kbd></div>
+          <h3>By title</h3>
+          <p>A piece of text, or a * pattern, hides windows like Picture in Picture even when the name changes.</p>
+        </article>
+        <article class="hide-card">
+          <span class="hide-n">04</span>
+          <div class="hide-keys"><kbd class="key">⇧</kbd> <kbd class="key">⌫</kbd></div>
+          <h3>For a while</h3>
+          <p>Hides an app for an hour. In Settings, until tomorrow too.</p>
+        </article>
+        <article class="hide-card">
+          <span class="hide-n">05</span>
+          <div class="hide-keys"><kbd class="key">◐</kbd></div>
+          <h3>By mode</h3>
+          <p>Work, Personal: an extra set of apps. Tie it to a macOS Focus.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="wrap block">
-    <h2>Out of the switcher.</h2>
-    <ul class="points">
-      <li><b>The whole app</b> <kbd>⌫</kbd> keeps it out until you bring it back, in Settings or with a link.</li>
-      <li><b>Just one window</b> <kbd>⌥</kbd> <kbd>⌫</kbd> hides it by its exact title. The rest of the app still shows up.</li>
-      <li><b>By title</b> A piece of text, or a <code>*</code> pattern, hides windows like Picture in Picture even when the name changes.</li>
-      <li><b>For a while</b> <kbd>⇧</kbd> <kbd>⌫</kbd> hides an app for an hour. In Settings, until tomorrow too.</li>
-      <li><b>By mode</b> Work, Personal: an extra set of apps. Switch it from the menu bar, or tie the mode to a macOS Focus.</li>
-    </ul>
-    <p class="aside"><a href="hide-apps-from-window-switcher/">How to hide apps from the switcher →</a></p>
+  <section class="keys" id="shortcuts">
+    <div class="wrap keys-inner">
+      <div class="keys-title">
+        <p class="eyebrow">Shortcuts</p>
+        <h2>All from the keyboard.</h2>
+        <p><b>⌥⇥</b> is the default; record another shortcut in Settings. Tern intercepts it so it doesn’t also fire in the frontmost app.</p>
+      </div>
+      <ul class="keylist">
+        <li>Open and move forward <span><kbd class="key key-s key-dark">⌥</kbd> <kbd class="key key-s key-dark">⇥</kbd></span></li>
+        <li>Move back <span><kbd class="key key-s key-dark">⇧</kbd> <kbd class="key key-s key-dark">⇥</kbd></span></li>
+        <li>Focus the window <span><kbd class="key key-s key-dark">⏎</kbd></span></li>
+        <li>Search <span>type</span></li>
+        <li>Hide the app <span><kbd class="key key-s key-dark">⌫</kbd></span></li>
+        <li>Snooze for 1 hour <span><kbd class="key key-s key-dark">⇧</kbd> <kbd class="key key-s key-dark">⌫</kbd></span></li>
+        <li>Hide just the window <span><kbd class="key key-s key-dark">⌥</kbd> <kbd class="key key-s key-dark">⌫</kbd></span></li>
+        <li>Close the window <span><kbd class="key key-s key-dark">⌘</kbd> <kbd class="key key-s key-dark">W</kbd></span></li>
+        <li>Minimize <span><kbd class="key key-s key-dark">⌘</kbd> <kbd class="key key-s key-dark">M</kbd></span></li>
+        <li>Quit the app <span><kbd class="key key-s key-dark">⌘</kbd> <kbd class="key key-s key-dark">Q</kbd></span></li>
+        <li>Close the switcher <span><kbd class="key key-s key-dark">esc</kbd></span></li>
+      </ul>
+    </div>
+    <p class="wrap aside">Arrow keys move the selection too. While searching, <kbd class="key key-s key-dark">⌫</kbd> deletes text and <kbd class="key key-s key-dark">esc</kbd> clears the search: letting go of <kbd class="key key-s key-dark">⌥</kbd> confirms only when you haven’t typed.</p>
   </section>
 
-  <section class="wrap keys">
-    <p class="eyebrow">Shortcuts</p>
-    <h2>All from the keyboard.</h2>
-    <ul class="keylist">
-      <li>Open and move forward <span><kbd>⌥</kbd> <kbd>⇥</kbd></span></li>
-      <li>Move back <span><kbd>⇧</kbd> <kbd>⇥</kbd></span></li>
-      <li>Focus the window <span><kbd>⏎</kbd></span></li>
-      <li>Search <span>type</span></li>
-      <li>Hide the app <span><kbd>⌫</kbd></span></li>
-      <li>Snooze for 1 hour <span><kbd>⇧</kbd> <kbd>⌫</kbd></span></li>
-      <li>Hide just the window <span><kbd>⌥</kbd> <kbd>⌫</kbd></span></li>
-      <li>Close the window <span><kbd>⌘</kbd> <kbd>W</kbd></span></li>
-      <li>Minimize <span><kbd>⌘</kbd> <kbd>M</kbd></span></li>
-      <li>Quit the app <span><kbd>⌘</kbd> <kbd>Q</kbd></span></li>
-      <li>Close the switcher <span><kbd>esc</kbd></span></li>
-    </ul>
-    <p class="aside">Arrow keys move the selection too. While searching, <kbd>⌫</kbd> deletes text and <kbd>esc</kbd> clears the search: letting go of <kbd>⌥</kbd> confirms only when you haven’t typed. <kbd>⌥</kbd> <kbd>⇥</kbd> is the default; record another shortcut in Settings. Tern intercepts it so it doesn’t also fire in the frontmost app.</p>
-  </section>
-
-  <section class="wrap block">
+  <section class="wrap urls">
+    <p class="eyebrow">tern://</p>
     <h2>Open it from anywhere.</h2>
     <p class="aside flush">In the Shortcuts app: open the switcher, hide an app, show it again, or change the mode. The same works from a <code>tern://</code> link. Those links don’t close windows or quit apps.</p>
-    <ul class="url-list">
-      <li><code>tern://open</code> <span>opens the switcher</span></li>
-      <li><code>tern://hide?app=com.spotify.client&amp;for=1h</code> <span>hides Spotify for an hour</span></li>
-      <li><code>tern://unhide?app=com.spotify.client</code> <span>shows it again</span></li>
-      <li><code>tern://mode?name=Work</code> <span>turns a mode on; without the name, turns it off</span></li>
-    </ul>
+    <div class="url-panel">
+      <ul class="url-list">
+        <li><code><span class="scheme">tern://</span>open</code> <span>opens the switcher</span></li>
+        <li><code><span class="scheme">tern://</span>hide?app=com.spotify.client&amp;for=1h</code> <span>hides Spotify for an hour</span></li>
+        <li><code><span class="scheme">tern://</span>unhide?app=com.spotify.client</code> <span>shows it again</span></li>
+        <li><code><span class="scheme">tern://</span>mode?name=Work</code> <span>turns a mode on; without the name, turns it off</span></li>
+      </ul>
+    </div>
   </section>
 
-  <section class="wrap block" id="faq">
+  <section class="wrap compare-sec">
+    <div class="sec-head">
+      <p class="eyebrow">Compare</p>
+      <h2>Tern, ⌘⇥, and AltTab.</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="cmp-tern">Tern</th>
+            <th scope="col">macOS ⌘⇥</th>
+            <th scope="col">AltTab</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Switch window by window</th>
+            <td class="cmp-tern">Yes</td>
+            <td>No, apps only</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row">Type to search</th>
+            <td class="cmp-tern">Free</td>
+            <td>No</td>
+            <td>Pro feature</td>
+          </tr>
+          <tr>
+            <th scope="row">Hide apps and windows</th>
+            <td class="cmp-tern">App, window, title, snooze</td>
+            <td>No</td>
+            <td>By app</td>
+          </tr>
+          <tr>
+            <th scope="row">Modes tied to Focus</th>
+            <td class="cmp-tern">Yes</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row">Open source</th>
+            <td class="cmp-tern">MIT</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">AltTab is more mature and is notarized. Tern is not yet: on first launch, use <b>Open Anyway</b>. There is a <a href="alttab-alternatives/">longer comparison</a>.</p>
+  </section>
+
+  <section class="wrap free-sec" id="support">
+    <div class="free-grid">
+      <div class="free-card">
+        <span class="sticker">no paid tier</span>
+        <h2>Free.<br>Forever.</h2>
+        <ul class="inc">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Type-to-search</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>App and window exclusions</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Title rules</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Snooze</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Modes and Focus</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6BD6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Shortcuts and tern://</li>
+        </ul>
+        <a class="btn btn-primary btn-lg" href="https://github.com/gitlherme/tern/releases/latest">Download for macOS</a>
+        <dl class="facts">
+          <div><dt>Price</dt><dd>Free</dd></div>
+          <div><dt>License</dt><dd>MIT</dd></div>
+          <div><dt>System</dt><dd>macOS 13+</dd></div>
+          <div><dt>Architecture</dt><dd>Apple silicon and Intel</dd></div>
+          <div><dt>Version</dt><dd><span data-release="version">1.2.1</span> · <time datetime="2026-10-09" data-release="date-en">October 9, 2026</time></dd></div>
+          <div><dt>Account and tracking</dt><dd>None</dd></div>
+        </dl>
+      </div>
+      <div class="support-card">
+        <div>
+          <h3>If it saves you a few seconds every day…</h3>
+          <p>…you can buy me a coffee. Tern is made by one person, in spare time.</p>
+        </div>
+        <div class="support-actions">
+          <a class="btn btn-ghost" href="https://ko-fi.com/gitlherme" target="_blank" rel="noopener noreferrer">
+            Support on Ko-fi
+            <svg class="ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap faq-sec" id="faq">
     <h2>Frequently asked questions</h2>
     <div class="faq">
       <details>
-        <summary>Does the Mac have Alt-Tab?</summary>
-        <p>macOS does not have Alt-Tab. <kbd>⌘</kbd> <kbd>⇥</kbd> switches apps, not windows. To move between windows of the same app, the shortcut is <kbd>⌘</kbd> and the grave accent. Tern uses <kbd>⌥</kbd> <kbd>⇥</kbd> to switch window by window.</p>
+        <summary>Does the Mac have Alt-Tab? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>macOS does not have Alt-Tab. <kbd class="key key-s">⌘</kbd> <kbd class="key key-s">⇥</kbd> switches apps, not windows. To move between windows of the same app, the shortcut is <kbd class="key key-s">⌘</kbd> and the grave accent. Tern uses <kbd class="key key-s">⌥</kbd> <kbd class="key key-s">⇥</kbd> to switch window by window.</p>
       </details>
       <details>
-        <summary>How is Tern different from ⌘⇥?</summary>
-        <p>macOS <kbd>⌘</kbd> <kbd>⇥</kbd> shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do.</p>
+        <summary>How is Tern different from ⌘⇥? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>macOS <kbd class="key key-s">⌘</kbd> <kbd class="key key-s">⇥</kbd> shows one icon per app. If Safari has three windows, ⌘⇥ still treats them as a single Safari. Tern shows each window as a card, in the order you used them. You can also type to search and hide apps from the switcher, which ⌘⇥ cannot do.</p>
       </details>
       <details>
-        <summary>Is Tern free?</summary>
+        <summary>Is Tern free? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Yes. Tern is free and open source under the MIT license. Type-to-search, exclusions, snooze, and modes are in the download. No account and no paid tier. <a href="#support">If it's useful to you, you can support it on Ko-fi.</a></p>
       </details>
       <details>
-        <summary>Why does Tern ask for Accessibility?</summary>
+        <summary>Why does Tern ask for Accessibility? <span class="plus" aria-hidden="true">+</span></summary>
         <p>macOS only lets an app read window titles and bring a window forward with Accessibility turned on. Tern does not read window contents. Without that permission, the shortcut cannot switch windows.</p>
       </details>
       <details>
-        <summary>Why does macOS warn on first launch?</summary>
+        <summary>Why does macOS warn on first launch? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Tern is not notarized by Apple yet. It is signed with its own certificate, and the source is on GitHub. On first launch, go to System Settings › Privacy &amp; Security › <b>Open Anyway</b>. The <a href="help/#install">help page has the steps</a>.</p>
       </details>
       <details>
-        <summary>Can I hide an app from the switcher?</summary>
-        <p>Yes. In the switcher, <kbd>⌫</kbd> hides the whole app and <kbd>⌥</kbd> <kbd>⌫</kbd> hides just that window. You can also hide by title, for an hour, or tie a mode to a macOS Focus.</p>
+        <summary>Can I hide an app from the switcher? <span class="plus" aria-hidden="true">+</span></summary>
+        <p>Yes. In the switcher, <kbd class="key key-s">⌫</kbd> hides the whole app and <kbd class="key key-s">⌥</kbd> <kbd class="key key-s">⌫</kbd> hides just that window. You can also hide by title, for an hour, or tie a mode to a macOS Focus.</p>
       </details>
       <details>
-        <summary>How is Tern different from AltTab?</summary>
+        <summary>How is Tern different from AltTab? <span class="plus" aria-hidden="true">+</span></summary>
         <p>Both are open-source window switchers for Mac. In AltTab, type-to-search is a Pro feature. In Tern, search is free. Tern is built around hiding apps and windows; AltTab is more mature, is notarized, and badges windows on other Spaces. There is a <a href="alttab-alternatives/">comparison</a>.</p>
       </details>
       <details>
-        <summary>Do I need Screen Recording?</summary>
+        <summary>Do I need Screen Recording? <span class="plus" aria-hidden="true">+</span></summary>
         <p>No. Screen Recording is optional and only used for card thumbnails. Without it, Tern still switches windows.</p>
       </details>
     </div>
   </section>
 
-  <section class="wrap final">
-    <h2>Switch windows without thinking.</h2>
-    <p>Download Tern, grant Accessibility, and press <kbd>⌥</kbd> <kbd>⇥</kbd>. If you already have it, the app installs <a href="changelog/#1.2.0">1.2</a> on its own.</p>
-    <a class="btn btn-primary" href="https://github.com/gitlherme/tern/releases/latest">Download for macOS</a>
-  </section>
-
-  <section class="wrap support" id="support">
-    <p>Tern is free, with no paid tier. If it saves you a few seconds every day, you can buy me a coffee.</p>
-    <div class="support-actions">
-      <a class="btn btn-ghost btn-support" href="https://ko-fi.com/gitlherme" target="_blank" rel="noopener noreferrer">
-        Support on Ko-fi
-        <svg class="ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-        <span class="sr-only"> (opens in a new tab)</span>
-      </a>
+  <section class="wrap final-sec">
+    <div class="final-cta">
+      <svg class="cta-bird" aria-hidden="true" width="120" height="60" viewBox="0 0 64 32"><path d="M2 20 C 12 9, 23 9, 30 16 C 38 7, 50 3, 62 5 C 50 10, 42 16, 36 22 L 32 25 L 28 22 C 20 18, 11 18, 2 20 Z" fill="#121827"/><circle cx="32" cy="22.5" r="2.4" fill="#FFFFFF"/></svg>
+      <h2>Switch windows without thinking.</h2>
+      <p>Download Tern, grant Accessibility, and press <kbd class="key key-s">⌥</kbd> <kbd class="key key-s">⇥</kbd>. If you already have it, the app installs <a href="changelog/#1.2.0">1.2</a> on its own.</p>
+      <a class="btn btn-primary btn-lg btn-on-coral" href="https://github.com/gitlherme/tern/releases/latest">Download for macOS</a>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Tern · made by <a href="https://gitlher.me">gitlherme</a></span>
+    <span class="credit">tern <span class="dot-sep" aria-hidden="true">·</span> <a class="zoltraak" href="https://zoltraaklabs.com" target="_blank" rel="noopener"><svg class="zoltraak-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="13.4" fill="none" stroke="currentColor" stroke-width="2.7"/><path d="M10.6 11.35h10.8L10.6 20.65h10.8" fill="none" stroke="currentColor" stroke-width="2.45" stroke-linecap="round" stroke-linejoin="round"/></svg>by zoltraak labs</a> <span class="dot-sep" aria-hidden="true">·</span> made by <a href="https://gitlher.me">gitlherme</a></span>
     <nav>
       <a href="alt-tab-on-mac/">How to Alt-Tab</a>
       <a href="alttab-alternatives/">Alternatives</a>
@@ -245,16 +467,5 @@
     </nav>
   </div>
 </footer>
-
-<script src="../site.js"></script>
-<script>
-  ternDemo({
-    word: "xco",
-    countAll: "4 windows",
-    countOne: "1 window",
-    browseCaption: "Hold <kbd>⌥</kbd> and tap <kbd>⇥</kbd> to move. Let go to focus.",
-    searchCaption: "Type to filter. <kbd>xco</kbd> finds Xcode."
-  });
-</script>
 </body>
 </html>
