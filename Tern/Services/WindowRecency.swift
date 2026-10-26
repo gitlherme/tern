@@ -6,20 +6,37 @@ struct WindowMRUKey: Codable, Equatable {
     var bundleID: String
     var windowID: UInt32
     var title: String
+    /// Processo dono da janela. Dois apps com o mesmo bundle id (ex.: duas
+    /// instâncias do Claude) só se distinguem por aqui e pelo windowID.
+    var pid: Int32?
+
+    /// Entrada de um processo que já fechou: o windowID não vale mais, então
+    /// só o título identifica a janela depois de reabrir o app.
+    private var isStale: Bool {
+        guard let pid else { return true }
+        return NSRunningApplication(processIdentifier: pid) == nil
+    }
 
     func matches(_ window: WindowInfo) -> Bool {
         if window.bundleID != bundleID { return false }
         if windowID != 0, window.windowID == windowID { return true }
-        let expected = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        let actual = window.title.trimmingCharacters(in: .whitespacesAndNewlines)
-        return !expected.isEmpty && expected == actual
+        // Janelas vivas com IDs diferentes são janelas diferentes, mesmo com título igual.
+        if windowID != 0, window.windowID != 0, !isStale { return false }
+        return titlesMatch(title, window.title)
     }
 
     func isSameEntry(as other: WindowMRUKey) -> Bool {
         if bundleID != other.bundleID { return false }
-        if windowID != 0, other.windowID != 0, windowID == other.windowID { return true }
-        let a = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        let b = other.title.trimmingCharacters(in: .whitespacesAndNewlines)
+        if windowID != 0, other.windowID != 0 {
+            if windowID == other.windowID { return true }
+            if !isStale { return false }
+        }
+        return titlesMatch(title, other.title)
+    }
+
+    private func titlesMatch(_ a: String, _ b: String) -> Bool {
+        let a = a.trimmingCharacters(in: .whitespacesAndNewlines)
+        let b = b.trimmingCharacters(in: .whitespacesAndNewlines)
         return !a.isEmpty && a == b
     }
 }
@@ -45,7 +62,8 @@ struct WindowRecency {
             WindowMRUKey(
                 bundleID: window.bundleID,
                 windowID: window.windowID,
-                title: window.title
+                title: window.title,
+                pid: window.ownerPID
             )
         )
     }
@@ -66,7 +84,7 @@ struct WindowRecency {
             ?? AccessibilityWindows.child(axApp, kAXMainWindowAttribute as String)
         let windowID = focused.flatMap { AccessibilityWindows.windowID($0) } ?? 0
         let title = focused.map { AccessibilityWindows.title($0) } ?? (app.localizedName ?? "")
-        record(WindowMRUKey(bundleID: bundleID, windowID: windowID, title: title))
+        record(WindowMRUKey(bundleID: bundleID, windowID: windowID, title: title, pid: app.processIdentifier))
     }
 
     func ordered(_ windows: [WindowInfo]) -> [WindowInfo] {
